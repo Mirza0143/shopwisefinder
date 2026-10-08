@@ -15,7 +15,7 @@ export type Product = {
   badges: string[];
   pros: string[];
   cons: string[];
-  specs: Record<string, string>;
+  specs: Record<string, string | undefined>;
   featured?: boolean;
   trending?: boolean;
   editorChoice?: boolean;
