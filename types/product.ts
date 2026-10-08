@@ -1,0 +1,22 @@
+export type Product = {
+  id: string;
+  slug: string;
+  title: string;
+  brand: string;
+  category: string;
+  description: string;
+  image: string;
+  amazonUrl: string;
+  originalPrice: number;
+  price: number;
+  currency: string;
+  rating: number;
+  reviewCount: number;
+  badges: string[];
+  pros: string[];
+  cons: string[];
+  specs: Record<string, string>;
+  featured?: boolean;
+  trending?: boolean;
+  editorChoice?: boolean;
+};

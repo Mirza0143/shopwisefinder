@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(99,102,241,.10), transparent 28rem),
+    radial-gradient(circle at 90% 10%, rgba(168,85,247,.08), transparent 26rem),
+    #f8fafc;
+  color: #0f172a;
+}
+
+.dark body {
+  background:
+    radial-gradient(circle at 10% 0%, rgba(99,102,241,.16), transparent 30rem),
+    radial-gradient(circle at 90% 10%, rgba(168,85,247,.12), transparent 28rem),
+    #070b14;
+  color: #f8fafc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(99,102,241,.25);
+}
