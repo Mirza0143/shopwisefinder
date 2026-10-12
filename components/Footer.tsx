@@ -14,6 +14,9 @@ export default function Footer() {
           <h4 className="font-bold">Explore</h4>
           <div className="mt-4 space-y-3 text-sm text-slate-500">
             <Link className="block hover:text-slate-950 dark:hover:text-white" href="/products">Products</Link>
+            <Link className="block hover:text-slate-950 dark:hover:text-white" href="/products?category=Mobile%20Accessories">Mobile Gear</Link>
+            <Link className="block hover:text-slate-950 dark:hover:text-white" href="/products?category=Fashion%20%26%20Footwear">Style & Footwear</Link>
+            <Link className="block hover:text-slate-950 dark:hover:text-white" href="/bundles">Curated Bundles</Link>
             <Link className="block hover:text-slate-950 dark:hover:text-white" href="/compare">Compare</Link>
           </div>
         </div>
