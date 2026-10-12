@@ -7,15 +7,24 @@
     "category": "Audio",
     "description": "A premium wireless headphone concept with active noise cancellation, long battery life and a comfortable over-ear design.",
     "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=85",
-    "amazonUrl": "https://www.amazon.com/",
-    "originalPrice": 249.99,
-    "price": 179.99,
-    "currency": "USD",
-    "rating": 4.7,
-    "reviewCount": 12845,
-    "badges": ["Best Choice", "Price Drop"],
-    "pros": ["Strong noise cancellation", "Long battery life", "Comfortable design"],
-    "cons": ["Premium price", "Large carrying case"],
+    "originalPrice": 20750,
+    "price": 14940,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "Active noise cancellation is listed as a core feature.",
+      "A 40-hour battery claim would suit long sessions if independently confirmed.",
+      "The over-ear format is intended to cover the ears rather than sit inside them."
+    ],
+    "cons": [
+      "The carrying case may take more bag space than an earbud case.",
+      "ANC quality, microphone clarity, sound tuning and latency are not tested here.",
+      "The 40-hour figure is illustrative; real battery life depends on volume and ANC use."
+    ],
     "specs": {
       "Battery": "40 hours",
       "Connectivity": "Bluetooth",
@@ -24,7 +33,35 @@
     },
     "featured": true,
     "trending": true,
-    "editorChoice": true
+    "editorChoice": true,
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "On paper, the listed active noise cancellation and up-to-40-hour battery make this a long-session over-ear option. Real ANC strength, comfort over several hours and sound quality cannot be confirmed from the sample listing alone.",
+      "bestFor": "People who want over-ear headphones for commuting, study or long listening sessions—after checking the real model and battery tests.",
+      "notIdealFor": "Buyers who need a very small travel setup, proven call-microphone quality or measured audio performance.",
+      "strengths": [
+        "Active noise cancellation is listed as a core feature.",
+        "A 40-hour battery claim would suit long sessions if independently confirmed.",
+        "The over-ear format is intended to cover the ears rather than sit inside them."
+      ],
+      "limitations": [
+        "The carrying case may take more bag space than an earbud case.",
+        "ANC quality, microphone clarity, sound tuning and latency are not tested here.",
+        "The 40-hour figure is illustrative; real battery life depends on volume and ANC use."
+      ],
+      "verifyBeforeBuying": [
+        "Check the exact model, codec support, multipoint and wired-use options.",
+        "Look for independent microphone and ANC tests, not only the advertised feature list.",
+        "Confirm comfort, ear-cup size, warranty and current retailer price."
+      ]
+    }
   },
   {
     "id": "prod-002",
@@ -34,15 +71,24 @@
     "category": "Monitors",
     "description": "A 4K productivity and creator monitor concept with a clean design and high-resolution panel.",
     "image": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=1200&q=85",
-    "amazonUrl": "https://www.amazon.com/",
-    "originalPrice": 499.99,
-    "price": 379.99,
-    "currency": "USD",
-    "rating": 4.6,
-    "reviewCount": 6842,
-    "badges": ["Editor's Choice", "Best Value"],
-    "pros": ["Sharp 4K image", "Excellent workspace size", "Modern design"],
-    "cons": ["Stand takes desk space", "Speakers are basic"],
+    "originalPrice": 41500,
+    "price": 31540,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "3840 × 2160 resolution gives a detailed 4K workspace.",
+      "The listed 32-inch size can fit multiple windows side by side.",
+      "IPS is the stated panel type; viewing angles and colour results still need testing."
+    ],
+    "cons": [
+      "The listed 60Hz refresh rate is a basic ceiling for fast-motion gaming.",
+      "Stand footprint may take considerable desk depth.",
+      "Brightness, HDR performance, colour gamut, USB-C power delivery and factory calibration are not specified."
+    ],
     "specs": {
       "Resolution": "3840 × 2160",
       "Size": "32 inch",
@@ -50,7 +96,35 @@
       "Panel": "IPS"
     },
     "featured": true,
-    "editorChoice": true
+    "editorChoice": true,
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "A 32-inch 4K IPS configuration offers a large, high-resolution workspace for documents, design layouts and detailed imagery. Its listed 60Hz refresh rate is less compelling for high-frame-rate gaming, and image quality still depends on brightness, colour coverage and calibration.",
+      "bestFor": "Productivity, multitasking and detail-rich work where 4K resolution matters more than very high refresh rate.",
+      "notIdealFor": "Competitive gamers prioritising 144Hz-plus motion, or creators who need verified colour accuracy without calibration.",
+      "strengths": [
+        "3840 × 2160 resolution gives a detailed 4K workspace.",
+        "The listed 32-inch size can fit multiple windows side by side.",
+        "IPS is the stated panel type; viewing angles and colour results still need testing."
+      ],
+      "limitations": [
+        "The listed 60Hz refresh rate is a basic ceiling for fast-motion gaming.",
+        "Stand footprint may take considerable desk depth.",
+        "Brightness, HDR performance, colour gamut, USB-C power delivery and factory calibration are not specified."
+      ],
+      "verifyBeforeBuying": [
+        "Check stand height, tilt, VESA support and actual desk dimensions.",
+        "Look for measured brightness, colour coverage, response time and warranty.",
+        "Confirm which ports support the resolution and refresh rate you need."
+      ]
+    }
   },
   {
     "id": "prod-003",
@@ -60,22 +134,59 @@
     "category": "Keyboards",
     "description": "A premium mechanical keyboard concept designed for gaming, programming and daily productivity.",
     "image": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=1200&q=85",
-    "amazonUrl": "https://www.amazon.com/",
-    "originalPrice": 159.99,
-    "price": 119.99,
-    "currency": "USD",
-    "rating": 4.5,
-    "reviewCount": 4210,
-    "badges": ["Best Value"],
-    "pros": ["Excellent typing feel", "Compact layout", "Premium construction"],
-    "cons": ["Learning curve for compact layout", "No wrist rest"],
+    "originalPrice": 13280,
+    "price": 9960,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "A 75% layout keeps the keyboard smaller than a typical full-size board.",
+      "Mechanical switches can provide a distinct typing feel, depending on the actual switch.",
+      "USB-C is the listed wired connector and RGB lighting is included in the sample specs."
+    ],
+    "cons": [
+      "The compact layout may require a short adjustment period.",
+      "A wrist rest is not listed as included.",
+      "Switch feel, noise, keycap quality, rollover and hot-swap support are unverified."
+    ],
     "specs": {
       "Layout": "75%",
       "Connection": "USB-C",
       "Switches": "Mechanical",
       "Lighting": "RGB"
     },
-    "trending": true
+    "trending": true,
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "The stated 75% mechanical layout and USB-C connection are a space-saving combination for writing, coding and everyday gaming. A compact layout trades some dedicated keys for desk space, and the listing does not identify the switch type or whether switches are replaceable.",
+      "bestFor": "People who want a compact mechanical keyboard and are comfortable using function-layer shortcuts.",
+      "notIdealFor": "Users who rely on a dedicated number pad, need a wrist rest included or prefer very quiet typing without checking switch noise.",
+      "strengths": [
+        "A 75% layout keeps the keyboard smaller than a typical full-size board.",
+        "Mechanical switches can provide a distinct typing feel, depending on the actual switch.",
+        "USB-C is the listed wired connector and RGB lighting is included in the sample specs."
+      ],
+      "limitations": [
+        "The compact layout may require a short adjustment period.",
+        "A wrist rest is not listed as included.",
+        "Switch feel, noise, keycap quality, rollover and hot-swap support are unverified."
+      ],
+      "verifyBeforeBuying": [
+        "Check the exact layout and whether the function row and arrow keys meet your needs.",
+        "Confirm switch type, noise level, hot-swap support and keycap layout.",
+        "Check OS compatibility, cable inclusion and warranty."
+      ]
+    }
   },
   {
     "id": "prod-004",
@@ -85,21 +196,2294 @@
     "category": "Office",
     "description": "An ergonomic office chair concept focused on adjustability and long-session comfort.",
     "image": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=85",
-    "amazonUrl": "https://www.amazon.com/",
-    "originalPrice": 399.99,
-    "price": 299.99,
-    "currency": "USD",
-    "rating": 4.4,
-    "reviewCount": 2918,
-    "badges": ["Top Rated"],
-    "pros": ["Adjustable lumbar support", "Breathable back", "Multiple adjustments"],
-    "cons": ["Assembly required", "Large footprint"],
+    "originalPrice": 33200,
+    "price": 24900,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "Mesh is the listed back material and may feel more breathable than a fully padded back.",
+      "Multiple adjustments can help tailor the sitting position.",
+      "Adjustable armrests are listed."
+    ],
+    "cons": [
+      "Assembly is required and the chair may occupy significant floor space.",
+      "Seat depth, lumbar range, cushion firmness and fit for different heights are not detailed.",
+      "The 300 lb capacity is a sample claim and must be verified for the real model."
+    ],
     "specs": {
       "Material": "Mesh",
       "Adjustments": "Multiple",
       "Armrests": "Adjustable",
       "Weight Capacity": "300 lb"
     },
-    "featured": true
+    "featured": true,
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "Mesh construction, adjustable armrests and multiple adjustment points suggest a chair intended for a customisable desk setup. Ergonomic comfort cannot be guaranteed by the word “ergonomic”; seat dimensions, lumbar adjustment range and long-session support matter more than the label.",
+      "bestFor": "Desk workers who want breathable mesh and adjustable seating, provided the dimensions suit their body and desk.",
+      "notIdealFor": "Buyers who need a proven fit without trying a chair, or cannot accommodate a larger chair footprint.",
+      "strengths": [
+        "Mesh is the listed back material and may feel more breathable than a fully padded back.",
+        "Multiple adjustments can help tailor the sitting position.",
+        "Adjustable armrests are listed."
+      ],
+      "limitations": [
+        "Assembly is required and the chair may occupy significant floor space.",
+        "Seat depth, lumbar range, cushion firmness and fit for different heights are not detailed.",
+        "The 300 lb capacity is a sample claim and must be verified for the real model."
+      ],
+      "verifyBeforeBuying": [
+        "Check seat height/depth, back height, armrest range and recommended user height.",
+        "Verify load rating, warranty, return policy and replacement parts.",
+        "Prefer a trial or easy return option if you will sit for many hours a day."
+      ]
+    }
+  },
+  {
+    "id": "prod-005",
+    "slug": "echo-wave-anc-headphones",
+    "title": "EchoWave ANC Wireless Headphones",
+    "brand": "EchoWave",
+    "category": "Audio",
+    "description": "Illustrative wireless over-ear headphone listing for testing category-based comparisons. Replace with a verified product before publishing.",
+    "image": "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 16600,
+    "price": 12450,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "An over-ear form factor is listed.",
+      "Active noise cancellation is included in the sample specification.",
+      "A 35-hour battery claim may suit daily use if verified."
+    ],
+    "cons": [
+      "The battery figure and noise-cancellation performance are demo values, not test results.",
+      "Fit, heat build-up, sound tuning and microphone quality are unknown.",
+      "The exact supported codecs, multipoint and charging time are not specified."
+    ],
+    "specs": {
+      "Battery": "35 hours (demo)",
+      "Connectivity": "Bluetooth (demo)",
+      "Noise Cancellation": "Active (demo)",
+      "Weight": "265 g (demo)"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "The sample sheet lists over-ear wireless playback, active noise cancellation and a 35-hour battery claim. Those are useful features on paper, but the listing has no verified listening, call or battery tests.",
+      "bestFor": "People comparing general-purpose wireless headphones who can confirm the exact retail model before buying.",
+      "notIdealFor": "Anyone who needs proven mic quality for meetings, low-latency gaming or a dependable measured battery figure.",
+      "strengths": [
+        "An over-ear form factor is listed.",
+        "Active noise cancellation is included in the sample specification.",
+        "A 35-hour battery claim may suit daily use if verified."
+      ],
+      "limitations": [
+        "The battery figure and noise-cancellation performance are demo values, not test results.",
+        "Fit, heat build-up, sound tuning and microphone quality are unknown.",
+        "The exact supported codecs, multipoint and charging time are not specified."
+      ],
+      "verifyBeforeBuying": [
+        "Confirm the manufacturer and model number.",
+        "Check independent sound, ANC, microphone and battery-life testing.",
+        "Review warranty, return terms and replacement ear-pad availability."
+      ]
+    }
+  },
+  {
+    "id": "prod-006",
+    "slug": "pulse-air-wireless-earbuds",
+    "title": "Pulse Air Wireless Earbuds",
+    "brand": "Pulse",
+    "category": "Audio",
+    "description": "Illustrative true-wireless earbud listing for testing the comparison interface. Replace the listing and specifications with a verified product.",
+    "image": "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 8300,
+    "price": 5810,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "A compact charging-case format is listed.",
+      "The stated 8-hour earbud / 24-hour total battery is useful as a comparison target.",
+      "Adaptive noise cancellation is listed, though its effectiveness is untested."
+    ],
+    "cons": [
+      "The battery figures and adaptive ANC are demo specs, not verified performance.",
+      "Seal and fit vary by ear; passive isolation may be poor if the tips do not fit.",
+      "Microphone clarity, water/sweat rating, codec support and single-ear use are not listed."
+    ],
+    "specs": {
+      "Battery": "8 h earbuds / 24 h case (demo)",
+      "Connectivity": "Bluetooth (demo)",
+      "Noise Cancellation": "Adaptive (demo)",
+      "Weight": "52 g with case (demo)"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "The sample spec claims 8 hours from the earbuds and 24 hours including the case, with adaptive noise cancellation. That could suit commuting and everyday listening, but seal, comfort and real battery life determine how good the experience is.",
+      "bestFor": "People who prefer a pocketable wireless option and can verify fit, mic and battery performance.",
+      "notIdealFor": "Buyers who need a secure fit for sport without checking the ear tips, or who need proven voice-call performance.",
+      "strengths": [
+        "A compact charging-case format is listed.",
+        "The stated 8-hour earbud / 24-hour total battery is useful as a comparison target.",
+        "Adaptive noise cancellation is listed, though its effectiveness is untested."
+      ],
+      "limitations": [
+        "The battery figures and adaptive ANC are demo specs, not verified performance.",
+        "Seal and fit vary by ear; passive isolation may be poor if the tips do not fit.",
+        "Microphone clarity, water/sweat rating, codec support and single-ear use are not listed."
+      ],
+      "verifyBeforeBuying": [
+        "Check included ear-tip sizes and the official IP rating, if any.",
+        "Find independent call-mic, latency, battery and noise-control tests.",
+        "Confirm device compatibility, case charging method and return policy."
+      ]
+    }
+  },
+  {
+    "id": "prod-007",
+    "slug": "vertex-qhd-165-monitor",
+    "title": "Vertex QHD 165Hz Monitor",
+    "brand": "Vertex",
+    "category": "Monitors",
+    "description": "Illustrative QHD high-refresh monitor listing for testing same-category comparisons. Replace with verified model details before publishing.",
+    "image": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 29050,
+    "price": 23240,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "2560 × 1440 resolution offers more detail than 1080p at the same screen size.",
+      "The listed 165Hz refresh rate targets smoother motion than 60Hz.",
+      "A 27-inch format is a common balance between desk space and pixel density."
+    ],
+    "cons": [
+      "The 165Hz figure is a demo spec and is not an independent motion test.",
+      "Response time, VRR compatibility, brightness, HDR and colour gamut are not confirmed.",
+      "The GPU and cable/port used can limit the available refresh rate."
+    ],
+    "specs": {
+      "Resolution": "2560 × 1440 (demo)",
+      "Size": "27 inch (demo)",
+      "Refresh Rate": "165 Hz (demo)",
+      "Panel": "IPS (demo)"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "A 27-inch QHD panel with a listed 165Hz refresh rate is a sensible on-paper balance for gaming and everyday desktop use. Refresh rate alone does not establish motion clarity: response times, variable-refresh support and the exact port bandwidth also matter.",
+      "bestFor": "PC gamers seeking a higher-refresh QHD monitor, assuming their GPU and connections can drive it.",
+      "notIdealFor": "Colour-critical work without measured colour accuracy, or buyers who need verified HDR performance.",
+      "strengths": [
+        "2560 × 1440 resolution offers more detail than 1080p at the same screen size.",
+        "The listed 165Hz refresh rate targets smoother motion than 60Hz.",
+        "A 27-inch format is a common balance between desk space and pixel density."
+      ],
+      "limitations": [
+        "The 165Hz figure is a demo spec and is not an independent motion test.",
+        "Response time, VRR compatibility, brightness, HDR and colour gamut are not confirmed.",
+        "The GPU and cable/port used can limit the available refresh rate."
+      ],
+      "verifyBeforeBuying": [
+        "Confirm real max refresh over each input and whether Adaptive-Sync works with your GPU.",
+        "Look for measured response-time/overshoot and brightness reviews.",
+        "Check stand ergonomics, dead-pixel policy and warranty."
+      ]
+    }
+  },
+  {
+    "id": "prod-008",
+    "slug": "vertex-ultrawide-creator-monitor",
+    "title": "Vertex Ultrawide Creator Monitor",
+    "brand": "Vertex",
+    "category": "Monitors",
+    "description": "Illustrative ultrawide monitor listing for testing side-by-side comparisons. Replace with a verified model and specifications before publishing.",
+    "image": "https://images.unsplash.com/photo-1587831990711-23ca6441447b?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 49800,
+    "price": 39010,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "The 21:9-style resolution provides extra horizontal working space.",
+      "A 34-inch screen can reduce the need to place multiple monitors side by side.",
+      "The listed 100Hz refresh is above a conventional 60Hz target, if verified."
+    ],
+    "cons": [
+      "The wide panel needs substantial desk width.",
+      "VA panel motion handling and viewing-angle behaviour vary by model.",
+      "Colour coverage, USB-C, KVM, local dimming and pixel response are not specified."
+    ],
+    "specs": {
+      "Resolution": "3440 × 1440 (demo)",
+      "Size": "34 inch (demo)",
+      "Refresh Rate": "100 Hz (demo)",
+      "Panel": "VA (demo)"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "The sample 34-inch, 3440 × 1440 ultrawide configuration offers horizontal room for timelines, spreadsheets and side-by-side windows. The 100Hz claim is a moderate refresh target, but panel uniformity, text clarity and app compatibility still need to be checked.",
+      "bestFor": "People who multitask across wide timelines, code editors or several desktop windows.",
+      "notIdealFor": "Small desks, workflows needing a high pixel density at close range, or users whose games/apps do not handle ultrawide aspect ratios well.",
+      "strengths": [
+        "The 21:9-style resolution provides extra horizontal working space.",
+        "A 34-inch screen can reduce the need to place multiple monitors side by side.",
+        "The listed 100Hz refresh is above a conventional 60Hz target, if verified."
+      ],
+      "limitations": [
+        "The wide panel needs substantial desk width.",
+        "VA panel motion handling and viewing-angle behaviour vary by model.",
+        "Colour coverage, USB-C, KVM, local dimming and pixel response are not specified."
+      ],
+      "verifyBeforeBuying": [
+        "Check desk depth/width, stand dimensions and VESA support.",
+        "Verify colour gamut and uniformity if used for paid creative work.",
+        "Confirm game/app ultrawide support and the actual refresh rate available over your cable."
+      ]
+    }
+  },
+  {
+    "id": "prod-009",
+    "slug": "apex-compact-mechanical-keyboard",
+    "title": "Apex Compact Mechanical Keyboard",
+    "brand": "Apex",
+    "category": "Keyboards",
+    "description": "Illustrative compact keyboard listing for testing comparisons. Replace with an actual listing and verified details before publishing.",
+    "image": "https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 10790,
+    "price": 7470,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "The listed 65% footprint leaves more room for a mouse.",
+      "Mechanical switches are listed in the sample spec.",
+      "USB-C and RGB are listed features."
+    ],
+    "cons": [
+      "Some keys may require an Fn layer instead of separate keycaps.",
+      "No number pad is implied by the compact class; confirm the exact layout.",
+      "Switch feel, acoustic level, stabilisers and build durability are not tested."
+    ],
+    "specs": {
+      "Layout": "65% (demo)",
+      "Connection": "USB-C (demo)",
+      "Switches": "Mechanical (demo)",
+      "Lighting": "RGB (demo)"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "A 65% mechanical layout is intended to save desk space while keeping dedicated arrow keys on many designs. The compact size typically removes the function row and number pad, so you should check the exact key map before deciding.",
+      "bestFor": "Minimal desk setups, portable workstations and users who like layers/shortcuts.",
+      "notIdealFor": "Heavy spreadsheet entry or workflows depending on a full function row without key combinations.",
+      "strengths": [
+        "The listed 65% footprint leaves more room for a mouse.",
+        "Mechanical switches are listed in the sample spec.",
+        "USB-C and RGB are listed features."
+      ],
+      "limitations": [
+        "Some keys may require an Fn layer instead of separate keycaps.",
+        "No number pad is implied by the compact class; confirm the exact layout.",
+        "Switch feel, acoustic level, stabilisers and build durability are not tested."
+      ],
+      "verifyBeforeBuying": [
+        "See the full layout diagram and key legends.",
+        "Confirm switch type, hot-swap support and whether software is needed for remapping.",
+        "Check OS layout, detachable cable and warranty."
+      ]
+    }
+  },
+  {
+    "id": "prod-010",
+    "slug": "nova-low-profile-wireless-keyboard",
+    "title": "Nova Low-Profile Wireless Keyboard",
+    "brand": "Nova",
+    "category": "Keyboards",
+    "description": "Illustrative low-profile keyboard listing for testing the comparison matrix. Verify prices and product specifications before publication.",
+    "image": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 9130,
+    "price": 6640,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "The full-size layout retains a number pad in the sample specification.",
+      "Bluetooth / USB-C connectivity gives potential flexibility if both modes are confirmed.",
+      "White backlighting is listed."
+    ],
+    "cons": [
+      "Low-profile scissor typing feel will not suit everyone.",
+      "Battery life, Bluetooth version, multi-device switching and wireless latency are not given.",
+      "Whether USB-C is data, charging or both must be verified."
+    ],
+    "specs": {
+      "Layout": "Full size (demo)",
+      "Connection": "Bluetooth / USB-C (demo)",
+      "Switches": "Low-profile scissor (demo)",
+      "Lighting": "White backlight (demo)"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "A full-size low-profile keyboard with wireless connectivity could suit a tidy office setup while retaining a number pad. Scissor-style low-profile keys can feel different from mechanical switches, so typing comfort and wireless stability are personal checks.",
+      "bestFor": "Office users who want a slim full-size board and easy desk storage.",
+      "notIdealFor": "People who specifically want a tall mechanical switch feel, advanced remapping or a proven low-latency gaming keyboard.",
+      "strengths": [
+        "The full-size layout retains a number pad in the sample specification.",
+        "Bluetooth / USB-C connectivity gives potential flexibility if both modes are confirmed.",
+        "White backlighting is listed."
+      ],
+      "limitations": [
+        "Low-profile scissor typing feel will not suit everyone.",
+        "Battery life, Bluetooth version, multi-device switching and wireless latency are not given.",
+        "Whether USB-C is data, charging or both must be verified."
+      ],
+      "verifyBeforeBuying": [
+        "Check exact connection modes, battery type/life and multi-device support.",
+        "Confirm layout, backlight controls and compatibility with your OS.",
+        "Check key travel, return terms and whether a cable/receiver is included."
+      ]
+    }
+  },
+  {
+    "id": "prod-011",
+    "slug": "atlas-mesh-office-chair",
+    "title": "Atlas Mesh Office Chair",
+    "brand": "Atlas",
+    "category": "Office",
+    "description": "Illustrative office chair listing for testing same-category comparisons. Replace with a verified listing before launch.",
+    "image": "https://images.unsplash.com/photo-1505797149-43b0069ec26b?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 27390,
+    "price": 20750,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "Mesh back is listed for airflow.",
+      "Seat height and tilt adjustment are included in the sample spec.",
+      "Adjustable armrests are listed."
+    ],
+    "cons": [
+      "The amount of lumbar support and the seat depth adjustment are not specified.",
+      "Cushion comfort, stability and long-term durability are untested.",
+      "The listed 275 lb capacity is illustrative until checked against a verified manual."
+    ],
+    "specs": {
+      "Material": "Mesh (demo)",
+      "Adjustments": "Seat height and tilt (demo)",
+      "Armrests": "Adjustable (demo)",
+      "Weight Capacity": "275 lb (demo)"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "The sample listing combines a mesh back with seat-height and tilt adjustment. That is a useful starting point for a basic office chair, but an adjustable chair is only comfortable when the seat dimensions and lumbar support suit the person using it.",
+      "bestFor": "A basic desk setup where breathable back material and a few adjustments are priorities.",
+      "notIdealFor": "People who need highly adjustable lumbar support, a headrest or a fit tailored to unusual height ranges unless these are confirmed.",
+      "strengths": [
+        "Mesh back is listed for airflow.",
+        "Seat height and tilt adjustment are included in the sample spec.",
+        "Adjustable armrests are listed."
+      ],
+      "limitations": [
+        "The amount of lumbar support and the seat depth adjustment are not specified.",
+        "Cushion comfort, stability and long-term durability are untested.",
+        "The listed 275 lb capacity is illustrative until checked against a verified manual."
+      ],
+      "verifyBeforeBuying": [
+        "Compare seat dimensions and recommended user-height range.",
+        "Confirm weight rating, warranty, return policy and parts availability.",
+        "Check if armrest, recline lock and lumbar adjustments are actually included."
+      ]
+    }
+  },
+  {
+    "id": "prod-012",
+    "slug": "mobile-demo-aurora-x",
+    "title": "Aurora X Smartphone (Demo)",
+    "brand": "Aurora",
+    "category": "Phones",
+    "description": "Demonstration phone record used to test phone-to-phone comparisons. Not a verified retail listing.",
+    "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 66400,
+    "price": 58100,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "The sample spec lists a large OLED display.",
+      "The listed 5,000mAh battery capacity is a useful comparison point once verified.",
+      "12GB RAM and 256GB storage provide a high-memory/high-storage example configuration."
+    ],
+    "cons": [
+      "No camera sensor details, display refresh/brightness or real chipset benchmark is provided.",
+      "The aluminium/glass material note does not prove scratch or drop resistance.",
+      "No IP water-resistance rating is listed, so it must not be assumed waterproof; software-update support is also unknown."
+    ],
+    "specs": {
+      "Display": "6.5 inch OLED (demo)",
+      "Battery": "5000 mAh (demo)",
+      "Chipset": "Aurora A1 (demo)",
+      "Build": "Aluminium / glass (demo)",
+      "Weight": "198 g (demo)",
+      "RAM": "12 GB (demo)",
+      "Storage": "256 GB (demo)"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "On paper, the sample configuration combines a 6.5-inch OLED display, 5,000mAh battery, 12GB RAM and 256GB storage. Those numbers alone do not prove real-world speed, camera quality or durability; this is a fictional demo phone, not a verified retail model.",
+      "bestFor": "Testing the phone-review layout only; not a real purchasing recommendation until replaced by a verified model.",
+      "notIdealFor": "Anyone choosing a real phone based on camera quality, software support, gaming performance, water resistance or drop durability.",
+      "strengths": [
+        "The sample spec lists a large OLED display.",
+        "The listed 5,000mAh battery capacity is a useful comparison point once verified.",
+        "12GB RAM and 256GB storage provide a high-memory/high-storage example configuration."
+      ],
+      "limitations": [
+        "No camera sensor details, display refresh/brightness or real chipset benchmark is provided.",
+        "The aluminium/glass material note does not prove scratch or drop resistance.",
+        "No IP water-resistance rating is listed, so it must not be assumed waterproof; software-update support is also unknown."
+      ],
+      "verifyBeforeBuying": [
+        "Use a real manufacturer/model listing and confirm the exact region variant.",
+        "Check official IP rating, drop/durability reviews, repairability and warranty.",
+        "Review camera samples, chipset benchmarks, battery tests and promised OS/security updates."
+      ]
+    }
+  },
+  {
+    "id": "prod-013",
+    "slug": "mobile-demo-aurora-lite",
+    "title": "Aurora Lite Smartphone (Demo)",
+    "brand": "Aurora",
+    "category": "Phones",
+    "description": "Demonstration phone record used to test comparison layouts. Replace with a real product listing before publishing.",
+    "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 41500,
+    "price": 33200,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "The 6.1-inch AMOLED spec suggests a smaller-screen example than the 6.5-inch demo phone.",
+      "The listed 4,500mAh battery and 8GB/128GB configuration provide comparison points.",
+      "The sample weight is 183g, if confirmed for an actual model."
+    ],
+    "cons": [
+      "The chipset name is fictional and cannot support a real performance conclusion.",
+      "A polymer/glass materials description does not establish scratch or impact resistance.",
+      "No IP rating is provided, so water resistance is unknown; camera details and software-update policy are missing."
+    ],
+    "specs": {
+      "Display": "6.1 inch AMOLED (demo)",
+      "Battery": "4500 mAh (demo)",
+      "Chipset": "Aurora L1 (demo)",
+      "Build": "Polymer / glass (demo)",
+      "Weight": "183 g (demo)",
+      "RAM": "8 GB (demo)",
+      "Storage": "128 GB (demo)"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "The sample configuration lists a 6.1-inch AMOLED display, 4,500mAh battery, 8GB RAM and 128GB storage in a polymer/glass body. It is smaller on paper than the Aurora X example, but this fictional demo entry has no verified performance, camera or durability results.",
+      "bestFor": "Demonstrating how a more compact phone configuration can be reviewed—not for choosing a real device.",
+      "notIdealFor": "Buyers who require confirmed water resistance, camera quality, long-term updates or tested build quality.",
+      "strengths": [
+        "The 6.1-inch AMOLED spec suggests a smaller-screen example than the 6.5-inch demo phone.",
+        "The listed 4,500mAh battery and 8GB/128GB configuration provide comparison points.",
+        "The sample weight is 183g, if confirmed for an actual model."
+      ],
+      "limitations": [
+        "The chipset name is fictional and cannot support a real performance conclusion.",
+        "A polymer/glass materials description does not establish scratch or impact resistance.",
+        "No IP rating is provided, so water resistance is unknown; camera details and software-update policy are missing."
+      ],
+      "verifyBeforeBuying": [
+        "Confirm the real model and whether storage can be expanded.",
+        "Check official water/dust rating, warranty and service availability.",
+        "Compare real camera samples, battery endurance and software-update promises."
+      ]
+    }
+  },
+  {
+    "id": "prod-014",
+    "slug": "pc-demo-forge-performance-laptop",
+    "title": "Forge Performance Laptop (Demo)",
+    "brand": "Forge",
+    "category": "PCs",
+    "description": "Demonstration PC record for testing laptop comparison UI. Replace with verified products and benchmarks before launch.",
+    "image": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 124500,
+    "price": 107900,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "32GB RAM and 1TB SSD are substantial sample memory/storage targets.",
+      "A 16-inch display offers a larger work/gaming area.",
+      "Dedicated graphics are implied by the placeholder GPU label, but not verified."
+    ],
+    "cons": [
+      "CPU/GPU names, GPU power limit and benchmark results are missing.",
+      "At the sample 2.2kg weight, it is not an especially light everyday carry.",
+      "The eight-hour battery claim is illustrative; screen, GPU workload and battery size are unknown."
+    ],
+    "specs": {
+      "Display": "16 inch (demo)",
+      "CPU": "Forge P7 (demo)",
+      "GPU": "Forge RTX-class (demo)",
+      "RAM": "32 GB (demo)",
+      "Storage": "1 TB SSD (demo)",
+      "Weight": "2.2 kg (demo)",
+      "Battery": "8 hours (demo)"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "The sample 16-inch configuration pairs 32GB RAM and a 1TB SSD with a claimed eight-hour battery and 2.2kg weight. “Forge P7” and “RTX-class” are placeholders, so no reliable conclusion can be made about gaming speed, cooling or sustained performance.",
+      "bestFor": "Testing a gaming/performance-laptop review layout, not selecting a real laptop from this demo listing.",
+      "notIdealFor": "Buyers who need benchmark-backed gaming performance, portable all-day battery life or verified screen quality.",
+      "strengths": [
+        "32GB RAM and 1TB SSD are substantial sample memory/storage targets.",
+        "A 16-inch display offers a larger work/gaming area.",
+        "Dedicated graphics are implied by the placeholder GPU label, but not verified."
+      ],
+      "limitations": [
+        "CPU/GPU names, GPU power limit and benchmark results are missing.",
+        "At the sample 2.2kg weight, it is not an especially light everyday carry.",
+        "The eight-hour battery claim is illustrative; screen, GPU workload and battery size are unknown."
+      ],
+      "verifyBeforeBuying": [
+        "Check exact CPU/GPU model, GPU wattage and independent game/app benchmarks.",
+        "Review sustained temperatures, fan noise and performance on battery.",
+        "Confirm panel resolution/refresh/brightness, charger weight, RAM upgradeability and warranty."
+      ]
+    }
+  },
+  {
+    "id": "prod-015",
+    "slug": "pc-demo-forge-creator-laptop",
+    "title": "Forge Creator Laptop (Demo)",
+    "brand": "Forge",
+    "category": "PCs",
+    "description": "Demonstration PC record to test category-aware comparison. It is not a verified retail product.",
+    "image": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 149400,
+    "price": 132800,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "64GB RAM and 2TB storage suggest room for large project files in the sample configuration.",
+      "OLED is the stated display type, potentially useful for contrast-heavy work.",
+      "The listed 16-inch size gives a large canvas without a desktop monitor."
+    ],
+    "cons": [
+      "The CPU and GPU names are not real verified model details.",
+      "The seven-hour battery and 2.1kg weight are sample claims.",
+      "Colour gamut, brightness, calibration, thermal limits and GPU performance are not documented."
+    ],
+    "specs": {
+      "Display": "16 inch OLED (demo)",
+      "CPU": "Forge C9 (demo)",
+      "GPU": "Forge Studio (demo)",
+      "RAM": "64 GB (demo)",
+      "Storage": "2 TB SSD (demo)",
+      "Weight": "2.1 kg (demo)",
+      "Battery": "7 hours (demo)"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "The sample creator configuration lists a 16-inch OLED screen, 64GB RAM and 2TB SSD, useful numbers for large projects if they describe a real device. However, the CPU/GPU labels are placeholders, and there are no colour measurements, benchmarks or sustained-workload tests.",
+      "bestFor": "Illustrating a high-memory creator workstation checklist; not a verified model recommendation.",
+      "notIdealFor": "Professionals who need certified colour accuracy, a specific GPU performance level or a confirmed all-day battery.",
+      "strengths": [
+        "64GB RAM and 2TB storage suggest room for large project files in the sample configuration.",
+        "OLED is the stated display type, potentially useful for contrast-heavy work.",
+        "The listed 16-inch size gives a large canvas without a desktop monitor."
+      ],
+      "limitations": [
+        "The CPU and GPU names are not real verified model details.",
+        "The seven-hour battery and 2.1kg weight are sample claims.",
+        "Colour gamut, brightness, calibration, thermal limits and GPU performance are not documented."
+      ],
+      "verifyBeforeBuying": [
+        "Confirm CPU/GPU model, app benchmarks and memory/storage upgrade options.",
+        "Require colour-gamut, brightness and calibration measurements for creative work.",
+        "Check sustained thermal performance, battery testing, warranty and service support."
+      ]
+    }
+  },
+  {
+    "id": "prod-016",
+    "slug": "arcticclip-mobile-phone-cooler",
+    "title": "ArcticClip Mobile Phone Cooler",
+    "brand": "ArcticClip",
+    "category": "Mobile Accessories",
+    "description": "A clip-on phone cooler concept for long mobile gaming sessions. Check phone compatibility and real-world cooling performance before buying.",
+    "image": "https://images.unsplash.com/photo-1511709191319-5864cf11b8b5?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 3320,
+    "price": 2490,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "Clip-on design is intended to attach without a permanent installation.",
+      "USB-C power is listed for use with a compatible power source.",
+      "A dedicated cooler may help manage heat in supported scenarios, but effectiveness is untested here."
+    ],
+    "cons": [
+      "Phone compatibility and clamp clearance are limited to selected models per the sample spec.",
+      "Cooling performance, fan noise, power draw and effect on sustained frame rate are unknown.",
+      "The sample semiconductor-cooling claim is unverified; moisture/condensation guidance is not supplied."
+    ],
+    "specs": {
+      "Cooling type": "Clip-on semiconductor (demo)",
+      "Power": "USB-C (demo)",
+      "Compatibility": "Selected phones (demo)",
+      "Use case": "Extended mobile gaming"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "featured": true,
+    "trending": true,
+    "review": {
+      "summary": "A clip-on cooler can be useful for long gaming sessions if it fits the phone and genuinely reduces temperature under load. This sample listing has no verified cooling measurements, noise test or compatibility list, so the result should not be assumed from the product type alone.",
+      "bestFor": "Mobile gamers who play long sessions and can confirm exact phone fit and independent thermal results.",
+      "notIdealFor": "People prioritising pocket portability, silent operation or universal compatibility without checking the clamp.",
+      "strengths": [
+        "Clip-on design is intended to attach without a permanent installation.",
+        "USB-C power is listed for use with a compatible power source.",
+        "A dedicated cooler may help manage heat in supported scenarios, but effectiveness is untested here."
+      ],
+      "limitations": [
+        "Phone compatibility and clamp clearance are limited to selected models per the sample spec.",
+        "Cooling performance, fan noise, power draw and effect on sustained frame rate are unknown.",
+        "The sample semiconductor-cooling claim is unverified; moisture/condensation guidance is not supplied."
+      ],
+      "verifyBeforeBuying": [
+        "Check phone width, camera bump, case fit and port position.",
+        "Look for measured temperature/frame-rate results and noise levels.",
+        "Read manufacturer guidance about condensation, power input and safe operating conditions."
+      ]
+    }
+  },
+  {
+    "id": "prod-017",
+    "slug": "volt-pocket-20000mah-power-bank",
+    "title": "VoltPocket 20,000mAh Power Bank",
+    "brand": "VoltPocket",
+    "category": "Mobile Accessories",
+    "description": "A high-capacity portable battery concept for topping up a phone during commutes, travel or gaming. Verify output wattage and capacity on the retailer listing.",
+    "image": "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 4150,
+    "price": 3320,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "The sample 20,000mAh capacity indicates the intended high-capacity class.",
+      "USB-C PD is listed as an output feature.",
+      "A USB-C plus USB-A port combination could support different cables if confirmed."
+    ],
+    "cons": [
+      "Usable output capacity will be lower than the headline cell capacity and is not measured here.",
+      "Charging speed depends on the actual wattage/profile and the connected device.",
+      "The sample 350g weight and port claims are unverified; airline rules can vary by Wh rating and carrier."
+    ],
+    "specs": {
+      "Capacity": "20,000mAh (demo)",
+      "Output": "USB-C PD (demo)",
+      "Ports": "USB-C + USB-A (demo)",
+      "Weight": "Approx. 350g (demo)"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "featured": true,
+    "review": {
+      "summary": "A 20,000mAh label and USB-C PD claim suggest a high-capacity travel backup, but they do not tell you actual energy delivered to a phone or how fast it can charge. The capacity, output wattage and ports in this entry are illustrative.",
+      "bestFor": "Travellers and heavy phone users considering a larger backup battery after verifying output specs and weight.",
+      "notIdealFor": "Anyone needing the lightest pocket power bank, or fast charging for a particular laptop without confirmed wattage compatibility.",
+      "strengths": [
+        "The sample 20,000mAh capacity indicates the intended high-capacity class.",
+        "USB-C PD is listed as an output feature.",
+        "A USB-C plus USB-A port combination could support different cables if confirmed."
+      ],
+      "limitations": [
+        "Usable output capacity will be lower than the headline cell capacity and is not measured here.",
+        "Charging speed depends on the actual wattage/profile and the connected device.",
+        "The sample 350g weight and port claims are unverified; airline rules can vary by Wh rating and carrier."
+      ],
+      "verifyBeforeBuying": [
+        "Check rated capacity in Wh, USB-C output profiles and total simultaneous output.",
+        "Confirm recharge input, included cable, protection certifications and actual weight.",
+        "Check the printed Wh rating and current airline rules before flying."
+      ]
+    }
+  },
+  {
+    "id": "prod-018",
+    "slug": "snaplink-usbc-otg-adapter",
+    "title": "SnapLink USB-C OTG Adapter",
+    "brand": "SnapLink",
+    "category": "Mobile Accessories",
+    "description": "A small USB-C OTG adapter concept for connecting compatible phones to USB accessories. Confirm device support and connector orientation before purchase.",
+    "image": "https://images.unsplash.com/photo-1625948515291-69613efd103f?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 1080,
+    "price": 830,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "The USB-C to USB-A format addresses a common connector mismatch.",
+      "A tiny adapter is easy to carry as a spare.",
+      "It can support basic peripherals on host-compatible devices."
+    ],
+    "cons": [
+      "Not every USB-C phone supports host/OTG mode or every accessory.",
+      "Transfer speed, power delivery, audio compatibility and durability are not verified.",
+      "Power-hungry devices may need external power or may not work."
+    ],
+    "specs": {
+      "Connector": "USB-C to USB-A (demo)",
+      "Use": "OTG accessory connection",
+      "Body": "Compact metal (demo)",
+      "Compatibility": "USB-C devices with OTG support"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "A small USB-C-to-USB-A OTG adapter can connect supported phones/tablets to peripherals such as a flash drive or keyboard. It only works when the host device supports USB host/OTG mode, and this sample listing does not confirm data rate or power handling.",
+      "bestFor": "People who need to connect a USB-A accessory to a compatible USB-C phone, tablet or computer.",
+      "notIdealFor": "Users who need guaranteed high-speed storage transfer, large-power accessories or compatibility without checking the host device.",
+      "strengths": [
+        "The USB-C to USB-A format addresses a common connector mismatch.",
+        "A tiny adapter is easy to carry as a spare.",
+        "It can support basic peripherals on host-compatible devices."
+      ],
+      "limitations": [
+        "Not every USB-C phone supports host/OTG mode or every accessory.",
+        "Transfer speed, power delivery, audio compatibility and durability are not verified.",
+        "Power-hungry devices may need external power or may not work."
+      ],
+      "verifyBeforeBuying": [
+        "Check OTG/USB-host support for your exact device.",
+        "Confirm required USB version/data rate and whether your accessory needs extra power.",
+        "Check connector fit, return policy and build material from a real product listing."
+      ]
+    }
+  },
+  {
+    "id": "prod-019",
+    "slug": "audiobridge-usbc-35mm-adapter",
+    "title": "AudioBridge USB-C to 3.5mm Adapter",
+    "brand": "AudioBridge",
+    "category": "Mobile Accessories",
+    "description": "A USB-C to 3.5mm audio adapter concept for phones without a headphone jack. Check whether the phone needs a DAC-equipped adapter.",
+    "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 1000,
+    "price": 750,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "Small, easy-to-carry solution for retaining existing wired headphones.",
+      "The listed connector types match phones with USB-C and headphones with 3.5mm plugs.",
+      "Can reduce the need to replace otherwise working headphones if compatible."
+    ],
+    "cons": [
+      "DAC type is explicitly unverified in the sample specs.",
+      "Microphone, inline controls, call quality and supported audio formats may vary.",
+      "Some USB-C devices require a DAC-equipped adapter rather than a passive adapter."
+    ],
+    "specs": {
+      "Input": "USB-C (demo)",
+      "Output": "3.5mm audio (demo)",
+      "DAC": "Verify before buying",
+      "Use": "Wired headphones on compatible phones"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "A USB-C-to-3.5mm adapter can preserve wired headphones on phones without a headphone jack. Compatibility depends on whether the adapter contains the right DAC and whether the device supports the needed audio mode; this sample does not verify either.",
+      "bestFor": "Wired-headphone owners who have confirmed their USB-C device works with the adapter type being sold.",
+      "notIdealFor": "Buyers who need guaranteed mic/remote support, high-resolution audio or universal compatibility without a return option.",
+      "strengths": [
+        "Small, easy-to-carry solution for retaining existing wired headphones.",
+        "The listed connector types match phones with USB-C and headphones with 3.5mm plugs.",
+        "Can reduce the need to replace otherwise working headphones if compatible."
+      ],
+      "limitations": [
+        "DAC type is explicitly unverified in the sample specs.",
+        "Microphone, inline controls, call quality and supported audio formats may vary.",
+        "Some USB-C devices require a DAC-equipped adapter rather than a passive adapter."
+      ],
+      "verifyBeforeBuying": [
+        "Confirm your phone model and whether it needs a built-in DAC.",
+        "Check microphone and remote-button support if you use wired calls.",
+        "Confirm supported sampling/audio formats, warranty and connector strain relief."
+      ]
+    }
+  },
+  {
+    "id": "prod-020",
+    "slug": "gripglide-mobile-gaming-finger-sleeves",
+    "title": "GripGlide Mobile Gaming Finger Sleeves",
+    "brand": "GripGlide",
+    "category": "Mobile Accessories",
+    "description": "A breathable finger sleeve set concept designed to reduce friction for touchscreen gaming. Fit and touchscreen feel vary by user.",
+    "image": "https://images.unsplash.com/photo-1600456899121-68eda5705257?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 830,
+    "price": 580,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "Small accessories are easy to carry with a mobile gaming kit.",
+      "The sample pack includes four sleeves.",
+      "Conductive knit is listed to allow touchscreen input."
+    ],
+    "cons": [
+      "Sizing and tightness are personal; loose sleeves can shift during play.",
+      "Touch sensitivity and friction changes depend on the screen and sleeve material.",
+      "Washability, stitching life and sweat handling are not tested."
+    ],
+    "specs": {
+      "Pack": "4 sleeves (demo)",
+      "Fabric": "Conductive knit (demo)",
+      "Use": "Touchscreen gaming",
+      "Fit": "Stretch-fit (demo)"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "featured": true,
+    "review": {
+      "summary": "Conductive finger sleeves may reduce friction for some touchscreen players, but the feel and touch response depend on fit, fabric and screen coating. This is a demo listing, so the claimed fabric, pack size and actual durability are not confirmed.",
+      "bestFor": "Mobile gamers who want to experiment with a lighter-friction fingertip feel and can try the right size.",
+      "notIdealFor": "Anyone expecting a guaranteed accuracy boost, or players whose touchscreen already responds poorly through gloves/sleeves.",
+      "strengths": [
+        "Small accessories are easy to carry with a mobile gaming kit.",
+        "The sample pack includes four sleeves.",
+        "Conductive knit is listed to allow touchscreen input."
+      ],
+      "limitations": [
+        "Sizing and tightness are personal; loose sleeves can shift during play.",
+        "Touch sensitivity and friction changes depend on the screen and sleeve material.",
+        "Washability, stitching life and sweat handling are not tested."
+      ],
+      "verifyBeforeBuying": [
+        "Check size, fabric composition and wash instructions.",
+        "Confirm return options if the fit affects touch response.",
+        "Test on your phone screen and keep the screen clean to maintain consistent touch."
+      ]
+    }
+  },
+  {
+    "id": "prod-021",
+    "slug": "flexcharge-braided-usbc-cable",
+    "title": "FlexCharge Braided USB-C Cable",
+    "brand": "FlexCharge",
+    "category": "Mobile Accessories",
+    "description": "A braided USB-C cable concept for charging and data transfer. Check the exact wattage, data rate and connector specification before buying.",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 1410,
+    "price": 1080,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "The sample 2m length adds reach around a desk or bedside.",
+      "A braided jacket may offer a different handling feel than a plain plastic jacket.",
+      "USB-C to USB-C is the listed connector combination."
+    ],
+    "cons": [
+      "The 100W claim has not been verified and may require an appropriate e-marked cable.",
+      "USB data speed is not stated; a charge-capable cable may still be slow for transfers.",
+      "Braided outer covering alone does not prove connector strain relief or long-term durability."
+    ],
+    "specs": {
+      "Length": "2m (demo)",
+      "Power": "Up to 100W (demo)",
+      "Connector": "USB-C to USB-C",
+      "Jacket": "Braided (demo)"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "A 2m braided USB-C cable is useful when the outlet is far from the desk. The listed 100W ceiling is only a demo claim: power delivery needs to match both charger and device, while data-transfer rate is not given.",
+      "bestFor": "People who want a longer USB-C-to-USB-C cable for charging or desk use after checking its power/data ratings.",
+      "notIdealFor": "Buyers who need a guaranteed high-speed data cable or maximum-wattage laptop charging without certification/spec verification.",
+      "strengths": [
+        "The sample 2m length adds reach around a desk or bedside.",
+        "A braided jacket may offer a different handling feel than a plain plastic jacket.",
+        "USB-C to USB-C is the listed connector combination."
+      ],
+      "limitations": [
+        "The 100W claim has not been verified and may require an appropriate e-marked cable.",
+        "USB data speed is not stated; a charge-capable cable may still be slow for transfers.",
+        "Braided outer covering alone does not prove connector strain relief or long-term durability."
+      ],
+      "verifyBeforeBuying": [
+        "Check certified power rating and compatibility with your charger and laptop.",
+        "Confirm USB data standard, video support (if needed) and e-marker status.",
+        "Check length, bend/strain relief, warranty and safety compliance."
+      ]
+    }
+  },
+  {
+    "id": "prod-022",
+    "slug": "aeropower-65w-usbc-charger",
+    "title": "AeroPower 65W USB-C Charger",
+    "brand": "AeroPower",
+    "category": "Mobile Accessories",
+    "description": "A compact USB-C wall charger concept for phones, tablets and selected laptops. Confirm supported charging standards and local plug type.",
+    "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 2740,
+    "price": 2070,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "A 65W maximum is a useful target for compatible phones/tablets and some smaller laptops.",
+      "A single USB-C port keeps the design simple.",
+      "USB Power Delivery is listed as the charging protocol."
+    ],
+    "cons": [
+      "Devices may charge below 65W if their required profile is unsupported.",
+      "The plug/region version and thermal behaviour are not verified.",
+      "Safety certifications and the exact available output profiles are not listed."
+    ],
+    "specs": {
+      "Output": "65W maximum (demo)",
+      "Ports": "USB-C (demo)",
+      "Protocol": "PD (demo)",
+      "Plug": "Verify regional version"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "A compact 65W USB-C PD charger could cover many phones, tablets and some laptops when its output profiles match the device. The sample listing does not verify real sustained output, heat behaviour, safety certification or the regional plug version.",
+      "bestFor": "People looking to consolidate charging around one USB-C charger—after confirming the exact device requirements.",
+      "notIdealFor": "Devices needing more than 65W, proprietary fast-charge modes or a specific regional plug without an adapter.",
+      "strengths": [
+        "A 65W maximum is a useful target for compatible phones/tablets and some smaller laptops.",
+        "A single USB-C port keeps the design simple.",
+        "USB Power Delivery is listed as the charging protocol."
+      ],
+      "limitations": [
+        "Devices may charge below 65W if their required profile is unsupported.",
+        "The plug/region version and thermal behaviour are not verified.",
+        "Safety certifications and the exact available output profiles are not listed."
+      ],
+      "verifyBeforeBuying": [
+        "Compare the charger output profiles to the device manufacturer’s charger requirements.",
+        "Confirm local plug type and recognised safety certifications.",
+        "Check independent heat/reliability testing and warranty."
+      ]
+    }
+  },
+  {
+    "id": "prod-023",
+    "slug": "taptrigger-mobile-game-controller-grips",
+    "title": "TapTrigger Mobile Gaming Grip Set",
+    "brand": "TapTrigger",
+    "category": "Mobile Accessories",
+    "description": "A mobile gaming grip and trigger accessory concept for compatible phone sizes. Check case fit and the game's control support.",
+    "image": "https://images.unsplash.com/photo-1603487742131-4160ec999306?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 1660,
+    "price": 1240,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "The clip-on format is portable and does not require a permanent phone modification.",
+      "Mechanical trigger buttons are listed.",
+      "An adjustable phone fit is claimed in the sample specification."
+    ],
+    "cons": [
+      "Phone-case compatibility and button alignment vary.",
+      "Some game layouts or screen protectors can affect touch registration.",
+      "Trigger durability, ergonomic comfort and game compatibility are untested."
+    ],
+    "specs": {
+      "Style": "Clip-on triggers (demo)",
+      "Phone fit": "Adjustable (demo)",
+      "Controls": "Mechanical triggers (demo)",
+      "Use": "Mobile shooters and action games"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "Clip-on mechanical triggers can provide physical press points for supported mobile shooter/action games. They are not equivalent to a native game controller: fit, trigger alignment and in-game touch mapping can make a big difference.",
+      "bestFor": "Mobile gamers who want physical triggers and are comfortable configuring their controls.",
+      "notIdealFor": "Phones with bulky cases/camera bumps that interfere with the clamp, or games that do not work well with touch-trigger accessories.",
+      "strengths": [
+        "The clip-on format is portable and does not require a permanent phone modification.",
+        "Mechanical trigger buttons are listed.",
+        "An adjustable phone fit is claimed in the sample specification."
+      ],
+      "limitations": [
+        "Phone-case compatibility and button alignment vary.",
+        "Some game layouts or screen protectors can affect touch registration.",
+        "Trigger durability, ergonomic comfort and game compatibility are untested."
+      ],
+      "verifyBeforeBuying": [
+        "Check phone size, camera position, case thickness and screen area.",
+        "Confirm how the triggers press the screen and whether they obstruct HUD controls.",
+        "Review game rules/terms where relevant and buy from a seller with returns."
+      ]
+    }
+  },
+  {
+    "id": "prod-024",
+    "slug": "fieldday-cotton-shirt",
+    "title": "FieldDay Everyday Cotton Shirt",
+    "brand": "FieldDay",
+    "category": "Fashion & Footwear",
+    "description": "A versatile casual shirt concept for everyday outfits. Confirm fabric composition, sizing chart and return terms on the retailer page.",
+    "image": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 3730,
+    "price": 2900,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "A button-down style is easy to pair with jeans or chinos.",
+      "The listed regular fit is a straightforward everyday silhouette.",
+      "A cotton blend may balance softness with easier care depending on the actual blend."
+    ],
+    "cons": [
+      "Size charts vary by brand and cut.",
+      "The exact cotton/polyester ratio, fabric weight, shrinkage and colourfastness are not confirmed.",
+      "Seam finishing and collar shape cannot be judged from this demo entry."
+    ],
+    "specs": {
+      "Style": "Casual button-down (demo)",
+      "Fabric": "Cotton blend (demo)",
+      "Fit": "Regular (demo)",
+      "Care": "Follow product label"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "featured": true,
+    "review": {
+      "summary": "A casual button-down can work across everyday and slightly dressed-up outfits, but fit and fabric content matter more than the generic style label. The cotton-blend percentage and sizing are only sample details here.",
+      "bestFor": "People looking for a versatile casual shirt once fabric composition and fit are confirmed.",
+      "notIdealFor": "Buyers who require 100% cotton, a precise office fit or specific climate performance without the actual fabric label.",
+      "strengths": [
+        "A button-down style is easy to pair with jeans or chinos.",
+        "The listed regular fit is a straightforward everyday silhouette.",
+        "A cotton blend may balance softness with easier care depending on the actual blend."
+      ],
+      "limitations": [
+        "Size charts vary by brand and cut.",
+        "The exact cotton/polyester ratio, fabric weight, shrinkage and colourfastness are not confirmed.",
+        "Seam finishing and collar shape cannot be judged from this demo entry."
+      ],
+      "verifyBeforeBuying": [
+        "Compare chest, shoulder, sleeve and body length measurements with a shirt you own.",
+        "Check the fabric percentage and washing instructions on the label.",
+        "Review return/exchange rules and customer photos for the specific colour."
+      ]
+    }
+  },
+  {
+    "id": "prod-025",
+    "slug": "everyday-stretch-jeans",
+    "title": "Everyday Stretch-Fit Jeans",
+    "brand": "Everyday",
+    "category": "Fashion & Footwear",
+    "description": "A straight-fit jeans concept designed as a flexible wardrobe basic. Check waist, inseam, rise and stretch percentage before ordering.",
+    "image": "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 5390,
+    "price": 4150,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "Straight-fit styling pairs with a wide range of casual shoes and tops.",
+      "Stretch denim can add ease of movement, depending on the elastane blend.",
+      "The sample five-pocket format is a classic everyday design."
+    ],
+    "cons": [
+      "Waist sizing and leg shape differ between brands.",
+      "Stretch percentage, fabric weight and long-term bagging are not verified.",
+      "Inseam, rise and shrinkage after washing are not provided as confirmed values."
+    ],
+    "specs": {
+      "Fit": "Straight fit (demo)",
+      "Fabric": "Stretch denim (demo)",
+      "Rise": "Mid rise (demo)",
+      "Pockets": "5-pocket style (demo)"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "Straight-fit stretch denim can be a flexible everyday option, but a small change in rise, thigh shape or inseam can alter the whole fit. The fabric blend and fit in this record are illustrative, not measured garment details.",
+      "bestFor": "People seeking a versatile straight-fit pair who can compare actual garment measurements.",
+      "notIdealFor": "Anyone who needs a precise fit without checking the brand chart or who wants rigid, non-stretch denim.",
+      "strengths": [
+        "Straight-fit styling pairs with a wide range of casual shoes and tops.",
+        "Stretch denim can add ease of movement, depending on the elastane blend.",
+        "The sample five-pocket format is a classic everyday design."
+      ],
+      "limitations": [
+        "Waist sizing and leg shape differ between brands.",
+        "Stretch percentage, fabric weight and long-term bagging are not verified.",
+        "Inseam, rise and shrinkage after washing are not provided as confirmed values."
+      ],
+      "verifyBeforeBuying": [
+        "Check waist, rise, thigh, leg opening and inseam measurements.",
+        "Confirm fabric blend and washing/drying guidance.",
+        "Use actual model reviews to assess stretch recovery and colour fade."
+      ]
+    }
+  },
+  {
+    "id": "prod-026",
+    "slug": "strideknit-everyday-sneakers",
+    "title": "StrideKnit Everyday Sneakers",
+    "brand": "StrideKnit",
+    "category": "Fashion & Footwear",
+    "description": "A casual sneaker concept for daily walks and errands. Check size charts, sole grip, cushioning and return policy for the actual listing.",
+    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 6640,
+    "price": 4980,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "The low-top shape is easy to pair with everyday clothing.",
+      "Lace-up closure allows some fit adjustment.",
+      "Knit/synthetic upper is listed as the material concept."
+    ],
+    "cons": [
+      "Arch support, cushioning, heel stability and sole grip are unverified.",
+      "Knit/synthetic upper breathability and durability depend on actual construction.",
+      "Sizing can differ by brand and foot width."
+    ],
+    "specs": {
+      "Style": "Low-top sneaker (demo)",
+      "Upper": "Knit/synthetic (demo)",
+      "Closure": "Lace-up",
+      "Use": "Casual daily wear"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "featured": true,
+    "review": {
+      "summary": "A low-top knit/synthetic sneaker is positioned for casual daily wear, not automatically for running or all-day standing. Comfort depends on foot shape, cushioning, outsole grip and support, none of which is tested in this sample listing.",
+      "bestFor": "Casual outfits and short everyday errands after confirming fit and underfoot comfort.",
+      "notIdealFor": "Running, hiking, slippery surfaces or long standing shifts unless the actual shoe has been tested for those uses.",
+      "strengths": [
+        "The low-top shape is easy to pair with everyday clothing.",
+        "Lace-up closure allows some fit adjustment.",
+        "Knit/synthetic upper is listed as the material concept."
+      ],
+      "limitations": [
+        "Arch support, cushioning, heel stability and sole grip are unverified.",
+        "Knit/synthetic upper breathability and durability depend on actual construction.",
+        "Sizing can differ by brand and foot width."
+      ],
+      "verifyBeforeBuying": [
+        "Check length and width chart and return policy.",
+        "Look for outsole grip, heel support and cushioning details from the real product.",
+        "Choose a purpose-built athletic shoe for running or demanding activity."
+      ]
+    }
+  },
+  {
+    "id": "prod-027",
+    "slug": "softstep-comfort-slides",
+    "title": "SoftStep Comfort Slides",
+    "brand": "SoftStep",
+    "category": "Fashion & Footwear",
+    "description": "An easy-on slide sandal concept for home, poolside and casual errands. Check grip, material and sizing before buying.",
+    "image": "https://images.unsplash.com/photo-1603487742131-4160ec999306?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 2320,
+    "price": 1660,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "Open-toe slip-on format is convenient.",
+      "The sample spec lists a cushioned synthetic sole.",
+      "Simple construction is easy to put on and remove."
+    ],
+    "cons": [
+      "Footbed shape, strap rub, arch support and long-walk comfort are not tested.",
+      "Wet-surface traction is unknown.",
+      "Sizing and synthetic material quality are unverified."
+    ],
+    "specs": {
+      "Style": "Open-toe slides (demo)",
+      "Sole": "Cushioned synthetic (demo)",
+      "Use": "Casual / indoor-outdoor",
+      "Care": "Wipe clean (demo)"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "Open-toe slides are easy to slip on for home and casual use. The “comfort” label does not prove arch support or wet-surface grip, so they should not be treated as sports footwear without verified design details.",
+      "bestFor": "Quick indoor/outdoor wear and short casual trips where easy on/off matters.",
+      "notIdealFor": "Running, sports, long hikes or wet floors unless the actual outsole has suitable grip and foot support.",
+      "strengths": [
+        "Open-toe slip-on format is convenient.",
+        "The sample spec lists a cushioned synthetic sole.",
+        "Simple construction is easy to put on and remove."
+      ],
+      "limitations": [
+        "Footbed shape, strap rub, arch support and long-walk comfort are not tested.",
+        "Wet-surface traction is unknown.",
+        "Sizing and synthetic material quality are unverified."
+      ],
+      "verifyBeforeBuying": [
+        "Check sizing and strap width against your foot.",
+        "Look for a defined outsole tread and wet-grip feedback if used near a pool.",
+        "Confirm material, care instructions and return options."
+      ]
+    }
+  },
+  {
+    "id": "prod-028",
+    "slug": "cushioncrew-everyday-socks",
+    "title": "CushionCrew Everyday Socks",
+    "brand": "CushionCrew",
+    "category": "Fashion & Footwear",
+    "description": "A multipack of everyday socks concept for sneakers and casual shoes. Check size range, fabric blend and pack quantity.",
+    "image": "https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 1330,
+    "price": 1000,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "The sample six-pair format gives multiple everyday pairs.",
+      "Crew height suits many sneakers and casual shoes.",
+      "Cotton-blend construction is listed as the intended material."
+    ],
+    "cons": [
+      "The cotton percentage and stretch fibres are not confirmed.",
+      "Cushioning, seam feel, heel reinforcement and shrinkage are untested.",
+      "Sizing may vary and the pack may not include multiple sizes."
+    ],
+    "specs": {
+      "Pack size": "6 pairs (demo)",
+      "Fabric": "Cotton blend (demo)",
+      "Cuff": "Crew length (demo)",
+      "Use": "Everyday wear"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "A six-pair crew-sock pack is a practical wardrobe staple for everyday shoes. Comfort and lifespan depend on the actual fibre blend, cushioning placement, seam construction and wash behaviour, which are not verified here.",
+      "bestFor": "People replenishing basic daily socks after checking size range and fabric details.",
+      "notIdealFor": "Buyers needing specialist compression, moisture-management or sports-specific socks without technical specifications.",
+      "strengths": [
+        "The sample six-pair format gives multiple everyday pairs.",
+        "Crew height suits many sneakers and casual shoes.",
+        "Cotton-blend construction is listed as the intended material."
+      ],
+      "limitations": [
+        "The cotton percentage and stretch fibres are not confirmed.",
+        "Cushioning, seam feel, heel reinforcement and shrinkage are untested.",
+        "Sizing may vary and the pack may not include multiple sizes."
+      ],
+      "verifyBeforeBuying": [
+        "Check size range and exact material percentages.",
+        "Look for reinforced heel/toe and clear washing guidance.",
+        "Check pack count, colour mix and return terms."
+      ]
+    }
+  },
+  {
+    "id": "prod-029",
+    "slug": "urbanweave-reversible-belt",
+    "title": "UrbanWeave Reversible Belt",
+    "brand": "UrbanWeave",
+    "category": "Fashion & Footwear",
+    "description": "A reversible belt concept for everyday outfits. Measure a current belt and review the sizing guide before ordering.",
+    "image": "https://images.unsplash.com/photo-1624222247344-550fb8c5f0b9?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 1910,
+    "price": 1410,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "Reversible design can provide two looks from one accessory.",
+      "A 35mm width is a useful sizing reference if confirmed.",
+      "Simple style is easy to pair with everyday basics."
+    ],
+    "cons": [
+      "Synthetic-leather surface durability and cracking resistance are unverified.",
+      "Reversible buckle mechanisms can vary in sturdiness.",
+      "The size guide and usable adjustment range are sample details."
+    ],
+    "specs": {
+      "Style": "Reversible (demo)",
+      "Material": "Synthetic leather (demo)",
+      "Width": "35mm (demo)",
+      "Sizing": "Check waist guide"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "A reversible belt offers two colour/style options in one accessory, which can simplify a small wardrobe. It is described as synthetic leather, but buckle security, material wear and usable sizing are not tested in this sample.",
+      "bestFor": "People who want one belt to coordinate with more than one outfit.",
+      "notIdealFor": "Buyers who need genuine leather, heavy-duty workwear performance or exact sizing without measuring.",
+      "strengths": [
+        "Reversible design can provide two looks from one accessory.",
+        "A 35mm width is a useful sizing reference if confirmed.",
+        "Simple style is easy to pair with everyday basics."
+      ],
+      "limitations": [
+        "Synthetic-leather surface durability and cracking resistance are unverified.",
+        "Reversible buckle mechanisms can vary in sturdiness.",
+        "The size guide and usable adjustment range are sample details."
+      ],
+      "verifyBeforeBuying": [
+        "Measure a belt that fits and compare total length and hole range.",
+        "Confirm buckle rotation/locking mechanism and material description.",
+        "Review return policy and close-up customer photos of the buckle and strap."
+      ]
+    }
+  },
+  {
+    "id": "prod-030",
+    "slug": "daymark-canvas-cap",
+    "title": "Daymark Everyday Cap",
+    "brand": "Daymark",
+    "category": "Fashion & Footwear",
+    "description": "A simple cap concept for casual outfits and outdoor use. Verify size adjustment, fabric and care instructions.",
+    "image": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 1660,
+    "price": 1240,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "Adjustable closure can fit a range of head sizes.",
+      "Curved brim is a familiar everyday style.",
+      "Cotton-blend fabric is the listed concept material."
+    ],
+    "cons": [
+      "Actual size range, sweatband comfort and ventilation are not confirmed.",
+      "No UPF rating or measured sun protection is provided.",
+      "Colour fading and shape retention after washing are unknown."
+    ],
+    "specs": {
+      "Style": "Classic baseball cap (demo)",
+      "Closure": "Adjustable (demo)",
+      "Fabric": "Cotton blend (demo)",
+      "Brim": "Curved (demo)"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "A classic adjustable cap is an easy casual accessory, but the fit range and fabric determine whether it is comfortable for extended wear. The sample description does not establish UPF protection or any technical sun-safety rating.",
+      "bestFor": "Everyday styling and basic shade from direct sun, while avoiding unverified protection claims.",
+      "notIdealFor": "People who need certified UV/UPF protection, weatherproofing or a specific head circumference fit.",
+      "strengths": [
+        "Adjustable closure can fit a range of head sizes.",
+        "Curved brim is a familiar everyday style.",
+        "Cotton-blend fabric is the listed concept material."
+      ],
+      "limitations": [
+        "Actual size range, sweatband comfort and ventilation are not confirmed.",
+        "No UPF rating or measured sun protection is provided.",
+        "Colour fading and shape retention after washing are unknown."
+      ],
+      "verifyBeforeBuying": [
+        "Check circumference range, closure type and crown depth.",
+        "Look for an explicit UPF rating if UV protection is important.",
+        "Review care label, fabric percentage and colour-specific photos."
+      ]
+    }
+  },
+  {
+    "id": "prod-031",
+    "slug": "slimline-everyday-wallet",
+    "title": "Slimline Everyday Wallet",
+    "brand": "Slimline",
+    "category": "Fashion & Footwear",
+    "description": "A compact wallet concept for daily carry. Check card capacity, dimensions and material on the chosen listing.",
+    "image": "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 2240,
+    "price": 1660,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "Bifold format is familiar and easy to organise.",
+      "The sample six-slot layout offers a clear starting point for card planning.",
+      "A slim profile can reduce pocket bulk if the wallet stays lightly loaded."
+    ],
+    "cons": [
+      "Actual capacity and thickness when filled are not tested.",
+      "Synthetic-leather material, stitching and edge finish are unverified.",
+      "RFID blocking is not listed and must not be assumed."
+    ],
+    "specs": {
+      "Style": "Slim bifold (demo)",
+      "Cards": "6 card slots (demo)",
+      "Material": "Synthetic leather (demo)",
+      "Use": "Everyday carry"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "A slim bifold layout with six listed card slots targets a low-bulk everyday carry. The real card capacity, fold thickness and synthetic material quality need checking; slot count does not automatically mean six fully loaded cards will remain comfortable.",
+      "bestFor": "People carrying a modest number of cards and wanting a simple bifold format.",
+      "notIdealFor": "Those who carry lots of cash/cards, need RFID protection without a verified claim or prefer genuine leather.",
+      "strengths": [
+        "Bifold format is familiar and easy to organise.",
+        "The sample six-slot layout offers a clear starting point for card planning.",
+        "A slim profile can reduce pocket bulk if the wallet stays lightly loaded."
+      ],
+      "limitations": [
+        "Actual capacity and thickness when filled are not tested.",
+        "Synthetic-leather material, stitching and edge finish are unverified.",
+        "RFID blocking is not listed and must not be assumed."
+      ],
+      "verifyBeforeBuying": [
+        "Check dimensions and slot layout with your daily card count.",
+        "Confirm material and whether RFID protection is explicitly certified.",
+        "Check seam quality, closure/coin-pocket needs and return terms."
+      ]
+    }
+  },
+  {
+    "id": "prod-032",
+    "slug": "clearview-polarized-sunglasses",
+    "title": "ClearView Polarized Sunglasses",
+    "brand": "ClearView",
+    "category": "Fashion & Footwear",
+    "description": "A sunglasses concept for everyday outdoor use. Confirm UV protection, fit and lens claims on the retailer listing.",
+    "image": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 2490,
+    "price": 1660,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "Polarization is the intended lens feature for glare reduction.",
+      "A lightweight frame concept may be convenient for travel.",
+      "A unisex style is described, though fit remains individual."
+    ],
+    "cons": [
+      "The UV rating is not verified; polarization alone does not confirm UV protection.",
+      "Lens distortion, scratch resistance, hinge durability and face fit are untested.",
+      "The acetate-style frame wording is not a confirmed material claim."
+    ],
+    "specs": {
+      "Lens": "Polarized (demo)",
+      "Protection": "Verify UV rating",
+      "Frame": "Lightweight acetate-style (demo)",
+      "Fit": "Unisex (demo)"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "Polarized lenses can reduce reflected glare in appropriate conditions, but polarization is not the same as verified UV protection. This sample entry explicitly leaves the UV rating unverified, so it should not be treated as protective eyewear until the label is confirmed.",
+      "bestFor": "Everyday outdoor use only after checking fit and an independently stated UV protection rating.",
+      "notIdealFor": "Buyers who need safety-rated eyewear, prescription lenses or verified sun protection from the sample description alone.",
+      "strengths": [
+        "Polarization is the intended lens feature for glare reduction.",
+        "A lightweight frame concept may be convenient for travel.",
+        "A unisex style is described, though fit remains individual."
+      ],
+      "limitations": [
+        "The UV rating is not verified; polarization alone does not confirm UV protection.",
+        "Lens distortion, scratch resistance, hinge durability and face fit are untested.",
+        "The acetate-style frame wording is not a confirmed material claim."
+      ],
+      "verifyBeforeBuying": [
+        "Look for clear UV400/100% UVA/UVB protection details from the seller/manufacturer.",
+        "Check lens category, fit, return policy and polarisation if you use screens/camera displays.",
+        "Avoid using unverified fashion glasses as protective eyewear."
+      ]
+    }
+  },
+  {
+    "id": "prod-033",
+    "slug": "scentcraft-citrus-eau-de-parfum",
+    "title": "ScentCraft Citrus Eau de Parfum",
+    "brand": "ScentCraft",
+    "category": "Grooming",
+    "description": "A citrus fragrance concept for a simple daily grooming routine. Scent profile and performance are illustrative—check the actual product details.",
+    "image": "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 4150,
+    "price": 3320,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "A fresh citrus profile is the stated style direction.",
+      "The sample EDP format suggests a fragrance rather than a body spray.",
+      "A 50ml bottle is a useful size reference if confirmed."
+    ],
+    "cons": [
+      "Exact top/middle/base notes, concentration and ingredient list are unknown.",
+      "Longevity, projection and skin chemistry results have not been tested.",
+      "Sensitivity/allergy risk and product authenticity cannot be judged from this demo listing."
+    ],
+    "specs": {
+      "Scent profile": "Citrus / fresh (demo)",
+      "Volume": "50ml (demo)",
+      "Format": "Eau de parfum concept",
+      "Use": "Daily fragrance"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "featured": true,
+    "review": {
+      "summary": "A citrus/fresh eau de parfum concept is positioned for everyday grooming or gifting, but scent preference and longevity are personal and cannot be reviewed honestly without a verified formula and wear test. The 50ml volume is only a sample value.",
+      "bestFor": "People exploring fresh citrus-style fragrances who can sample the actual scent first.",
+      "notIdealFor": "Buyers with fragrance sensitivity, strict ingredient requirements or expectations of a specific projection/longevity without testing.",
+      "strengths": [
+        "A fresh citrus profile is the stated style direction.",
+        "The sample EDP format suggests a fragrance rather than a body spray.",
+        "A 50ml bottle is a useful size reference if confirmed."
+      ],
+      "limitations": [
+        "Exact top/middle/base notes, concentration and ingredient list are unknown.",
+        "Longevity, projection and skin chemistry results have not been tested.",
+        "Sensitivity/allergy risk and product authenticity cannot be judged from this demo listing."
+      ],
+      "verifyBeforeBuying": [
+        "Check full ingredient/allergen information and seller authenticity.",
+        "Sample the fragrance if possible before purchasing a full bottle.",
+        "Confirm bottle size, concentration and return policy for opened products."
+      ]
+    }
+  },
+  {
+    "id": "prod-034",
+    "slug": "freshday-body-spray",
+    "title": "FreshDay Daily Body Spray",
+    "brand": "FreshDay",
+    "category": "Grooming",
+    "description": "A fresh daily body-spray concept. Verify ingredients, volume and scent notes against the actual retailer listing.",
+    "image": "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 1330,
+    "price": 1000,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "A spray format is straightforward for quick application.",
+      "The sample 150ml size is convenient as a gym-bag/grooming reference if verified.",
+      "A fresh scent profile is the stated intent."
+    ],
+    "cons": [
+      "Scent notes, concentration and lasting power are unknown.",
+      "Ingredients, allergen warnings and skin compatibility are not verified.",
+      "Bottle spray quality and actual volume are demo details."
+    ],
+    "specs": {
+      "Scent": "Fresh (demo)",
+      "Volume": "150ml (demo)",
+      "Format": "Body spray concept",
+      "Use": "Daily grooming"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "A 150ml daily body spray is designed as a quick, lightweight grooming option, but actual scent, ingredients and wear time are not specified reliably. Do not infer skin suitability or lasting performance from the “fresh” label.",
+      "bestFor": "People who want a simple body-spray format and have confirmed the scent and ingredients work for them.",
+      "notIdealFor": "Anyone with known fragrance sensitivities or looking for a tested long-lasting perfume from the sample description.",
+      "strengths": [
+        "A spray format is straightforward for quick application.",
+        "The sample 150ml size is convenient as a gym-bag/grooming reference if verified.",
+        "A fresh scent profile is the stated intent."
+      ],
+      "limitations": [
+        "Scent notes, concentration and lasting power are unknown.",
+        "Ingredients, allergen warnings and skin compatibility are not verified.",
+        "Bottle spray quality and actual volume are demo details."
+      ],
+      "verifyBeforeBuying": [
+        "Read the ingredient list and allergy warnings.",
+        "Test on a small area and avoid use if irritation occurs.",
+        "Confirm size, seller authenticity and packaging before buying."
+      ]
+    }
+  },
+  {
+    "id": "prod-035",
+    "slug": "pocketmist-travel-atomizer",
+    "title": "PocketMist Travel Fragrance Atomizer",
+    "brand": "PocketMist",
+    "category": "Grooming",
+    "description": "A refillable pocket fragrance atomizer concept for travel and touch-ups. Confirm refill method and compatibility with your bottle.",
+    "image": "https://images.unsplash.com/photo-1547887538-e3a2f32cb1cc?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 1080,
+    "price": 750,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "A small 5ml format is easy to store in a pocket or bag.",
+      "Refillable design can reduce the need to carry a full-size bottle.",
+      "A simple atomizer is useful for touch-ups if the spray mechanism works well."
+    ],
+    "cons": [
+      "Leak resistance and seal quality are not tested.",
+      "Refilling may spill or contaminate fragrance depending on the design.",
+      "Material compatibility, spray consistency and exact volume are sample claims."
+    ],
+    "specs": {
+      "Capacity": "5ml (demo)",
+      "Refill": "Refillable (demo)",
+      "Format": "Pocket atomizer",
+      "Use": "Travel / touch-ups"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "A refillable 5ml atomizer can carry a small amount of fragrance for travel or touch-ups instead of the full bottle. Its main risks are leakage, difficult refilling and fragrance residue; those details are not verified in this sample entry.",
+      "bestFor": "People who want to carry a small decanted amount of their own fragrance.",
+      "notIdealFor": "Anyone who needs proven leak-proof luggage storage or wants to transfer expensive fragrances without testing the mechanism.",
+      "strengths": [
+        "A small 5ml format is easy to store in a pocket or bag.",
+        "Refillable design can reduce the need to carry a full-size bottle.",
+        "A simple atomizer is useful for touch-ups if the spray mechanism works well."
+      ],
+      "limitations": [
+        "Leak resistance and seal quality are not tested.",
+        "Refilling may spill or contaminate fragrance depending on the design.",
+        "Material compatibility, spray consistency and exact volume are sample claims."
+      ],
+      "verifyBeforeBuying": [
+        "Check how it refills and whether the seal has a reliable lock.",
+        "Test with a small amount before putting it in luggage.",
+        "Confirm material, capacity and cleaning instructions."
+      ]
+    }
+  },
+  {
+    "id": "prod-036",
+    "slug": "cablekeeper-desk-organizer",
+    "title": "CableKeeper Desk Cable Organizer",
+    "brand": "CableKeeper",
+    "category": "Everyday Essentials",
+    "description": "A small cable organizer concept for tidier desks, bags and charging stations. Check channel size and adhesive/clip style.",
+    "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 1160,
+    "price": 830,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "Small clips can keep frequently used cables in reach.",
+      "The sample pack contains six clips.",
+      "Adhesive mounting avoids drilling."
+    ],
+    "cons": [
+      "Surface adhesion and residue vary by paint/material and temperature.",
+      "Clip channel size may not fit thick braided cables.",
+      "Adhesive longevity and reusability are not verified."
+    ],
+    "specs": {
+      "Pack": "6 clips (demo)",
+      "Mount": "Adhesive (demo)",
+      "Use": "Cable routing",
+      "Compatibility": "Check cable diameter"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "Adhesive cable clips are a simple way to guide charging or desk cables and reduce clutter. Their usefulness depends on cable diameter, surface cleanliness and adhesive strength; an adhesive mount is not guaranteed to hold on dusty, textured or warm surfaces.",
+      "bestFor": "Tidying a desk or charging station with lightweight cables and a suitable smooth surface.",
+      "notIdealFor": "Heavy cables, rough walls, delicate finishes where residue is a concern or installations needing permanent load-bearing support.",
+      "strengths": [
+        "Small clips can keep frequently used cables in reach.",
+        "The sample pack contains six clips.",
+        "Adhesive mounting avoids drilling."
+      ],
+      "limitations": [
+        "Surface adhesion and residue vary by paint/material and temperature.",
+        "Clip channel size may not fit thick braided cables.",
+        "Adhesive longevity and reusability are not verified."
+      ],
+      "verifyBeforeBuying": [
+        "Measure cable diameters and compare the clip opening.",
+        "Check surface compatibility and cleaning/curing instructions.",
+        "Test one clip first and avoid using it to support heavy or tensioned cables."
+      ]
+    }
+  },
+  {
+    "id": "prod-037",
+    "slug": "linkhub-6in1-usbc-adapter",
+    "title": "LinkHub 6-in-1 USB-C Adapter",
+    "brand": "LinkHub",
+    "category": "Everyday Essentials",
+    "description": "A compact multiport adapter concept for laptops and tablets. Verify the exact display output, power pass-through and supported devices.",
+    "image": "https://images.unsplash.com/photo-1625842268584-8f3296236761?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 3320,
+    "price": 2490,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "A single hub can consolidate multiple accessories.",
+      "The sample port list includes USB-A, USB-C and HDMI.",
+      "Compact hubs can be helpful for travel desks."
+    ],
+    "cons": [
+      "The listed 4K output is a demo claim; supported refresh rate is not given.",
+      "Some USB-C host ports do not support video output, even if the connector fits.",
+      "Power pass-through, data speeds and shared-bandwidth limits are unspecified."
+    ],
+    "specs": {
+      "Ports": "USB-A, USB-C, HDMI (demo)",
+      "Display": "4K output claimed (demo)",
+      "Power": "Pass-through (demo)",
+      "Compatibility": "Check host device"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "A multiport USB-C hub can reduce dongle clutter for a laptop or tablet, but port count does not tell you actual bandwidth or display capability. The sample 4K HDMI and power pass-through claims need to be checked against the exact host device and the hub’s port-sharing limits.",
+      "bestFor": "Mobile work setups that need several common ports from a compatible USB-C device.",
+      "notIdealFor": "Users who require guaranteed dual displays, high-refresh 4K, maximum charging throughput or high-speed storage without specific supported ratings.",
+      "strengths": [
+        "A single hub can consolidate multiple accessories.",
+        "The sample port list includes USB-A, USB-C and HDMI.",
+        "Compact hubs can be helpful for travel desks."
+      ],
+      "limitations": [
+        "The listed 4K output is a demo claim; supported refresh rate is not given.",
+        "Some USB-C host ports do not support video output, even if the connector fits.",
+        "Power pass-through, data speeds and shared-bandwidth limits are unspecified."
+      ],
+      "verifyBeforeBuying": [
+        "Check your laptop’s USB-C port supports DisplayPort Alt Mode/Thunderbolt as required.",
+        "Confirm HDMI resolution/refresh, USB data rates and PD input/output limits.",
+        "Check whether the hub gets hot under load and whether a power adapter is included."
+      ]
+    }
+  },
+  {
+    "id": "prod-038",
+    "slug": "soundloop-usbc-wired-earbuds",
+    "title": "SoundLoop USB-C Wired Earbuds",
+    "brand": "SoundLoop",
+    "category": "Audio",
+    "description": "A wired USB-C earbud concept for calls, commuting and devices without a headphone jack. Verify device compatibility and microphone support.",
+    "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 1660,
+    "price": 1240,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [
+      "Demo listing"
+    ],
+    "pros": [
+      "Wired playback avoids charging an earbud battery.",
+      "The listed inline microphone and controls may be convenient for calls.",
+      "Small wired earphones are easy to keep as a backup."
+    ],
+    "cons": [
+      "Sound tuning, microphone clarity and fit are untested.",
+      "Some devices require USB-C digital audio support or a compatible DAC in the earphones.",
+      "Water resistance, cable durability and inline-control compatibility are not stated."
+    ],
+    "specs": {
+      "Connection": "USB-C wired (demo)",
+      "Microphone": "Inline (demo)",
+      "Controls": "Inline remote (demo)",
+      "Use": "Calls and daily listening"
+    },
+    "isDemoData": true,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "featured": true,
+    "review": {
+      "summary": "USB-C wired earbuds avoid charging a separate wireless battery and can be convenient as everyday or backup earphones. Sound and call quality depend on the driver, microphone and digital-audio compatibility, none of which is verified in this sample listing.",
+      "bestFor": "People who prefer wired listening and have confirmed USB-C audio support on their phone/tablet.",
+      "notIdealFor": "Users who need a guaranteed audiophile sound signature, strong noise isolation, waterproofing or broad compatibility without testing.",
+      "strengths": [
+        "Wired playback avoids charging an earbud battery.",
+        "The listed inline microphone and controls may be convenient for calls.",
+        "Small wired earphones are easy to keep as a backup."
+      ],
+      "limitations": [
+        "Sound tuning, microphone clarity and fit are untested.",
+        "Some devices require USB-C digital audio support or a compatible DAC in the earphones.",
+        "Water resistance, cable durability and inline-control compatibility are not stated."
+      ],
+      "verifyBeforeBuying": [
+        "Confirm USB-C audio compatibility for your exact device.",
+        "Check mic/remote support, ear-tip sizes and in-line button function.",
+        "Look for independent sound/call tests and warranty terms."
+      ]
+    }
+  },
+  {
+    "id": "phone-001",
+    "slug": "apple-iphone-15-pro-128gb",
+    "title": "Apple iPhone 15 Pro (128GB)",
+    "brand": "Apple",
+    "category": "Phones",
+    "description": "Apple's iPhone 15 Pro with A17 Pro, a 6.1-inch 120Hz ProMotion OLED display and 128GB storage. The listed AED price is converted to an approximate INR display price, not a verified Indian retail price.",
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=1200&q=85",
+    "amazonUrl": "https://a.co/d/09kksbfK",
+    "originalPrice": 51784,
+    "price": 51784,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [],
+    "pros": [
+      "A17 Pro is the newer and generally more capable chip than A15 Bionic.",
+      "6.1-inch OLED with 120Hz refresh rate and 2556 × 1179 resolution on the supplied listing.",
+      "Titanium frame and IP68 water/dust resistance are listed for this model."
+    ],
+    "cons": [
+      "Converted price is about ₹51,784 and is not a confirmed India-market price.",
+      "128GB storage may be limiting for large video libraries or games.",
+      "Battery condition, warranty, seller reliability and whether the unit is new/refurbished must be checked on the actual listing."
+    ],
+    "specs": {
+      "Operating System": "iOS 17 (as supplied)",
+      "RAM": "8 GB (seller-listed; verify)",
+      "Chipset": "Apple A17 Pro",
+      "CPU Speed": "3.78 GHz (seller-listed)",
+      "Storage": "128 GB",
+      "Display": "6.1-inch OLED",
+      "Resolution": "2556 × 1179",
+      "Refresh Rate": "120 Hz",
+      "Build": "Titanium frame",
+      "Water/Dust Resistance": "IP68 (model specification; verify unit condition)",
+      "Original Listed Price": "AED 1,987.09",
+      "Approx. INR Price": "₹51,784 (using ₹26.06/AED; indicative)"
+    },
+    "featured": true,
+    "trending": true,
+    "editorChoice": true,
+    "isDemoData": false,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "On the supplied specifications, the iPhone 15 Pro ranks ahead of the iPhone 13 Pro for overall performance because it uses the newer A17 Pro chip. Its 120Hz OLED display and IP68 rating are strengths on paper. This is specification-based guidance, not a hands-on test; seller-provided RAM and CPU clock figures should be independently verified.",
+      "bestFor": "People who prioritise stronger performance, a premium compact phone and a 120Hz OLED display, provided the unit condition and warranty check out.",
+      "notIdealFor": "Buyers who need the lowest price, more than 128GB storage, or a confirmed local warranty without checking the seller details.",
+      "strengths": [
+        "A17 Pro is newer than the iPhone 13 Pro's A15 Bionic.",
+        "120Hz OLED display with the supplied 2556 × 1179 resolution.",
+        "IP68 water/dust resistance is a model-level specification; it does not mean damage from liquids is covered by warranty."
+      ],
+      "limitations": [
+        "Approximate ₹51,784 conversion is not a verified Indian retail price.",
+        "The 128GB capacity is fixed and cannot be expanded with a memory card.",
+        "Real battery health, previous repairs, warranty and seller condition are unknown from the supplied details."
+      ],
+      "verifyBeforeBuying": [
+        "Confirm the exact model, storage, new/refurbished status and seller rating.",
+        "Check battery health, activation/repair history and warranty coverage.",
+        "Confirm final checkout price, return policy and region/network compatibility.",
+        "Do not treat water resistance as permanent or as a guarantee against liquid damage."
+      ]
+    }
+  },
+  {
+    "id": "phone-002",
+    "slug": "apple-iphone-13-pro-128gb",
+    "title": "Apple iPhone 13 Pro (128GB)",
+    "brand": "Apple",
+    "category": "Phones",
+    "description": "Apple's iPhone 13 Pro with A15 Bionic, a 6.1-inch 120Hz ProMotion OLED display and 128GB storage. The listed AED price is converted to an approximate INR display price, not a verified Indian retail price.",
+    "image": "https://images.unsplash.com/photo-1632633173522-5cbf4c6b5a20?auto=format&fit=crop&w=1200&q=85",
+    "originalPrice": 39723,
+    "price": 39723,
+    "currency": "INR",
+    "rating": 0,
+    "reviewCount": 0,
+    "badges": [],
+    "pros": [
+      "Lower converted price than the iPhone 15 Pro while retaining a 120Hz OLED display.",
+      "A15 Bionic remains capable for everyday use, subject to battery health and software support needs.",
+      "Triple-camera system and IP68 rating are part of the model's published specifications."
+    ],
+    "cons": [
+      "A15 Bionic is an older chip than the A17 Pro in iPhone 15 Pro.",
+      "Approximate ₹39,723 conversion is not a confirmed Indian retail price.",
+      "Battery health and remaining warranty are especially important for an older model."
+    ],
+    "specs": {
+      "Operating System": "iOS 15 (original launch OS; current version depends on updates)",
+      "RAM": "8 GB (seller-listed; verify)",
+      "Chipset": "Apple A15 Bionic",
+      "CPU Speed": "3.22 GHz (seller-listed)",
+      "Storage": "128 GB",
+      "Display": "6.1-inch OLED",
+      "Resolution": "2532 × 1170 (Apple model specification)",
+      "Refresh Rate": "120 Hz",
+      "Water/Dust Resistance": "IP68 (model specification; verify unit condition)",
+      "Original Listed Price": "AED 1,524.30",
+      "Approx. INR Price": "₹39,723 (using ₹26.06/AED; indicative)"
+    },
+    "featured": true,
+    "trending": false,
+    "editorChoice": false,
+    "isDemoData": false,
+    "priceHistory": {
+      "lastMonthPrice": null,
+      "avg30DayPrice": null,
+      "checkedAt": null,
+      "source": "unknown",
+      "observations": []
+    },
+    "review": {
+      "summary": "The iPhone 13 Pro offers much of the same 120Hz OLED display experience at a lower converted price, so it is the value-oriented option in this two-phone comparison. Its A15 Bionic is older than the A17 Pro, and the actual value depends heavily on battery health, condition, warranty and final seller price. The supplied 1920 × 1080 resolution was corrected to the model specification of 2532 × 1170.",
+      "bestFor": "Buyers who want a premium 120Hz iPhone experience at a lower upfront cost and can verify the unit's condition.",
+      "notIdealFor": "People who need the newest chip, a fresh battery guarantee, or a seller-backed warranty that has not been confirmed.",
+      "strengths": [
+        "Costs about ₹12,061 less than the listed iPhone 15 Pro after the same indicative currency conversion.",
+        "6.1-inch OLED display with 120Hz ProMotion refresh rate.",
+        "IP68 is the model's water/dust resistance rating, subject to condition and exclusions."
+      ],
+      "limitations": [
+        "A15 Bionic is an older generation than A17 Pro.",
+        "Battery degradation is a key risk on an older/used unit.",
+        "The converted price is not a verified Indian retail price and seller details are not supplied."
+      ],
+      "verifyBeforeBuying": [
+        "Ask for battery health and check parts/service history.",
+        "Confirm exact storage, activation lock status, seller, warranty and return terms.",
+        "Check final price and compatibility for your country/carrier.",
+        "Water resistance can decline with wear and liquid damage may not be covered."
+      ]
+    }
   }
 ]

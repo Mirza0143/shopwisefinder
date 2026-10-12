@@ -1,11 +1,24 @@
 import Link from "next/link";
-import { ArrowRight, Check, ShieldCheck, Sparkles, Zap } from "lucide-react";
+import { ArrowRight, Check, ShieldCheck, Sparkles, Zap, Smartphone, Shirt, Headphones, PackageCheck, ArrowUpRight } from "lucide-react";
 import ProductCard from "@/components/ProductCard";
-import { getFeaturedProducts, getTrendingProducts } from "@/lib/products";
+import CuratedBundles from "@/components/CuratedBundles";
+import { formatINR, getFeaturedProducts, getProductBySlug } from "@/lib/products";
 
 export default function HomePage() {
-  const featured = getFeaturedProducts();
-  const trending = getTrendingProducts();
+  const spotlight = [
+    getProductBySlug("arcticclip-mobile-phone-cooler"),
+    getProductBySlug("strideknit-everyday-sneakers"),
+    getProductBySlug("scentcraft-citrus-eau-de-parfum"),
+  ].filter((product): product is NonNullable<typeof product> => product !== undefined);
+  const featuredCatalog = getFeaturedProducts();
+  const featured = [
+    ...spotlight,
+    ...featuredCatalog.filter((product) => !spotlight.some((pick) => pick.slug === product.slug)),
+  ];
+  const trending = [
+    getProductBySlug("volt-pocket-20000mah-power-bank"),
+    getProductBySlug("soundloop-usbc-wired-earbuds"),
+  ].filter((product): product is NonNullable<typeof product> => product !== undefined);
 
   return (
     <main>
@@ -30,6 +43,9 @@ export default function HomePage() {
               </Link>
               <Link href="/compare" className="rounded-2xl border border-slate-300 bg-white/70 px-6 py-3.5 font-bold dark:border-white/10 dark:bg-white/5">
                 Compare options
+              </Link>
+              <Link href="/bundles" className="rounded-2xl border border-indigo-200 bg-indigo-50 px-6 py-3.5 font-bold text-indigo-700 dark:border-indigo-400/20 dark:bg-indigo-500/10 dark:text-indigo-200">
+                Explore bundles
               </Link>
             </div>
           </div>
@@ -66,6 +82,45 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-16" aria-labelledby="shop-by-need-heading">
+        <div className="pw-enter mb-7 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+          <div>
+            <p className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[.2em] text-indigo-600 dark:text-indigo-300"><Sparkles size={14}/> Explore by need</p>
+            <h2 id="shop-by-need-heading" className="mt-2 text-3xl font-black tracking-tight sm:text-4xl">What are you shopping for?</h2>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-500 dark:text-slate-400">Start with the job to be done—then shortlist useful items without opening dozens of tabs.</p>
+          </div>
+          <Link href="/products" className="inline-flex items-center gap-1 self-start text-sm font-extrabold text-indigo-600 transition hover:gap-2 dark:text-indigo-300 sm:self-auto">Explore all picks <ArrowRight size={16}/></Link>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          {[
+            { title: "Mobile gaming", subtitle: "Coolers, power banks, connectors & grip tools", category: "Mobile Accessories", icon: Smartphone, image: "photo-1511709191319-5864cf11b8b5", tint: "from-violet-500/20" },
+            { title: "Style & footwear", subtitle: "Outfit basics, sneakers, slides, socks & carry", category: "Fashion & Footwear", icon: Shirt, image: "photo-1542291026-7eec264c27ff", tint: "from-rose-500/20" },
+            { title: "Everyday essentials", subtitle: "Cables, hubs, adapters & compact useful tools", category: "Everyday Essentials", icon: PackageCheck, image: "photo-1498050108023-c5249f4df085", tint: "from-amber-500/20" },
+            { title: "Audio & listening", subtitle: "Headphones, earbuds and wired audio picks", category: "Audio", icon: Headphones, image: "photo-1505740420928-5e560c06d30e", tint: "from-sky-500/20" },
+          ].map((item, index) => (
+            <Link
+              key={item.category}
+              href={`/products?category=${encodeURIComponent(item.category)}`}
+              className="pw-enter group relative isolate min-h-52 overflow-hidden rounded-[1.5rem] border border-slate-200/80 bg-white shadow-lg shadow-slate-900/[.04] transition duration-300 hover:-translate-y-1 hover:border-indigo-200 hover:shadow-2xl hover:shadow-indigo-900/10 dark:border-white/10 dark:bg-white/[.04]"
+              style={{ animationDelay: `${index * 70}ms` }}
+            >
+              <img src={`https://images.unsplash.com/${item.image}?auto=format&fit=crop&w=800&q=82`} alt="" loading="lazy" decoding="async" className="absolute inset-0 -z-20 h-full w-full object-cover transition duration-700 group-hover:scale-105"/>
+              <div className={`absolute inset-0 -z-10 bg-gradient-to-br ${item.tint} via-slate-950/50 to-slate-950/90 transition-opacity duration-300 group-hover:opacity-95`}/>
+              <div className="flex min-h-52 flex-col justify-between p-5 text-white sm:p-6">
+                <div className="flex items-center justify-between">
+                  <span className="grid h-11 w-11 place-items-center rounded-2xl border border-white/20 bg-white/15 shadow-lg backdrop-blur-md"><item.icon size={21}/></span>
+                  <span className="grid h-9 w-9 place-items-center rounded-full border border-white/25 bg-white/10 transition duration-200 group-hover:translate-x-1 group-hover:bg-white/20"><ArrowUpRight size={17}/></span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-black tracking-tight">{item.title}</h3>
+                  <p className="mt-1 max-w-xs text-sm leading-5 text-white/80">{item.subtitle}</p>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
         <div className="mb-8 flex items-end justify-between gap-4">
           <div><p className="text-sm font-bold uppercase tracking-[.18em] text-indigo-600">Editor's selection</p><h2 className="mt-2 text-3xl font-black tracking-tight">Featured products</h2></div>
@@ -88,16 +143,18 @@ export default function HomePage() {
           </div>
           <div className="mt-8 grid gap-5 sm:grid-cols-2">
             {trending.slice(0, 2).map((product) => (
-              <div key={product.id} className="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <div key={product.id} className="group rounded-2xl border border-white/10 bg-white/5 p-5 transition duration-300 hover:-translate-y-0.5 hover:border-indigo-400/30 hover:bg-white/[.07]">
                 <div className="flex items-center gap-4">
-                  <img src={product.image} alt="" className="h-20 w-20 rounded-xl object-cover"/>
-                  <div><div className="font-bold">{product.title}</div><div className="mt-1 text-sm text-slate-400">{product.rating} ★ · ${product.price.toFixed(2)}</div></div>
+                  <img src={product.image} alt="" loading="lazy" decoding="async" className="h-20 w-20 rounded-xl object-cover transition duration-300 group-hover:scale-105"/>
+                  <div><div className="font-bold">{product.title}</div><div className="mt-1 text-sm text-slate-400">Illustrative price · Est. {formatINR(product.price)}</div></div>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      <CuratedBundles compact />
 
       <section className="mx-auto max-w-7xl px-5 pb-24 lg:px-8">
         <div className="rounded-[2rem] border border-indigo-100 bg-indigo-50 p-8 dark:border-indigo-400/10 dark:bg-indigo-500/10 sm:p-12">

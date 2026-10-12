@@ -36,3 +36,85 @@ body {
 ::selection {
   background: rgba(99,102,241,.25);
 }
+
+/* PickWise polish: subtle depth, purposeful motion and accessible keyboard focus. */
+:root {
+  --pw-focus-ring: rgba(99, 102, 241, 0.5);
+}
+
+html {
+  scroll-padding-top: 84px;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+a,
+input,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a,
+button {
+  touch-action: manipulation;
+}
+
+:focus-visible {
+  outline: 3px solid var(--pw-focus-ring);
+  outline-offset: 3px;
+}
+
+.pw-enter {
+  animation: pw-fade-up 240ms cubic-bezier(.2,.75,.25,1) both;
+}
+
+.pw-product-card:focus-within {
+  border-color: rgba(99, 102, 241, .5);
+  box-shadow: 0 18px 48px rgba(79, 70, 229, .12);
+}
+
+::selection {
+  background: rgba(99, 102, 241, .22);
+  color: inherit;
+}
+
+
+/* Short route-content entrance: responsive but intentionally subtle so navigation feels immediate. */
+.pw-page-enter {
+  animation: pw-page-in 180ms ease-out both;
+}
+
+.pw-review-result {
+  animation: pw-page-in 220ms ease-out both;
+}
+
+@keyframes pw-page-in {
+  from { opacity: 0; transform: translate3d(0, 5px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes pw-fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 13px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
