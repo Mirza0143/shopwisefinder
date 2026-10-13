@@ -98,15 +98,15 @@ export default function ComparePage() {
   }
 
   return (
-    <main className="pw-page-enter mx-auto min-h-screen max-w-7xl px-5 py-10 lg:px-8 lg:py-14">
+    <main className="pw-page-enter mx-auto min-w-0 min-h-screen w-full max-w-7xl px-4 py-6 sm:px-5 sm:py-10 lg:px-8 lg:py-14">
       <header className="pw-enter flex flex-col gap-5 border-b border-slate-200/80 pb-8 dark:border-white/10 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[.18em] text-indigo-600 dark:text-indigo-300"><GitCompareArrows size={15}/> Make the right pick</p>
-          <h1 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">Compare products your way</h1>
+          <h1 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl lg:text-5xl">Compare products your way</h1>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-500 dark:text-slate-400">Search by name, add two or three items in the same category, and compare listed prices and specifications side by side.</p>
         </div>
         <label className="grid gap-2 text-xs font-bold text-slate-500">Category
-          <select value={category} onChange={(event) => changeCategory(event.target.value)} className="min-w-52 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-900 shadow-sm outline-none transition focus:border-indigo-400 focus:ring-4 focus:ring-indigo-500/10 dark:border-white/10 dark:bg-slate-950 dark:text-white">
+          <select value={category} onChange={(event) => changeCategory(event.target.value)} className="w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-900 shadow-sm outline-none transition focus:border-indigo-400 focus:ring-4 focus:ring-indigo-500/10 sm:w-auto sm:min-w-52 dark:border-white/10 dark:bg-slate-950 dark:text-white">
             <option value={ALL_CATEGORIES}>{ALL_CATEGORIES}</option>
             {categories.map((value) => <option key={value} value={value}>{value}</option>)}
           </select>
@@ -157,14 +157,61 @@ export default function ComparePage() {
       {chosen.length >= 2 ? (
         <section className="mt-10" aria-labelledby="comparison-table-heading">
           <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between"><div><p className="text-xs font-black uppercase tracking-[.16em] text-indigo-600 dark:text-indigo-300">Side-by-side matrix</p><h2 id="comparison-table-heading" className="mt-1 text-2xl font-black">Price & specification comparison</h2></div><span className="inline-flex items-center gap-2 text-xs text-slate-500"><Trophy size={14}/> Lowest value is marked—not an overall quality verdict</span></div>
-          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-lg shadow-slate-900/[.035] dark:border-white/10 dark:bg-slate-950/50"><div className="overflow-x-auto"><table className="w-full min-w-[740px] border-collapse text-left"><thead><tr className="border-b border-slate-200 bg-slate-50 dark:border-white/10 dark:bg-white/[.04]"><th className="sticky left-0 z-10 bg-slate-50 p-4 text-xs font-black uppercase tracking-wide text-slate-500 dark:bg-slate-900 sm:p-5">Feature</th>{chosen.map((product) => <th key={product.slug} className="min-w-52 p-4 sm:p-5"><div className="text-sm font-black">{product.title}</div><div className="mt-1 text-xs font-medium text-slate-500">{product.brand}</div></th>)}</tr></thead><tbody>
-            <tr className="border-b border-slate-200 dark:border-white/10"><th className="sticky left-0 bg-white p-4 text-sm font-bold dark:bg-slate-950 sm:p-5">Listed/sample price</th>{chosen.map((product) => <td key={product.slug} className={`p-4 text-lg font-black sm:p-5 ${lowest === product.price ? "text-emerald-700 dark:text-emerald-300" : ""}`}>{formatINR(product.price)}{product.isDemoData && <div className="mt-1 text-[10px] font-semibold text-amber-700 dark:text-amber-300">Demo value</div>}</td>)}</tr>
-            <tr className="border-b border-slate-200 dark:border-white/10"><th className="sticky left-0 bg-white p-4 text-sm font-bold dark:bg-slate-950 sm:p-5">List/reference price</th>{chosen.map((product) => { const diff = product.originalPrice > product.price ? product.originalPrice - product.price : null; const pct = diff ? Math.round(diff / product.originalPrice * 100) : null; return <td key={product.slug} className="p-4 sm:p-5">{formatINR(product.originalPrice)}<div className="mt-1 text-xs text-slate-500">{diff && pct ? `${formatINR(diff)} (${pct}%) below sample list price` : "No verified discount"}</div></td>; })}</tr>
-            <tr className="border-b border-slate-200 dark:border-white/10"><th className="sticky left-0 bg-white p-4 text-sm font-bold dark:bg-slate-950 sm:p-5">Last month</th>{chosen.map((product) => <td key={product.slug} className="p-4 sm:p-5">{product.priceHistory?.lastMonthPrice != null ? formatINR(product.priceHistory.lastMonthPrice) : <span className="text-xs text-slate-500">No verified record</span>}</td>)}</tr>
-            <tr className="border-b border-slate-200 dark:border-white/10"><th className="sticky left-0 bg-white p-4 text-sm font-bold dark:bg-slate-950 sm:p-5">30-day average</th>{chosen.map((product) => <td key={product.slug} className="p-4 sm:p-5">{product.priceHistory?.avg30DayPrice != null ? formatINR(product.priceHistory.avg30DayPrice) : <span className="text-xs text-slate-500">No verified record</span>}</td>)}</tr>
-            <tr className="border-b border-slate-200 dark:border-white/10"><th className="sticky left-0 bg-white p-4 text-sm font-bold dark:bg-slate-950 sm:p-5">Latest monthly movement</th>{chosen.map((product) => { const change = monthlyChange(product); return <td key={product.slug} className="p-4 sm:p-5">{change ? <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-black ${change.amount < 0 ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-300" : change.amount > 0 ? "bg-rose-50 text-rose-700 dark:bg-rose-500/10 dark:text-rose-300" : "bg-slate-100 text-slate-600 dark:bg-white/10 dark:text-slate-300"}`}>{change.amount < 0 ? <ArrowDownRight size={14}/> : change.amount > 0 ? <ArrowUpRight size={14}/> : null}{change.amount < 0 ? "Down " : change.amount > 0 ? "Up " : "No change "}{formatINR(Math.abs(change.amount))}</span> : <span className="text-xs text-slate-500">Need 2 months of observations</span>}</td>; })}</tr>
-            {specKeys.map((spec) => <tr key={spec} className="border-b border-slate-200 last:border-0 dark:border-white/10"><th className="sticky left-0 bg-white p-4 text-sm font-bold dark:bg-slate-950 sm:p-5">{spec}</th>{chosen.map((product) => <td key={product.slug} className="p-4 text-sm sm:p-5">{product.specs?.[spec] || "—"}</td>)}</tr>)}
-          </tbody></table></div></div>
+          {/* Small screens use stacked product-spec cards so visitors never need horizontal swiping. */}
+          <div className="space-y-3 lg:hidden">
+            {chosen.map((product) => {
+              const diff = product.originalPrice > product.price ? product.originalPrice - product.price : null;
+              const pct = diff ? Math.round((diff / product.originalPrice) * 100) : null;
+              const change = monthlyChange(product);
+              const rows: { label: string; value: string; note?: string; emphasis?: boolean }[] = [
+                { label: "Listed/sample price", value: formatINR(product.price), note: product.isDemoData ? "Illustrative demo value" : undefined, emphasis: lowest === product.price },
+                { label: "List/reference price", value: formatINR(product.originalPrice), note: diff && pct ? `${formatINR(diff)} (${pct}%) below sample list price` : "No verified discount" },
+                { label: "Last month", value: product.priceHistory?.lastMonthPrice != null ? formatINR(product.priceHistory.lastMonthPrice) : "No verified record" },
+                { label: "30-day average", value: product.priceHistory?.avg30DayPrice != null ? formatINR(product.priceHistory.avg30DayPrice) : "No verified record" },
+                { label: "Latest monthly movement", value: change ? `${change.amount < 0 ? "↓ Down " : change.amount > 0 ? "↑ Up " : "No change "}${formatINR(Math.abs(change.amount))}` : "Need 2 months of observations" },
+                ...specKeys.map((spec) => ({ label: spec, value: product.specs?.[spec] || "—" })),
+              ];
+              return (
+                <article key={product.slug} className="min-w-0 overflow-hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-slate-950/60">
+                  <div className="flex min-w-0 items-center gap-3 border-b border-slate-200 pb-3 dark:border-white/10">
+                    <img src={product.image} alt={product.title} loading="lazy" decoding="async" className="h-16 w-16 shrink-0 rounded-xl bg-slate-100 object-cover dark:bg-slate-900" />
+                    <div className="min-w-0 flex-1">
+                      <h3 className="break-words text-base font-black leading-5">{product.title}</h3>
+                      <p className="mt-1 break-words text-xs text-slate-600 dark:text-slate-400">{product.brand} · {product.category}</p>
+                      <p className={`mt-1 text-lg font-black ${lowest === product.price ? "text-emerald-700 dark:text-emerald-300" : ""}`}>{formatINR(product.price)}</p>
+                    </div>
+                  </div>
+                  <dl className="mt-1 divide-y divide-slate-200 dark:divide-white/10">
+                    {rows.map((row) => (
+                      <div key={row.label} className="grid grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-3 py-3 text-sm">
+                        <dt className="min-w-0 break-words font-semibold text-slate-600 dark:text-slate-300">{row.label}</dt>
+                        <dd className={`min-w-0 break-words text-right font-medium ${row.emphasis ? "font-black text-emerald-700 dark:text-emerald-300" : "text-slate-900 dark:text-slate-100"}`}>
+                          {row.value}
+                          {row.note && <span className="mt-1 block text-xs font-normal text-slate-600 dark:text-slate-400">{row.note}</span>}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                  <div className="mt-3 flex flex-wrap gap-3 border-t border-slate-200 pt-3 dark:border-white/10">
+                    <Link href={`/products/${product.slug}`} prefetch onMouseEnter={() => router.prefetch(`/products/${product.slug}`)} onFocus={() => router.prefetch(`/products/${product.slug}`)} className="inline-flex min-h-10 items-center rounded-lg text-sm font-bold text-indigo-700 hover:underline dark:text-indigo-300">Read review ↗</Link>
+                    <Link href={`/go/${product.slug}`} target="_blank" rel="sponsored nofollow noopener" className="inline-flex min-h-10 items-center justify-center rounded-xl bg-orange-500 px-3 py-2 text-xs font-black text-white hover:bg-orange-600">Check price ↗</Link>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+
+          {/* Keep the dense side-by-side matrix on larger screens. */}
+          <div className="hidden overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-lg shadow-slate-900/[.035] dark:border-white/10 dark:bg-slate-950/50 lg:block">
+            <div className="overflow-x-auto"><table className="w-full min-w-[740px] border-collapse text-left"><thead><tr className="border-b border-slate-200 bg-slate-50 dark:border-white/10 dark:bg-white/[.04]"><th className="sticky left-0 z-10 bg-slate-50 p-4 text-xs font-black uppercase tracking-wide text-slate-600 dark:bg-slate-900 dark:text-slate-300 sm:p-5">Feature</th>{chosen.map((product) => <th key={product.slug} className="min-w-52 p-4 sm:p-5"><div className="break-words text-sm font-black">{product.title}</div><div className="mt-1 text-xs font-medium text-slate-600 dark:text-slate-400">{product.brand}</div></th>)}</tr></thead><tbody>
+              <tr className="border-b border-slate-200 dark:border-white/10"><th className="sticky left-0 bg-white p-4 text-sm font-bold dark:bg-slate-950 sm:p-5">Listed/sample price</th>{chosen.map((product) => <td key={product.slug} className={`p-4 text-lg font-black sm:p-5 ${lowest === product.price ? "text-emerald-700 dark:text-emerald-300" : ""}`}>{formatINR(product.price)}{product.isDemoData && <div className="mt-1 text-[10px] font-semibold text-amber-700 dark:text-amber-300">Demo value</div>}</td>)}</tr>
+              <tr className="border-b border-slate-200 dark:border-white/10"><th className="sticky left-0 bg-white p-4 text-sm font-bold dark:bg-slate-950 sm:p-5">List/reference price</th>{chosen.map((product) => { const diff = product.originalPrice > product.price ? product.originalPrice - product.price : null; const pct = diff ? Math.round(diff / product.originalPrice * 100) : null; return <td key={product.slug} className="p-4 sm:p-5">{formatINR(product.originalPrice)}<div className="mt-1 text-xs text-slate-600 dark:text-slate-400">{diff && pct ? `${formatINR(diff)} (${pct}%) below sample list price` : "No verified discount"}</div></td>; })}</tr>
+              <tr className="border-b border-slate-200 dark:border-white/10"><th className="sticky left-0 bg-white p-4 text-sm font-bold dark:bg-slate-950 sm:p-5">Last month</th>{chosen.map((product) => <td key={product.slug} className="p-4 sm:p-5">{product.priceHistory?.lastMonthPrice != null ? formatINR(product.priceHistory.lastMonthPrice) : <span className="text-xs text-slate-600 dark:text-slate-400">No verified record</span>}</td>)}</tr>
+              <tr className="border-b border-slate-200 dark:border-white/10"><th className="sticky left-0 bg-white p-4 text-sm font-bold dark:bg-slate-950 sm:p-5">30-day average</th>{chosen.map((product) => <td key={product.slug} className="p-4 sm:p-5">{product.priceHistory?.avg30DayPrice != null ? formatINR(product.priceHistory.avg30DayPrice) : <span className="text-xs text-slate-600 dark:text-slate-400">No verified record</span>}</td>)}</tr>
+              <tr className="border-b border-slate-200 dark:border-white/10"><th className="sticky left-0 bg-white p-4 text-sm font-bold dark:bg-slate-950 sm:p-5">Latest monthly movement</th>{chosen.map((product) => { const change = monthlyChange(product); return <td key={product.slug} className="p-4 sm:p-5">{change ? <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-black ${change.amount < 0 ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-300" : change.amount > 0 ? "bg-rose-50 text-rose-700 dark:bg-rose-500/10 dark:text-rose-300" : "bg-slate-100 text-slate-600 dark:bg-white/10 dark:text-slate-300"}`}>{change.amount < 0 ? <ArrowDownRight size={14}/> : change.amount > 0 ? <ArrowUpRight size={14}/> : null}{change.amount < 0 ? "Down " : change.amount > 0 ? "Up " : "No change "}{formatINR(Math.abs(change.amount))}</span> : <span className="text-xs text-slate-600 dark:text-slate-400">Need 2 months of observations</span>}</td>; })}</tr>
+              {specKeys.map((spec) => <tr key={spec} className="border-b border-slate-200 last:border-0 dark:border-white/10"><th className="sticky left-0 bg-white p-4 text-sm font-bold dark:bg-slate-950 sm:p-5">{spec}</th>{chosen.map((product) => <td key={product.slug} className="p-4 text-sm sm:p-5">{product.specs?.[spec] || "—"}</td>)}</tr>)}
+            </tbody></table></div>
+          </div>
           <p className="mt-4 flex items-start gap-2 text-xs leading-5 text-slate-500"><CheckCircle2 className="mt-0.5 shrink-0" size={15}/>Sample catalog prices are illustrative and converted for an INR UI preview; they are not verified Indian retailer prices. Monthly movement only appears when at least two months of dated observations exist.</p>
         </section>
       ) : <p className="mt-5 rounded-2xl bg-slate-100 p-4 text-sm text-slate-600 dark:bg-white/[.04] dark:text-slate-300">Add one more product from {chosen[0]?.category || category} to unlock the comparison matrix.</p>}
