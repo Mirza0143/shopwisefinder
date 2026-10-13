@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Make Tailwind dark:* utilities follow the .dark class toggled by the site theme button. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   color-scheme: light;
 }
@@ -117,4 +120,63 @@ button {
     animation-iteration-count: 1 !important;
     transition-duration: .01ms !important;
   }
+}
+
+
+/* Improve low-contrast secondary text on the light theme, especially on mobile displays. */
+html:not(.dark) .text-slate-400 {
+  color: #64748b;
+}
+
+html:not(.dark) input::placeholder,
+html:not(.dark) textarea::placeholder {
+  color: #64748b;
+  opacity: 1;
+}
+
+/* Keep narrow screens from acquiring page-level horizontal overflow. */
+@media (max-width: 1023px) {
+  html,
+  body {
+    max-width: 100%;
+  }
+
+  body {
+    overflow-x: clip;
+  }
+}
+
+
+/* Improve secondary-text contrast when the site's manual dark theme is enabled. */
+html.dark .text-slate-400,
+html.dark .text-slate-500,
+html.dark .text-gray-400,
+html.dark .text-gray-500,
+html.dark .text-zinc-400,
+html.dark .text-zinc-500,
+html.dark .text-neutral-400,
+html.dark .text-neutral-500,
+html.dark .text-stone-400,
+html.dark .text-stone-500 {
+  color: #cbd5e1;
+}
+
+html.dark .text-slate-600,
+html.dark .text-slate-700,
+html.dark .text-gray-600,
+html.dark .text-gray-700,
+html.dark .text-zinc-600,
+html.dark .text-zinc-700,
+html.dark .text-neutral-600,
+html.dark .text-neutral-700,
+html.dark .text-stone-600,
+html.dark .text-stone-700 {
+  color: #e2e8f0;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder,
+html.dark select::placeholder {
+  color: #94a3b8;
+  opacity: 1;
 }

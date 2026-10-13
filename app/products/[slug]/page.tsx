@@ -4,6 +4,62 @@ import { AlertTriangle, ArrowUpRight, Check, ClipboardCheck, Star, X } from "luc
 import { formatINR, getProductAffiliateUrl, getProductBySlug, getProducts, getProductBadges } from "@/lib/products";
 import PriceHistoryPanel from "@/components/PriceHistoryPanel";
 import AIReviewButton from "@/components/AIReviewButton";
+import ProductImageGallery from "@/components/ProductImageGallery";
+import type { Product } from "@/types/product";
+
+
+const specificPhoneGalleries: Record<string, string[]> = {
+  "apple-iphone-15-pro-128gb": [
+    "https://images.unsplash.com/photo-1697630725124-3fcce8e3c6f3?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1700805810965-bfea8f8109ad?auto=format&fit=crop&w=1200&q=85",
+  ],
+  "apple-iphone-13-pro-128gb": [
+    "https://images.unsplash.com/photo-1695578130342-991b58f1ecb8?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1652721367098-0ecad4cc0370?auto=format&fit=crop&w=1200&q=85",
+  ],
+};
+
+const relatedGalleryCategories: Record<string, string[]> = {
+  "Office": ["PCs", "Monitors", "Everyday Essentials"],
+  "PCs": ["Monitors", "Office", "Mobile Accessories"],
+  "Everyday Essentials": ["Fashion & Footwear", "Grooming", "Office"],
+  "Phones": ["Mobile Accessories", "PCs"],
+  "Audio": ["Mobile Accessories", "PCs"],
+  "Monitors": ["PCs", "Office"],
+  "Keyboards": ["PCs", "Office"],
+  "Grooming": ["Everyday Essentials", "Fashion & Footwear"],
+  "Fashion & Footwear": ["Everyday Essentials", "Grooming"],
+  "Mobile Accessories": ["Phones", "PCs", "Audio"],
+};
+
+/**
+ * The catalogue currently stores one primary image for most sample products.
+ * For demo entries, use additional same-category catalogue images as clearly
+ * illustrative gallery references. The two non-demo iPhone listings use
+ * model-specific photographs rather than unrelated category images.
+ */
+function getProductGalleryImages(product: Product): string[] {
+  const modelSpecific = specificPhoneGalleries[product.slug];
+  if (modelSpecific) {
+    return [product.image, ...modelSpecific].filter((url, index, all) => Boolean(url) && all.indexOf(url) === index).slice(0, 3);
+  }
+
+  const catalog = getProducts();
+  const categoryOrder = [product.category, ...(relatedGalleryCategories[product.category] ?? [] )];
+  const candidateUrls: string[] = [product.image];
+
+  for (const category of categoryOrder) {
+    for (const candidate of catalog) {
+      if (candidate.category === category && candidate.slug !== product.slug) {
+        candidateUrls.push(candidate.image);
+      }
+    }
+  }
+  // As a final fallback, use other unique catalogue images so every detail
+  // page has a usable three-slide gallery even when a category is small.
+  candidateUrls.push(...catalog.filter((candidate) => candidate.slug !== product.slug).map((candidate) => candidate.image));
+  return candidateUrls.filter((url, index, all) => Boolean(url) && all.indexOf(url) === index).slice(0, 3);
+}
 
 export function generateStaticParams() {
   return getProducts().map((product) => ({ slug: product.slug }));
@@ -20,9 +76,11 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
       <div className="mb-6 text-sm text-slate-500"><Link href="/products" className="hover:text-indigo-600">Products</Link> / {product.title}</div>
 
       <div className="grid gap-10 lg:grid-cols-[1.05fr_.95fr]">
-        <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-3 shadow-xl dark:border-white/10 dark:bg-white/5">
-          <img src={product.image} alt={product.title} loading="eager" decoding="async" className="aspect-square w-full rounded-[1.5rem] object-cover"/>
-        </div>
+        <ProductImageGallery
+          productTitle={product.title}
+          images={getProductGalleryImages(product)}
+          isIllustrative={Boolean(product.isDemoData)}
+        />
 
         <div>
           <div className="flex flex-wrap gap-2">
