@@ -1,6 +1,23 @@
-node_modules
-.next
-out
-.env*
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+
+# Next.js
+/.next/
+/out/
+
+# local env / secrets
+.env
+.env.*
 !.env.example
+
+# deployment
+.vercel
+.netlify
+
+# local artifacts
+*.tsbuildinfo
 .DS_Store
+
+.env.local

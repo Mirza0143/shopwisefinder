@@ -1,11 +1,13 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { AlertTriangle, ArrowUpRight, Check, ClipboardCheck, Star, X } from "lucide-react";
-import { formatINR, getProductAffiliateUrl, getProductBySlug, getProducts, getProductBadges } from "@/lib/products";
+import { formatINR, getProductAffiliateUrl, getProductBadges } from "@/lib/products";
+import { getPublishedCatalog } from "@/lib/product-catalog";
 import PriceHistoryPanel from "@/components/PriceHistoryPanel";
 import AIReviewButton from "@/components/AIReviewButton";
 import ProductImageGallery from "@/components/ProductImageGallery";
 import type { Product } from "@/types/product";
+import { getYouTubeEmbedUrl } from "@/lib/youtube";
 
 
 const specificPhoneGalleries: Record<string, string[]> = {
@@ -38,13 +40,15 @@ const relatedGalleryCategories: Record<string, string[]> = {
  * illustrative gallery references. The two non-demo iPhone listings use
  * model-specific photographs rather than unrelated category images.
  */
-function getProductGalleryImages(product: Product): string[] {
+function getProductGalleryImages(product: Product, catalog: Product[]): string[] {
+  if (Array.isArray(product.images) && product.images.length) {
+    return product.images.filter((url, index, all) => typeof url === "string" && url.startsWith("https://") && all.indexOf(url) === index).slice(0, 3);
+  }
   const modelSpecific = specificPhoneGalleries[product.slug];
   if (modelSpecific) {
     return [product.image, ...modelSpecific].filter((url, index, all) => Boolean(url) && all.indexOf(url) === index).slice(0, 3);
   }
 
-  const catalog = getProducts();
   const categoryOrder = [product.category, ...(relatedGalleryCategories[product.category] ?? [] )];
   const candidateUrls: string[] = [product.image];
 
@@ -61,15 +65,15 @@ function getProductGalleryImages(product: Product): string[] {
   return candidateUrls.filter((url, index, all) => Boolean(url) && all.indexOf(url) === index).slice(0, 3);
 }
 
-export function generateStaticParams() {
-  return getProducts().map((product) => ({ slug: product.slug }));
-}
+export const dynamic = "force-dynamic";
+export const dynamicParams = true;
 
 export default async function ProductDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const catalog = await getPublishedCatalog();
+  const product = catalog.find((item) => item.slug === slug);
   if (!product) notFound();
-  const productBadges = getProductBadges(product);
+  const productBadges = getProductBadges(product, catalog);
 
   return (
     <main className="pw-page-enter mx-auto max-w-7xl px-5 py-10 lg:px-8 lg:py-14">
@@ -78,7 +82,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
       <div className="grid gap-10 lg:grid-cols-[1.05fr_.95fr]">
         <ProductImageGallery
           productTitle={product.title}
-          images={getProductGalleryImages(product)}
+          images={getProductGalleryImages(product, catalog)}
           isIllustrative={Boolean(product.isDemoData)}
         />
 
@@ -88,7 +92,9 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
           </div>
           <p className="mt-6 text-sm font-bold uppercase tracking-[.18em] text-slate-500">{product.brand} · {product.category}</p>
           <h1 className="mt-2 text-4xl font-black tracking-tight sm:text-5xl">{product.title}</h1>
-          <div className="mt-4 flex items-center gap-2">{(!product.isDemoData && product.reviewCount > 0) ? <><Star size={18} fill="currentColor"/> <strong>{product.rating}</strong><span className="text-slate-500">({product.reviewCount.toLocaleString()} ratings)</span></> : <span className="text-sm font-semibold text-amber-700 dark:text-amber-300">Demo listing — no verified rating</span>}</div>
+          <div className="mt-4 flex flex-wrap items-center gap-2">{(!product.isDemoData && product.reviewCount > 0 && product.rating > 0 && (product.ratingSource === "manual_checked" || product.ratingSource === "amazon_creators_api")) ? <><Star size={18} fill="currentColor"/> <strong>{product.rating.toFixed(1)}</strong><span className="text-slate-500">({product.reviewCount.toLocaleString()} Amazon ratings)</span></> : <span className="text-sm font-semibold text-amber-700 dark:text-amber-300">{product.isDemoData ? "Demo listing — rating not verified" : "Rating not verified — not shown"}</span>}</div>
+          {!product.isDemoData && product.ratingSource === "manual_checked" && product.ratingCheckedAt && <p className="mt-1 text-xs text-slate-500">Amazon listing rating manually checked {new Date(product.ratingCheckedAt).toLocaleDateString("en-IN")}; Amazon may update it.</p>}
+          {!product.isDemoData && product.ratingSource === "amazon_creators_api" && product.ratingCheckedAt && <p className="mt-1 text-xs text-slate-500">Amazon listing data retrieved {new Date(product.ratingCheckedAt).toLocaleDateString("en-IN")} via approved API.</p>}
           <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-300">{product.description}</p>
           {product.isDemoData && <p className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm font-semibold text-amber-900 dark:border-amber-400/20 dark:bg-amber-500/10 dark:text-amber-200">Demo catalog entry: price, specifications, and images are illustrative. Verify all product details before publishing.</p>}
 
@@ -97,7 +103,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
               <span className="text-4xl font-black">{formatINR(product.price)}</span>
               <span className="pb-1 text-slate-400 line-through">{formatINR(product.originalPrice)}</span>
             </div>
-            <p className="mt-1 text-sm text-emerald-600">{product.isDemoData ? "Illustrative sample price—not a live Amazon price." : "Converted from the supplied AED listing; not a verified Indian retail price. Check seller and final checkout price."}</p>
+            <p className="mt-1 text-sm text-emerald-600">{product.isDemoData ? "Illustrative sample price—not a live Amazon price." : product.priceSource === "amazon_creators_api" ? `Amazon price received from an approved API${product.priceCheckedAt ? ` · checked ${new Date(product.priceCheckedAt).toLocaleDateString("en-IN")}` : ""}. Check the final price at checkout.` : product.priceSource === "manual_verified" && product.priceCheckedAt ? `Manually verified on ${new Date(product.priceCheckedAt).toLocaleDateString("en-IN")}; Amazon’s price may change.` : "Manually entered or unverified price; check the current seller price and final checkout amount on Amazon."}</p>
             <Link
               href={getProductAffiliateUrl(product)}
               target="_blank"
@@ -174,9 +180,13 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
 
       <section className="mt-8 rounded-3xl border border-slate-200 bg-slate-100 p-7 dark:border-white/10 dark:bg-white/5">
         <h2 className="text-2xl font-black">Video review</h2>
-        <div className="mt-5 flex aspect-video items-center justify-center rounded-2xl bg-slate-900 text-sm font-semibold text-slate-300">
-          YouTube review placeholder
-        </div>
+        {getYouTubeEmbedUrl(product.videoUrl) ? (
+          <div className="mt-5 aspect-video overflow-hidden rounded-2xl bg-slate-900">
+            <iframe title={`Video review for ${product.title}`} src={getYouTubeEmbedUrl(product.videoUrl) || undefined} className="h-full w-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen referrerPolicy="strict-origin-when-cross-origin" />
+          </div>
+        ) : (
+          <div className="mt-5 rounded-2xl border border-dashed border-slate-300 bg-white/70 p-6 text-sm text-slate-600 dark:border-white/10 dark:bg-slate-950/40 dark:text-slate-300">No video review has been added for this product yet.</div>
+        )}
       </section>
     </main>
   );

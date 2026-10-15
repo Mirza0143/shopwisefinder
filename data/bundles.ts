@@ -20,6 +20,8 @@ export type CuratedBundle = {
   bundle_items: BundleItem[];
   currency: string;
   bundleUrl?: string;
+  /** Optional manual display order; lower values are shown first. */
+  sortOrder?: number;
 };
 
 const image = (photo: string) =>

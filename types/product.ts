@@ -32,6 +32,11 @@ export type Product = {
   category: string;
   description: string;
   image: string;
+  /** Optional three-photo gallery saved by the product manager. */
+  images?: string[];
+  asin?: string;
+  priceSource?: PriceSource;
+  priceCheckedAt?: string | null;
   /** Optional direct product URL. When absent, /go/[slug] creates a tagged Amazon search. */
   amazonUrl?: string;
   originalPrice: number;
@@ -39,6 +44,13 @@ export type Product = {
   currency: "INR" | string;
   rating: number;
   reviewCount: number;
+  /** Rating shown only if its source and capture date are recorded. */
+  ratingSource?: "amazon_creators_api" | "manual_checked" | "unverified";
+  ratingCheckedAt?: string | null;
+  /** Manual ordering: smaller positive integers appear earlier in the main catalogue. */
+  displayOrder?: number | null;
+  /** Optional YouTube review URL; only valid YouTube links are embedded. */
+  videoUrl?: string | null;
   badges: string[];
   pros: string[];
   cons: string[];
