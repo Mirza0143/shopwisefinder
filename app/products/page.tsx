@@ -3,7 +3,7 @@
 import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowDownWideNarrow, RotateCcw, Search, SlidersHorizontal, Sparkles } from "lucide-react";
-import products from "@/data/products.json";
+import productsData from "@/data/products.json";
 import ProductCard from "@/components/ProductCard";
 import type { Product } from "@/types/product";
 import { formatINR } from "@/lib/products";
@@ -11,25 +11,7 @@ import { matchesSearchQuery, normalizeSearchText } from "@/lib/search";
 
 type SortMode = "featured" | "price-low" | "price-high" | "rating";
 
-const items = products as unknown as Product[];
-// Build each product's searchable text once instead of rebuilding it on every keystroke.
-const searchableItems = items.map((product) => ({
-  product,
-  searchIndex: normalizeSearchText([
-    product.title,
-    product.brand,
-    product.category,
-    product.description,
-    ...(product.pros || []),
-    ...(product.cons || []),
-    ...(product.badges || []),
-    ...Object.entries(product.specs || {}).flatMap(([key, value]) => [key, String(value)]),
-    product.review?.summary || "",
-    product.review?.bestFor || "",
-    ...(product.review?.strengths || []),
-    ...(product.review?.limitations || []),
-  ].join(" ")),
-}));
+const initialItems = productsData as unknown as Product[];
 const spotlightCategories = [
   "Mobile Accessories",
   "Fashion & Footwear",
@@ -49,8 +31,28 @@ export default function ProductsPage() {
   const [category, setCategory] = useState("All");
   const [maxPrice, setMaxPrice] = useState(200000);
   const [sortMode, setSortMode] = useState<SortMode>("featured");
+  const [items, setItems] = useState<Product[]>(initialItems);
 
-  const categories = useMemo(() => ["All", ...Array.from(new Set(items.map((p) => p.category)))], []);
+  useEffect(() => {
+    let active = true;
+    fetch("/api/catalog", { cache: "no-store" })
+      .then(async (response) => { if (!response.ok) throw new Error("catalog fetch failed"); return response.json(); })
+      .then((payload: { products?: Product[] }) => { if (active && Array.isArray(payload.products)) setItems(payload.products); })
+      .catch(() => { /* Keep the built-in catalogue available if the optional database is offline. */ });
+    return () => { active = false; };
+  }, []);
+
+  const searchableItems = useMemo(() => items.map((product) => ({
+    product,
+    searchIndex: normalizeSearchText([
+      product.title, product.brand, product.category, product.description,
+      ...(product.pros || []), ...(product.cons || []), ...(product.badges || []),
+      ...Object.entries(product.specs || {}).flatMap(([key, value]) => [key, String(value)]),
+      product.review?.summary || "", product.review?.bestFor || "",
+      ...(product.review?.strengths || []), ...(product.review?.limitations || []),
+    ].join(" ")),
+  })), [items]);
+  const categories = useMemo(() => ["All", ...Array.from(new Set(items.map((p) => p.category)))], [items]);
   // Next client navigation may change the query string while this page stays mounted.
   const searchKey = typeof window !== "undefined" ? window.location.search : "";
 
@@ -76,10 +78,12 @@ export default function ProductsPage() {
     return matched.sort((a, b) => {
       if (sortMode === "price-low") return a.price - b.price;
       if (sortMode === "price-high") return b.price - a.price;
-      if (sortMode === "rating") return b.rating - a.rating || b.reviewCount - a.reviewCount;
-      return Number(Boolean(b.featured || b.editorChoice || b.trending)) - Number(Boolean(a.featured || a.editorChoice || a.trending));
+      if (sortMode === "rating") return ((b.ratingSource === "manual_checked" || b.ratingSource === "amazon_creators_api") ? b.rating : 0) - ((a.ratingSource === "manual_checked" || a.ratingSource === "amazon_creators_api") ? a.rating : 0) || b.reviewCount - a.reviewCount;
+      const aOrder = Number(a.displayOrder) > 0 ? Number(a.displayOrder) : Number.MAX_SAFE_INTEGER;
+      const bOrder = Number(b.displayOrder) > 0 ? Number(b.displayOrder) : Number.MAX_SAFE_INTEGER;
+      return aOrder - bOrder || Number(Boolean(b.featured || b.editorChoice || b.trending)) - Number(Boolean(a.featured || a.editorChoice || a.trending));
     });
-  }, [deferredQuery, category, maxPrice, sortMode]);
+  }, [searchableItems, deferredQuery, category, maxPrice, sortMode]);
 
   const resetFilters = () => {
     setQuery("");
@@ -113,7 +117,7 @@ export default function ProductsPage() {
             <ArrowDownWideNarrow size={16} className="shrink-0 text-slate-500" />
             <span className="sr-only">Sort products</span>
             <select value={sortMode} onChange={(e) => setSortMode(e.target.value as SortMode)} className="w-full min-w-32 bg-transparent text-sm font-semibold outline-none">
-              <option value="featured">Featured first</option>
+              <option value="featured">Recommended / manual index</option>
               <option value="price-low">Price: low to high</option>
               <option value="price-high">Price: high to low</option>
               <option value="rating">Top ratings</option>
@@ -134,7 +138,7 @@ export default function ProductsPage() {
       </section>
 
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <p className="text-sm font-semibold text-slate-500"><span className="font-black text-slate-950 dark:text-white">{filtered.length}</span> product{filtered.length !== 1 ? "s" : ""} found <span className="font-normal">· sample catalog</span></p>
+        <p className="text-sm font-semibold text-slate-500"><span className="font-black text-slate-950 dark:text-white">{filtered.length}</span> product{filtered.length !== 1 ? "s" : ""} found <span className="font-normal">· catalogue entries</span></p>
         {(query || category !== "All" || maxPrice !== 200000 || sortMode !== "featured") && (
           <button type="button" onClick={resetFilters} className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-bold text-indigo-700 transition hover:bg-indigo-50 dark:text-indigo-300 dark:hover:bg-indigo-500/10"><RotateCcw size={13} /> Reset filters</button>
         )}

@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import SitePreloader from "@/components/SitePreloader";
-import QuickCompareProvider from "@/components/QuickCompareProvider";
+import SiteChrome from "@/components/SiteChrome";
 
 export const metadata: Metadata = {
   title: {
@@ -25,12 +22,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body>
-        <SitePreloader />
-        <Navbar />
-        <QuickCompareProvider>
-          {children}
-        </QuickCompareProvider>
-        <Footer />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );

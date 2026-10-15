@@ -2,10 +2,7 @@
 
 import { createContext, useCallback, useContext, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import productData from "@/data/products.json";
-import type { Product } from "@/types/product";
-
-const products = productData as unknown as Product[];
+import { trackAnalyticsEvent } from "@/lib/analytics-client";
 
 type QuickCompareContextValue = {
   selectedSlugs: string[];
@@ -33,27 +30,15 @@ export default function QuickCompareProvider({ children }: { children: React.Rea
       return;
     }
 
-    const selectedProduct = products.find((product) => product.slug === slug);
-    if (!selectedProduct) {
-      setNotice("That product is not available for comparison.");
-      return;
-    }
-
-    if (selectedSlugs.length > 0) {
-      const currentCategory = products.find((product) => product.slug === selectedSlugs[0])?.category;
-      if (currentCategory && currentCategory !== selectedProduct.category) {
-        setSelectedSlugs([slug]);
-        setNotice(`Compare like with like: switched to ${selectedProduct.category}. Add another item from the same category.`);
-        return;
-      }
-    }
-
     if (selectedSlugs.length >= 3) {
       setNotice("Quick Compare supports up to three products. Remove one pick first.");
       return;
     }
 
+    // Keep previous choices even when products come from different categories.
+    // The compare page shows all available specifications and marks missing fields with a dash.
     setSelectedSlugs([...selectedSlugs, slug]);
+    trackAnalyticsEvent("compare_select", { productSlug: slug, pagePath: window.location.pathname });
     setNotice(null);
   }, [selectedSlugs]);
 
@@ -81,7 +66,7 @@ function QuickCompareBar({ selected, notice, clear }: { selected: string[]; noti
       <div className="mx-auto flex max-w-7xl flex-col gap-2 px-1 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:px-2">
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2"><strong className="text-sm font-black">Quick Compare</strong><span className="rounded-full bg-indigo-50 px-2 py-0.5 text-[11px] font-bold text-indigo-700 dark:bg-indigo-500/15 dark:text-indigo-300">{selected.length} / 3 selected</span></div>
-          <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">{notice || (selected.length < 2 ? "Choose one more product from the same category to compare." : "Ready to compare selected products side by side.")}</p>
+          <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">{notice || (selected.length < 2 ? "Choose one more product to compare." : "Ready to compare selected products side by side.")}</p>
         </div>
         <div className="flex shrink-0 items-center gap-2">
           <button type="button" onClick={clear} className="rounded-xl px-3 py-2.5 text-xs font-bold text-slate-500 transition hover:bg-slate-100 hover:text-slate-900 active:scale-95 dark:hover:bg-white/10 dark:hover:text-white">Clear</button>

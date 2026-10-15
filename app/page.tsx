@@ -2,22 +2,30 @@ import Link from "next/link";
 import { ArrowRight, Check, ShieldCheck, Sparkles, Zap, Smartphone, Shirt, Headphones, PackageCheck, ArrowUpRight } from "lucide-react";
 import ProductCard from "@/components/ProductCard";
 import CuratedBundles from "@/components/CuratedBundles";
-import { formatINR, getFeaturedProducts, getProductBySlug } from "@/lib/products";
+import { formatINR } from "@/lib/products";
+import { getPublishedCatalog } from "@/lib/product-catalog";
+import { getPublishedBundles } from "@/lib/bundle-catalog";
 
-export default function HomePage() {
+export const dynamic = "force-dynamic";
+
+export default async function HomePage() {
+  const catalog = await getPublishedCatalog();
+  const publishedBundles = await getPublishedBundles();
+  const findProduct = (slug: string) => catalog.find((product) => product.slug === slug);
   const spotlight = [
-    getProductBySlug("arcticclip-mobile-phone-cooler"),
-    getProductBySlug("strideknit-everyday-sneakers"),
-    getProductBySlug("scentcraft-citrus-eau-de-parfum"),
+    findProduct("arcticclip-mobile-phone-cooler"),
+    findProduct("strideknit-everyday-sneakers"),
+    findProduct("scentcraft-citrus-eau-de-parfum"),
   ].filter((product): product is NonNullable<typeof product> => product !== undefined);
-  const featuredCatalog = getFeaturedProducts();
-  const featured = [
-    ...spotlight,
-    ...featuredCatalog.filter((product) => !spotlight.some((pick) => pick.slug === product.slug)),
-  ];
+  const featuredCatalog = catalog.filter((product) => product.featured || Number(product.displayOrder) > 0).sort((a, b) => {
+    const ao = Number(a.displayOrder) > 0 ? Number(a.displayOrder) : Number.MAX_SAFE_INTEGER;
+    const bo = Number(b.displayOrder) > 0 ? Number(b.displayOrder) : Number.MAX_SAFE_INTEGER;
+    return ao - bo;
+  });
+  const featured = Array.from(new Map([...featuredCatalog, ...spotlight].map((product) => [product.slug, product] as const)).values());
   const trending = [
-    getProductBySlug("volt-pocket-20000mah-power-bank"),
-    getProductBySlug("soundloop-usbc-wired-earbuds"),
+    findProduct("volt-pocket-20000mah-power-bank"),
+    findProduct("soundloop-usbc-wired-earbuds"),
   ].filter((product): product is NonNullable<typeof product> => product !== undefined);
 
   return (
@@ -154,7 +162,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <CuratedBundles compact />
+      <CuratedBundles compact bundles={publishedBundles} />
 
       <section className="mx-auto max-w-7xl px-5 pb-24 lg:px-8">
         <div className="rounded-[2rem] border border-indigo-100 bg-indigo-50 p-8 dark:border-indigo-400/10 dark:bg-indigo-500/10 sm:p-12">

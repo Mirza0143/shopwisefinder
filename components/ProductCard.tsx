@@ -55,7 +55,7 @@ export default function ProductCard({ product }: { product: Product }) {
         </Link>
         <p className="mt-2 line-clamp-2 min-h-10 text-xs leading-5 text-slate-500 dark:text-slate-400">{product.description}</p>
         <div className="mt-3 flex items-center gap-2 text-sm">
-          {product.reviewCount > 0 ? (
+          {product.reviewCount > 0 && product.rating > 0 && (product.ratingSource === "manual_checked" || product.ratingSource === "amazon_creators_api") ? (
             <><span className="inline-flex items-center gap-1 font-bold"><Star size={14} fill="currentColor" className="text-amber-500" />{product.rating.toFixed(1)}</span><span className="text-xs text-slate-500">({product.reviewCount.toLocaleString()} ratings)</span></>
           ) : (
             <span className="inline-flex items-center gap-1 text-xs font-semibold text-amber-700 dark:text-amber-300"><Sparkles size={13} /> Rating not verified</span>

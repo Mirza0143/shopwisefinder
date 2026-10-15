@@ -131,7 +131,7 @@ function BundlePreview({ bundle, index }: { bundle: CuratedBundle; index: number
   );
 }
 
-export default function CuratedBundles({ compact = false }: { compact?: boolean }) {
+export default function CuratedBundles({ compact = false, bundles = curatedBundles }: { compact?: boolean; bundles?: CuratedBundle[] }) {
   if (compact) {
     return (
       <section className="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-16" aria-labelledby="bundles-preview-heading">
@@ -144,7 +144,7 @@ export default function CuratedBundles({ compact = false }: { compact?: boolean 
           <Link href="/bundles" className="inline-flex min-h-11 items-center justify-center gap-2 self-start rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-indigo-600 dark:bg-indigo-500 dark:hover:bg-indigo-400 sm:self-auto">Explore all bundles <ArrowUpRight size={16}/></Link>
         </header>
         <div className="grid items-start gap-5 sm:grid-cols-2 xl:grid-cols-3">
-          {curatedBundles.map((bundle, index) => <BundlePreview key={bundle.id} bundle={bundle} index={index} />)}
+          {bundles.map((bundle, index) => <BundlePreview key={bundle.id} bundle={bundle} index={index} />)}
         </div>
       </section>
     );
@@ -161,7 +161,7 @@ export default function CuratedBundles({ compact = false }: { compact?: boolean 
         <Link href="/products" className="inline-flex min-h-11 items-center justify-center gap-2 self-start rounded-xl border border-slate-200 bg-white/80 px-4 py-2.5 text-sm font-bold text-slate-800 shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-200 hover:text-indigo-700 dark:border-white/10 dark:bg-white/5 dark:text-white sm:self-auto">Browse all products <ArrowUpRight size={16} /></Link>
       </header>
       <div className="grid items-start gap-5 lg:grid-cols-2 xl:grid-cols-3">
-        {curatedBundles.map((bundle, index) => <BundleCard key={bundle.id} bundle={bundle} index={index} />)}
+        {bundles.map((bundle, index) => <BundleCard key={bundle.id} bundle={bundle} index={index} />)}
       </div>
     </section>
   );

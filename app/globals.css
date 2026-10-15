@@ -180,3 +180,56 @@ html.dark select::placeholder {
   color: #94a3b8;
   opacity: 1;
 }
+
+/* Premium Admin Security polish: restrained glow and motion, respecting reduced-motion preferences. */
+.admin-security-shell {
+  animation: admin-security-enter 360ms cubic-bezier(.2,.75,.25,1) both;
+}
+.admin-security-orb-one {
+  animation: admin-security-float 10s ease-in-out infinite alternate;
+}
+.admin-security-orb-two {
+  animation: admin-security-float 13s ease-in-out infinite alternate-reverse;
+}
+.admin-security-shield {
+  transition: transform 260ms ease, box-shadow 260ms ease;
+}
+.admin-security-shell:hover .admin-security-shield {
+  transform: translateY(-1px) rotate(-2deg);
+  box-shadow: 0 16px 36px -12px rgba(79,70,229,.4);
+}
+.admin-security-flow {
+  animation: admin-security-flow-in 260ms cubic-bezier(.2,.75,.25,1) both;
+}
+.admin-security-notice {
+  animation: admin-security-flow-in 220ms ease-out both;
+}
+.admin-security-action {
+  will-change: transform;
+}
+@keyframes admin-security-enter {
+  from { opacity: 0; transform: translateY(7px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes admin-security-flow-in {
+  from { opacity: 0; transform: translateY(8px) scale(.995); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes admin-security-float {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(-12px, 10px, 0) scale(1.06); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .admin-security-shell,
+  .admin-security-orb-one,
+  .admin-security-orb-two,
+  .admin-security-flow,
+  .admin-security-notice {
+    animation: none !important;
+  }
+  .admin-security-shield,
+  .admin-security-action {
+    transition: none !important;
+    will-change: auto;
+  }
+}
