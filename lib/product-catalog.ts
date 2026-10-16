@@ -71,14 +71,17 @@ export async function getPublishedCatalog(): Promise<Product[]> {
     return [];
   });
   const rowBySlug = new Map(rows.map((row) => [row.slug, row]));
-  // A draft edit of a built-in item must not accidentally remove its current live version.
-  // Published DB rows replace their static equivalents; archived rows intentionally hide them.
+  // Demo/sample products stay hidden by default so illustrative prices/specs are not shown as real retail listings.
+  // Draft edits to genuine built-in products keep their current static version online; archived rows hide it.
+  // Published database rows replace static entries only when they are no longer marked illustrative/demo.
   const untouchedStatic = staticProducts.filter((product) => {
     const override = rowBySlug.get(product.slug);
-    return !override || override.status === "draft";
+    if (product.isDemoData) return false;
+    if (override?.status === "archived" || override?.status === "published") return false;
+    return true;
   });
   const publishedDatabase = rows
-    .filter((row) => row.status === "published")
+    .filter((row) => row.status === "published" && !Boolean((row.product_data as Product | undefined)?.isDemoData))
     .map(normalizeDbProduct)
     .filter((product): product is Product => Boolean(product));
   const merged = [...untouchedStatic, ...publishedDatabase];
@@ -100,10 +103,14 @@ export async function getAdminCatalogRecords(): Promise<AdminCatalogRecord[]> {
     const row = bySlug.get(product.slug);
     if (row) {
       const normalized = normalizeDbProduct(row);
-      if (normalized) records.push({ product: normalized, status: row.status, source: "database", builtIn: true, updatedAt: row.updated_at || null });
+      if (normalized) {
+        const effectiveStatus: ProductStatus = normalized.isDemoData && row.status === "published" ? "draft" : row.status;
+        records.push({ product: normalized, status: effectiveStatus, source: "database", builtIn: true, updatedAt: row.updated_at || null });
+      }
       bySlug.delete(product.slug);
     } else {
-      records.push({ product, status: "published", source: "static", builtIn: true, updatedAt: null });
+      // Static sample entries are shown as Draft in Admin and never in the public catalogue by default.
+      records.push({ product, status: product.isDemoData ? "draft" : "published", source: "static", builtIn: true, updatedAt: null });
     }
   }
   for (const row of bySlug.values()) {

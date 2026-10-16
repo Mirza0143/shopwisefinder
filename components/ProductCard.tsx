@@ -6,6 +6,8 @@ import { ArrowUpRight, GitCompareArrows, Sparkles, Star } from "lucide-react";
 import type { Product } from "@/types/product";
 import { useQuickCompare } from "@/components/QuickCompareProvider";
 import { formatINR, getProductBadges } from "@/lib/products";
+import { getProductProvider, getProviderLabel } from "@/lib/marketplaces";
+import MarketplaceBadge from "@/components/MarketplaceBadge";
 
 export default function ProductCard({ product }: { product: Product }) {
   const discount = product.originalPrice > product.price && product.originalPrice > 0
@@ -46,10 +48,11 @@ export default function ProductCard({ product }: { product: Product }) {
         )}
       </div>
       <div className="flex flex-1 flex-col p-5">
-        <div className="flex items-center justify-between gap-3">
+        <div className="flex flex-wrap items-center justify-between gap-2">
           <p className="text-[10px] font-black uppercase tracking-[.17em] text-slate-500 dark:text-slate-400">{product.brand}</p>
-          <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-bold text-slate-500 dark:bg-white/10 dark:text-slate-300">{product.category}</span>
+          <MarketplaceBadge provider={getProductProvider(product)} compact />
         </div>
+        <div className="mt-2"><span className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-bold text-slate-500 dark:bg-white/10 dark:text-slate-300">{product.category}</span></div>
         <Link href={`/products/${product.slug}`} prefetch onMouseEnter={prefetchReview} onFocus={prefetchReview} className="mt-2 block">
           <h3 className="line-clamp-2 text-[17px] font-extrabold leading-6 tracking-tight text-slate-950 transition-colors group-hover:text-indigo-700 dark:text-white dark:group-hover:text-indigo-300">{product.title}</h3>
         </Link>
@@ -78,8 +81,8 @@ export default function ProductCard({ product }: { product: Product }) {
             <Link href={`/products/${product.slug}`} prefetch onMouseEnter={prefetchReview} onFocus={prefetchReview} aria-label={`Read review for ${product.title}`} className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-xs font-extrabold text-slate-800 transition duration-200 hover:-translate-y-0.5 hover:border-indigo-200 hover:text-indigo-700 active:translate-y-0 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:border-indigo-400/30">
               Read review <ArrowUpRight size={14} />
             </Link>
-            <Link href={`/go/${product.slug}`} target="_blank" rel="sponsored nofollow noopener" aria-label={`Check ${product.title} on Amazon`} className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-xl bg-orange-500 px-3 py-2.5 text-xs font-extrabold text-white shadow-md shadow-orange-500/15 transition duration-200 hover:-translate-y-0.5 hover:bg-orange-600 hover:shadow-lg active:translate-y-0">
-              Check price <ArrowUpRight size={14} />
+            <Link href={`/go/${product.slug}`} target="_blank" rel="sponsored nofollow noopener" data-provider={getProductProvider(product)} aria-label={`Shop ${product.title} at ${getProviderLabel(getProductProvider(product))}`} className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-xl bg-orange-500 px-3 py-2.5 text-xs font-extrabold text-white shadow-md shadow-orange-500/15 transition duration-200 hover:-translate-y-0.5 hover:bg-orange-600 hover:shadow-lg active:translate-y-0">
+              Shop at {getProviderLabel(getProductProvider(product))} <ArrowUpRight size={14} />
             </Link>
           </div>
           <div className="mt-3 border-t border-slate-100 pt-3 text-[11px] leading-5 text-slate-500 dark:border-white/10 dark:text-slate-400">

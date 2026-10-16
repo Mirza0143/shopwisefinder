@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { ArrowUpRight, BadgeCheck, PackageCheck, Sparkles } from "lucide-react";
-import { curatedBundles, getBundleItemUrl, getBundleUrl, type CuratedBundle } from "@/data/bundles";
+import { getBundleItemUrl, getBundleUrl, type CuratedBundle } from "@/data/bundles";
 import { formatINR } from "@/lib/products";
+import { getProviderLabel } from "@/lib/marketplaces";
+import MarketplaceBadge from "@/components/MarketplaceBadge";
 
 function money(value: number, _currency = "INR") {
   return formatINR(value);
@@ -18,6 +20,8 @@ const categoryMeta: Record<CuratedBundle["category"], { eyebrow: string; tag: st
 function BundleCard({ bundle, index }: { bundle: CuratedBundle; index: number }) {
   const estimate = bundle.bundle_items.reduce((sum, item) => sum + item.estimated_price, 0);
   const meta = categoryMeta[bundle.category];
+  const hasMarketplaceLinks = bundle.bundle_items.some((item) => Boolean(item.provider || item.affiliateUrl || item.providerUrl));
+  const topCtaHref = hasMarketplaceLinks ? `#bundle-items-${bundle.id}` : getBundleUrl(bundle);
 
   return (
     <article
@@ -45,26 +49,26 @@ function BundleCard({ bundle, index }: { bundle: CuratedBundle; index: number })
         </div>
         <span className="mb-1 rounded-lg bg-amber-100 px-2.5 py-1 text-[11px] font-black text-amber-800 dark:bg-amber-400/10 dark:text-amber-300">Estimate</span>
         <p className="col-span-2 text-xs leading-5 text-slate-500 dark:text-slate-400">
-          Planning estimate only—not a live or verified Amazon price. Retail prices and availability can change.
+          Planning estimate only—not a live or verified retailer price. Retail prices and availability can change.
         </p>
       </div>
 
       <a
-        href={getBundleUrl(bundle)}
-        target="_blank"
-        rel="sponsored nofollow noopener"
+        href={topCtaHref}
+        target={hasMarketplaceLinks ? undefined : "_blank"}
+        rel={hasMarketplaceLinks ? undefined : "sponsored nofollow noopener"}
         className="mt-4 inline-flex min-h-12 w-full items-center justify-between gap-3 rounded-xl bg-slate-950 px-4 py-3 text-sm font-extrabold text-white shadow-lg shadow-slate-950/10 transition duration-200 hover:-translate-y-0.5 hover:bg-indigo-600 hover:shadow-xl active:translate-y-0 dark:bg-indigo-500 dark:hover:bg-indigo-400"
       >
-        <span>Find these picks on Amazon</span><ArrowUpRight size={18} />
+        <span>{hasMarketplaceLinks ? "Shop each pick at its retailer" : "Find these picks on Amazon"}</span><ArrowUpRight size={18} />
       </a>
-      <p className="mt-2 text-[11px] leading-5 text-slate-500 dark:text-slate-400">Opens an Amazon search; it does not add all components to one cart.</p>
+      <p className="mt-2 text-[11px] leading-5 text-slate-500 dark:text-slate-400">{hasMarketplaceLinks ? "Each product below opens its own tracked retailer link; this kit is not a single multi-retailer cart." : "Opens an Amazon search; it does not add all components to one cart."}</p>
 
       <div className="mt-4 flex items-center justify-between border-b border-slate-200 pb-3 dark:border-white/10">
         <span className="text-xs font-black uppercase tracking-[.14em] text-slate-500 dark:text-slate-400">{meta.tag}</span>
         <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 dark:text-emerald-300"><PackageCheck size={14} /> Component list</span>
       </div>
 
-      <ul className="divide-y divide-slate-200/90 dark:divide-white/10">
+      <ul id={`bundle-items-${bundle.id}`} className="divide-y divide-slate-200/90 dark:divide-white/10">
         {bundle.bundle_items.map((product) => (
           <li key={product.id} className="group/item flex items-center gap-3 py-3 transition-colors hover:bg-indigo-50/50 dark:hover:bg-white/[.025]">
             <img
@@ -78,15 +82,16 @@ function BundleCard({ bundle, index }: { bundle: CuratedBundle; index: number })
               <strong className="block text-sm font-bold leading-5 text-slate-900 dark:text-white">{product.name}</strong>
               <span className="mt-1 block text-xs leading-5 text-slate-500 dark:text-slate-400">{product.role}</span>
               <span className="mt-1 block text-sm font-black text-slate-950 dark:text-white">Est. {money(product.estimated_price, product.currency)}</span>
+              {product.provider && <span className="mt-1.5 block"><MarketplaceBadge provider={product.provider} compact /></span>}
               <Link href={product.reviewSlug ? `/products/${product.reviewSlug}` : `/products?q=${encodeURIComponent(product.name)}`} className="mt-2 inline-flex items-center gap-1 text-xs font-extrabold text-indigo-600 transition hover:gap-1.5 hover:underline dark:text-indigo-300">
-                {product.reviewSlug ? "Read PickWise review" : "Explore similar picks"} <ArrowUpRight size={12}/>
+                {product.reviewSlug ? "Read ShopWiseFinder review" : "Explore similar picks"} <ArrowUpRight size={12}/>
               </Link>
             </div>
             <a
               href={getBundleItemUrl(product)}
               target="_blank"
               rel="sponsored nofollow noopener"
-              aria-label={`Find ${product.name} on Amazon`}
+              aria-label={`Shop ${product.name} at ${getProviderLabel(product.provider || "amazon")}`}
               className="inline-flex max-w-[92px] shrink-0 items-center gap-1 rounded-lg px-2 py-2 text-right text-xs font-black text-indigo-600 transition hover:bg-indigo-100 hover:text-indigo-800 dark:text-indigo-300 dark:hover:bg-indigo-500/15"
             >
               Buy pick <ArrowUpRight size={13} />
@@ -97,7 +102,7 @@ function BundleCard({ bundle, index }: { bundle: CuratedBundle; index: number })
 
       <p className="mt-4 flex items-start gap-2 text-[11px] leading-5 text-slate-500 dark:text-slate-400">
         <BadgeCheck className="mt-0.5 shrink-0 text-indigo-500" size={14} />
-        As an Amazon Associate, PickWise may earn from qualifying purchases. Product images and estimates are illustrative; verify the exact listing before publishing.
+As an Amazon Associate I earn from qualifying purchases. ShopWiseFinder may earn a commission from eligible links to other marketplaces. Bundle prices are planning estimates; product prices and availability may change on the retailer’s website.
       </p>
     </article>
   );
@@ -131,13 +136,26 @@ function BundlePreview({ bundle, index }: { bundle: CuratedBundle; index: number
   );
 }
 
-export default function CuratedBundles({ compact = false, bundles = curatedBundles }: { compact?: boolean; bundles?: CuratedBundle[] }) {
+export default function CuratedBundles({ compact = false, bundles = [] }: { compact?: boolean; bundles?: CuratedBundle[] }) {
+  if (bundles.length === 0) {
+    if (compact) return null;
+    return (
+      <section className="mx-auto max-w-7xl px-5 py-12 lg:px-8 lg:py-16" aria-labelledby="bundles-heading">
+        <header className="border-b border-slate-200/80 pb-8 dark:border-white/10">
+          <span className="inline-flex items-center gap-2 text-xs font-black tracking-[.2em] text-indigo-600 dark:text-indigo-300"><Sparkles size={14} /> THE SHOPWISEFINDER EDIT</span>
+          <h1 id="bundles-heading" className="mt-3 text-3xl font-black tracking-tight text-slate-950 dark:text-white sm:text-4xl lg:text-5xl">Curated bundles & kits</h1>
+          <p className="mt-3 max-w-2xl leading-7 text-slate-600 dark:text-slate-300">No bundles are published yet. We’re preparing curated kits using products currently available in the catalogue.</p>
+          <Link href="/products" className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white/80 px-4 py-2.5 text-sm font-bold text-slate-800 shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-200 hover:text-indigo-700 dark:border-white/10 dark:bg-white/5 dark:text-white">Browse all products <ArrowUpRight size={16} /></Link>
+        </header>
+      </section>
+    );
+  }
   if (compact) {
     return (
       <section className="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-16" aria-labelledby="bundles-preview-heading">
         <header className="pw-enter mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <span className="inline-flex items-center gap-2 text-xs font-black tracking-[.2em] text-indigo-600 dark:text-indigo-300"><Sparkles size={14}/> THE PICKWISE EDIT</span>
+            <span className="inline-flex items-center gap-2 text-xs font-black tracking-[.2em] text-indigo-600 dark:text-indigo-300"><Sparkles size={14}/> THE SHOPWISEFINDER EDIT</span>
             <h2 id="bundles-preview-heading" className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">Bundles built around your routine</h2>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">From mobile-gaming gear to outfit basics and everyday tech—start with a curated shortlist.</p>
           </div>
@@ -154,7 +172,7 @@ export default function CuratedBundles({ compact = false, bundles = curatedBundl
     <section className="mx-auto max-w-7xl px-5 py-12 lg:px-8 lg:py-16" aria-labelledby="bundles-heading">
       <header className="pw-enter mb-9 flex flex-col gap-5 border-b border-slate-200/80 pb-8 dark:border-white/10 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <span className="inline-flex items-center gap-2 text-xs font-black tracking-[.2em] text-indigo-600 dark:text-indigo-300"><Sparkles size={14} /> THE PICKWISE EDIT</span>
+          <span className="inline-flex items-center gap-2 text-xs font-black tracking-[.2em] text-indigo-600 dark:text-indigo-300"><Sparkles size={14} /> THE SHOPWISEFINDER EDIT</span>
           <h1 id="bundles-heading" className="mt-3 text-3xl font-black tracking-tight text-slate-950 dark:text-white sm:text-4xl lg:text-5xl">Curated bundles & kits</h1>
           <p className="mt-3 max-w-2xl leading-7 text-slate-600 dark:text-slate-300">Built around real routines—from mobile gaming sessions to everyday outfits and tidy workspaces.</p>
         </div>

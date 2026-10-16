@@ -12,7 +12,7 @@ export default function SitePreloader() {
   }, []);
   if (!visible) return null;
   return (
-    <div aria-label="Loading PickWise" role="status" className={`fixed inset-0 z-[100] grid place-items-center bg-white transition-opacity duration-500 dark:bg-slate-950 ${leaving ? "pointer-events-none opacity-0" : "opacity-100"}`}>
+    <div aria-label="Loading ShopWiseFinder" role="status" className={`fixed inset-0 z-[100] grid place-items-center bg-white transition-opacity duration-500 dark:bg-slate-950 ${leaving ? "pointer-events-none opacity-0" : "opacity-100"}`}>
       <div className="flex flex-col items-center gap-5">
         <div className="relative grid h-20 w-20 place-items-center rounded-3xl bg-indigo-600 text-2xl font-black text-white shadow-2xl shadow-indigo-600/30 animate-pulse">PW</div>
         <div className="text-xl font-black tracking-tight text-slate-900 dark:text-white">Pick<span className="text-indigo-600">Wise</span></div>

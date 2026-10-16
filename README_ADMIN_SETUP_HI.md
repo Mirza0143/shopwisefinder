@@ -174,3 +174,13 @@ Public catalogue endpoints are read-only. Product create/update/import routes re
 If the Admin Bundles screen shows `PGRST205` / `Could not find the table public.swf_bundles`, open Supabase SQL Editor for the exact project used by this deployment, paste and run `supabase/admin-bundles-support-toggles-v4.sql`, then reload the Bundles section. This idempotent repair creates `swf_bundles` if the earlier v2 migration was skipped and refreshes the PostgREST schema cache. It also adds `telegram_enabled`, `whatsapp_enabled`, and `instagram_enabled` columns to `swf_support_settings`.
 
 In Admin → User Support, set a link once, use each channel's ON/OFF toggle, and click **Save support settings**. OFF hides the channel from the public footer; Telegram OFF also hides the floating Telegram support button. The URL remains saved, so switching ON later does not require re-pasting it. The toggles only affect this app's public support icons.
+
+
+## Multi-marketplace products + Cuelinks
+
+- Product catalogue is still populated manually or through the CSV import. Cuelinks' public Monetization API offers campaign discovery, URL-to-tracking-link conversion, offers and reporting; it is not a universal product-image/price catalogue feed.
+- In **Admin → Add a product**, choose a provider (Amazon India, Flipkart, Myntra, Meesho, Shopsy, AJIO or Other), enter the exact product page URL, then create/paste the affiliate tracking URL.
+- To use **Generate Cuelinks link**, create a Cuelinks Monetization API key in the publisher dashboard with the `write:links` scope and set `CUELINKS_API_KEY` in `.env.local` and Netlify environment variables. Keep it server-side; never use a `NEXT_PUBLIC_` name or commit the key.
+- The generator only saves a link when Cuelinks reports `affiliated: true`. If it reports false, request campaign approval or use a different approved campaign before publishing.
+- CSV imports support `provider`, `providerUrl`, and `affiliateUrl`. Older Amazon CSV files using `amazonUrl` remain supported. Products without a tracked URL may be saved as Draft, but publishing is blocked until an affiliate URL is present.
+- The product database stores provider metadata inside `product_data` JSON, so adding these fields does not require a new SQL migration for existing `swf_products` tables.

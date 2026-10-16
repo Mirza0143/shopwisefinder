@@ -1,5 +1,6 @@
 import { curatedBundles, type CuratedBundle } from "@/data/bundles";
 import { isSupabaseConfigured, supabaseRest } from "@/lib/supabase-rest";
+import { getPublishedCatalog } from "@/lib/product-catalog";
 
 export type BundleStatus = "draft" | "published" | "archived";
 export type AdminBundleRecord = {
@@ -42,57 +43,70 @@ async function readRows(): Promise<BundleRow[]> {
   return Array.isArray(rows) ? rows : [];
 }
 
+function bundleHasPublishedProducts(bundle: CuratedBundle, publishedSlugs: Set<string>): boolean {
+  // A bundle is public only if it has at least two items and every item maps to
+  // a currently published, non-demo catalogue product.
+  return bundle.bundle_items.length >= 2 &&
+    bundle.bundle_items.every((item) => typeof item.reviewSlug === "string" && publishedSlugs.has(item.reviewSlug));
+}
+
+async function keepOnlyBundlesWithPublishedProducts(bundles: CuratedBundle[]): Promise<CuratedBundle[]> {
+  const products = await getPublishedCatalog();
+  const publishedSlugs = new Set(products.map((product) => product.slug));
+  // This prevents legacy built-in/demo bundles from resurfacing when products are hidden.
+  return bundles.filter((bundle) => bundleHasPublishedProducts(bundle, publishedSlugs));
+}
+
 export async function getPublishedBundles(): Promise<CuratedBundle[]> {
-  if (!isSupabaseConfigured()) return curatedBundles;
+  // Fail closed: static sample bundles are admin templates, not public inventory.
+  if (!isSupabaseConfigured()) return [];
   try {
     const rows = await readRows();
-    const rowBySlug = new Map(rows.map((row) => [row.slug, row]));
-    const merged: CuratedBundle[] = [];
-    for (const base of curatedBundles) {
-      const row = rowBySlug.get(base.id);
-      if (!row) { merged.push(base); continue; }
-      rowBySlug.delete(base.id);
-      if (row.status === "archived") continue;
-      // A draft edit to a built-in bundle keeps its previously published static version online.
-      if (row.status === "draft") { merged.push(base); continue; }
-      const override = rowToBundle(row);
-      if (override) merged.push(override);
-    }
-    for (const row of rowBySlug.values()) {
-      if (row.status !== "published") continue;
-      const bundle = rowToBundle(row);
-      if (bundle) merged.push(bundle);
-    }
-    return merged.map((bundle, index) => ({ bundle, index })).sort((a, b) => {
+    const published = rows
+      .filter((row) => row.status === "published")
+      .map(rowToBundle)
+      .filter((bundle): bundle is CuratedBundle => Boolean(bundle));
+
+    const eligible = await keepOnlyBundlesWithPublishedProducts(published);
+    return eligible.map((bundle, index) => ({ bundle, index })).sort((a, b) => {
       const ao = Number(a.bundle.sortOrder) > 0 ? Number(a.bundle.sortOrder) : Number.MAX_SAFE_INTEGER;
       const bo = Number(b.bundle.sortOrder) > 0 ? Number(b.bundle.sortOrder) : Number.MAX_SAFE_INTEGER;
       return ao - bo || a.index - b.index;
     }).map(({ bundle }) => bundle);
-  } catch {
-    // Expected during setup/offline conditions: keep the public bundle page working
-    // without triggering the Next.js development error overlay for a recoverable fallback.
-    return curatedBundles;
+  } catch (error) {
+    // Do not fall back to demo content if Supabase is unavailable. Public pages
+    // should show no bundles rather than expose illustrative/sample bundles.
+    console.error("ShopWiseFinder published bundle read failed; hiding bundles until data is available.", error instanceof Error ? error.message : "Unknown database error");
+    return [];
   }
 }
 
 export async function getAdminBundleRecords(): Promise<AdminBundleRecord[]> {
   if (!isSupabaseConfigured()) throw new Error("Supabase is not configured. Set server-side environment variables first.");
   const rows = await readRows();
+  const products = await getPublishedCatalog();
+  const publishedSlugs = new Set(products.map((product) => product.slug));
   const bySlug = new Map(rows.map((row) => [row.slug, row]));
   const result: AdminBundleRecord[] = [];
   for (const bundle of curatedBundles) {
     const row = bySlug.get(bundle.id);
     if (!row) {
-      result.push({ bundle, status: "published", source: "static", builtIn: true, updatedAt: null });
+      result.push({ bundle, status: "draft", source: "static", builtIn: true, updatedAt: null });
       continue;
     }
     bySlug.delete(bundle.id);
     const normalized = rowToBundle(row);
-    if (normalized) result.push({ bundle: normalized, status: row.status, source: "database", builtIn: true, updatedAt: row.updated_at || null });
+    if (normalized) {
+      const effectiveStatus: BundleStatus = row.status === "published" && !bundleHasPublishedProducts(normalized, publishedSlugs) ? "draft" : row.status;
+      result.push({ bundle: normalized, status: effectiveStatus, source: "database", builtIn: true, updatedAt: row.updated_at || null });
+    }
   }
   for (const row of bySlug.values()) {
     const normalized = rowToBundle(row);
-    if (normalized) result.push({ bundle: normalized, status: row.status, source: "database", builtIn: false, updatedAt: row.updated_at || null });
+    if (normalized) {
+      const effectiveStatus: BundleStatus = row.status === "published" && !bundleHasPublishedProducts(normalized, publishedSlugs) ? "draft" : row.status;
+      result.push({ bundle: normalized, status: effectiveStatus, source: "database", builtIn: false, updatedAt: row.updated_at || null });
+    }
   }
   return result.sort((a, b) => {
     const rank = (status: BundleStatus) => status === "published" ? 0 : status === "draft" ? 1 : 2;

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { ADMIN_COOKIE_NAME, sameOriginMutationAllowed, verifyAdminSessionToken } from "@/lib/admin-auth";
 import { getAdminBundleRecords } from "@/lib/bundle-catalog";
 import { getPublishedCatalog, normalizeSlug } from "@/lib/product-catalog";
+import { getProductProvider } from "@/lib/marketplaces";
 import { isSupabaseConfigured, supabaseRest } from "@/lib/supabase-rest";
 import type { CuratedBundle, BundleItem } from "@/data/bundles";
 
@@ -42,6 +43,9 @@ function buildBundle(raw: Record<string, unknown>, products: Awaited<ReturnType<
       estimated_price: Number(product.price),
       current_price: null,
       currency: "INR",
+      provider: getProductProvider(product),
+      providerUrl: product.providerUrl,
+      affiliateUrl: product.affiliateUrl || product.amazonUrl,
       amazonUrl: product.amazonUrl,
       reviewSlug: product.slug,
     };

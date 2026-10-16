@@ -23,10 +23,11 @@ export default async function HomePage() {
     return ao - bo;
   });
   const featured = Array.from(new Map([...featuredCatalog, ...spotlight].map((product) => [product.slug, product] as const)).values());
-  const trending = [
+  const preferredTrending = [
     findProduct("volt-pocket-20000mah-power-bank"),
     findProduct("soundloop-usbc-wired-earbuds"),
   ].filter((product): product is NonNullable<typeof product> => product !== undefined);
+  const trending = [...preferredTrending, ...catalog.filter((product) => !product.isDemoData && !preferredTrending.some((item) => item.slug === product.slug))].slice(0, 2);
 
   return (
     <main>
@@ -154,7 +155,7 @@ export default async function HomePage() {
               <div key={product.id} className="group rounded-2xl border border-white/10 bg-white/5 p-5 transition duration-300 hover:-translate-y-0.5 hover:border-indigo-400/30 hover:bg-white/[.07]">
                 <div className="flex items-center gap-4">
                   <img src={product.image} alt="" loading="lazy" decoding="async" className="h-20 w-20 rounded-xl object-cover transition duration-300 group-hover:scale-105"/>
-                  <div><div className="font-bold">{product.title}</div><div className="mt-1 text-sm text-slate-400">Illustrative price · Est. {formatINR(product.price)}</div></div>
+                  <div><div className="font-bold">{product.title}</div><div className="mt-1 text-sm text-slate-400">Displayed price · confirm current price at retailer · {formatINR(product.price)}</div></div>
                 </div>
               </div>
             ))}
@@ -169,9 +170,9 @@ export default async function HomePage() {
           <div className="flex items-start gap-4">
             <Check className="mt-1 text-indigo-600" />
             <div>
-              <h2 className="text-2xl font-black">As an Amazon Associate, I earn from qualifying purchases.</h2>
+              <h2 className="text-2xl font-black">Transparent affiliate disclosure.</h2>
               <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-600 dark:text-slate-300">
-                This website may earn a commission when you purchase through qualifying affiliate links. Prices and availability can change, so verify current details on Amazon before purchasing.
+                As an Amazon Associate I earn from qualifying purchases. ShopWiseFinder may earn a commission when you purchase through eligible affiliate links to other marketplaces. Product prices and availability may change on the retailer’s website; verify current details with the selected provider before checkout.
               </p>
             </div>
           </div>

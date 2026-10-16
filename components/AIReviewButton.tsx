@@ -33,7 +33,7 @@ export default function AIReviewButton({ product }: { product: Product }) {
       <div className="grid gap-4 sm:grid-cols-2"><div><h3 className="font-bold">Best for</h3><p className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-300">{review.bestFor}</p></div><div><h3 className="font-bold">Not ideal for</h3><p className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-300">{review.notIdealFor}</p></div></div>
       <div className="grid gap-4 sm:grid-cols-2"><div><h3 className="font-bold text-emerald-700 dark:text-emerald-300">Strengths</h3><ul className="mt-2 list-disc space-y-1 pl-5 text-sm">{review.strengths.map((x, i) => <li key={`${i}-${x}`}>{x}</li>)}</ul></div><div><h3 className="font-bold text-rose-700 dark:text-rose-300">Limitations</h3><ul className="mt-2 list-disc space-y-1 pl-5 text-sm">{review.limitations.map((x, i) => <li key={`${i}-${x}`}>{x}</li>)}</ul></div></div>
       <div><h3 className="font-bold">Check before buying</h3><ul className="mt-2 list-disc space-y-1 pl-5 text-sm">{review.verifyBeforeBuying.map((x, i) => <li key={`${i}-${x}`}>{x}</li>)}</ul></div>
-      <p className="text-xs text-slate-500">Generated locally from PickWise catalogue data using transparent rules. No OpenAI API call is made. Catalogue data is not a hands-on test; verify missing details, seller claims and final prices.</p>
+      <p className="text-xs text-slate-500">Generated locally from ShopWiseFinder catalogue data using transparent rules. No OpenAI API call is made. Catalogue data is not a hands-on test; verify missing details, seller claims and final prices.</p>
     </div>}
   </div>;
 }

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ADMIN_COOKIE_NAME, sameOriginMutationAllowed, verifyAdminSessionToken } from "@/lib/admin-auth";
 import { getPublishedCatalog, normalizeSlug } from "@/lib/product-catalog";
+import { getProductProvider } from "@/lib/marketplaces";
 import { isSupabaseConfigured, supabaseRest } from "@/lib/supabase-rest";
 import { parseCsv } from "@/lib/catalog-validation";
 import type { CuratedBundle, BundleItem } from "@/data/bundles";
@@ -54,7 +55,7 @@ export async function POST(request: NextRequest) {
         const items: BundleItem[] = slugs.map((productSlug) => {
           const product = bySlug.get(productSlug);
           if (!product) throw new Error(`Product slug "${productSlug}" is not published or does not exist.`);
-          return { id: product.slug, name: product.title, role: `${product.brand} ${product.category} pick`, searchQuery: `${product.brand} ${product.title}`, image: product.image, estimated_price: Number(product.price), current_price: null, currency: "INR", amazonUrl: product.amazonUrl, reviewSlug: product.slug };
+          return { id: product.slug, name: product.title, role: `${product.brand} ${product.category} pick`, searchQuery: `${product.brand} ${product.title}`, image: product.image, estimated_price: Number(product.price), current_price: null, currency: "INR", provider: getProductProvider(product), providerUrl: product.providerUrl, affiliateUrl: product.affiliateUrl || product.amazonUrl, amazonUrl: product.amazonUrl, reviewSlug: product.slug };
         });
         const bundle: CuratedBundle = { id: slug, title, description, category: category as CuratedBundle["category"], currency: "INR", bundle_items: items, sortOrder };
         validRows.push({ slug, title, category, status, sort_order: sortOrder, bundle_data: bundle, updated_at: new Date().toISOString() });
