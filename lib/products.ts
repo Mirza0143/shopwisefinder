@@ -1,5 +1,6 @@
 import products from "@/data/products.json";
 import type { Product } from "@/types/product";
+import { getProductProvider } from "@/lib/marketplaces";
 
 const items = products as unknown as Product[];
 export function getProducts() { return items; }
@@ -54,6 +55,18 @@ export function getAmazonSearchUrl(query: string) {
   return `https://${domain}/s?${params.toString()}`;
 }
 export function getProductAffiliateUrl(product: Product) {
-  if (product.amazonUrl && !/^https?:\/\/(www\.)?amazon\.(com|in)\/?$/i.test(product.amazonUrl)) return product.amazonUrl;
-  return getAmazonSearchUrl(`${product.brand} ${product.title}`.trim());
+  // New multi-marketplace records use affiliateUrl; amazonUrl remains a legacy fallback.
+  for (const candidate of [product.affiliateUrl, product.amazonUrl]) {
+    if (!candidate) continue;
+    try { const parsed = new URL(candidate); if (parsed.protocol === "https:" && parsed.hostname) return parsed.toString(); }
+    catch { /* invalid legacy URL falls through to the safe marketplace fallback */ }
+  }
+  const provider = getProductProvider(product);
+  if (provider === "amazon") return getAmazonSearchUrl(`${product.brand} ${product.title}`.trim());
+  // Published non-Amazon products should have a tracked URL; this is a defensive fallback for older draft data.
+  if (product.providerUrl) {
+    try { const parsed = new URL(product.providerUrl); if (parsed.protocol === "https:") return parsed.toString(); }
+    catch { /* continue to marketplace fallback */ }
+  }
+  return `https://${({ flipkart: "www.flipkart.com", myntra: "www.myntra.com", meesho: "www.meesho.com", shopsy: "www.shopsy.in", ajio: "www.ajio.com", other: "www.amazon.in", amazon: "www.amazon.in" } as const)[provider]}/`;
 }

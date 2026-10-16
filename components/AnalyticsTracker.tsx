@@ -31,7 +31,7 @@ export default function AnalyticsTracker() {
       }
       if (url.origin === window.location.origin && url.pathname.startsWith("/go/")) {
         const slug = decodeURIComponent(url.pathname.split("/").filter(Boolean).pop() || "");
-        trackAnalyticsEvent("affiliate_click", { productSlug: slug, linkUrl: url.pathname, metadata: { linkText: (anchor.textContent || "Amazon link").trim().slice(0, 100) } });
+        trackAnalyticsEvent("affiliate_click", { productSlug: slug, linkUrl: url.pathname, metadata: { linkText: (anchor.textContent || "Affiliate link").trim().slice(0, 100), provider: (anchor.dataset.provider || "unknown").slice(0, 40) } });
         return;
       }
       const host = url.hostname.toLowerCase().replace(/^www\./, "");

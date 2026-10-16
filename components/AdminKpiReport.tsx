@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
-import { Activity, ArrowDownToLine, ExternalLink, MousePointerClick, RefreshCw, Users, Eye, FileText } from "lucide-react";
+import { Activity, ArrowDownToLine, MousePointerClick, RefreshCw, Users, Eye, FileText } from "lucide-react";
+import { getProviderLabel, normalizeProvider } from "@/lib/marketplaces";
 
 type EventRow = { id: number; event_type: string; session_id: string; page_path: string; product_slug: string | null; link_url: string | null; metadata: Record<string, unknown> | null; created_at: string };
 const eventLabels: Record<string, string> = { page_view: "Page view", review_click: "Read Review click", affiliate_click: "Affiliate click", banner_view: "Banner shown", banner_click: "Banner click", compare_select: "Compare selected" };
@@ -47,6 +48,11 @@ export default function AdminKpiReport() {
       activeSessions: new Set(events.filter((event) => Date.now() - new Date(event.created_at).getTime() <= 15 * 60_000).map((event) => event.session_id)).size,
       topPages: topCounts(views, (event) => event.page_path || "/"),
       topLinks: topCounts(affiliates, (event) => event.product_slug || event.link_url || String(event.metadata?.linkText || "Affiliate link")),
+      topProviders: topCounts(affiliates, (event) => {
+        const raw = String(event.metadata?.provider || "").trim();
+        const normalized = normalizeProvider(raw);
+        return normalized ? getProviderLabel(normalized) : (raw || "Unknown / legacy");
+      }),
       topReviews: topCounts(reviews, (event) => event.product_slug || String(event.metadata?.productName || "Product review")),
       recent: events.slice(0, 15),
     };
@@ -54,7 +60,7 @@ export default function AdminKpiReport() {
 
   function exportCsv() {
     const escape = (value: unknown) => `"${String(value ?? "").replace(/"/g, '""')}"`;
-    const rows = [["timestamp", "event_type", "page_path", "product_slug", "link_url", "session_id"], ...events.map((event) => [event.created_at, event.event_type, event.page_path, event.product_slug || "", event.link_url || "", event.session_id])];
+    const rows = [["timestamp", "event_type", "page_path", "product_slug", "provider", "link_url", "session_id"], ...events.map((event) => [event.created_at, event.event_type, event.page_path, event.product_slug || "", String(event.metadata?.provider || ""), event.link_url || "", event.session_id])];
     const blob = new Blob([rows.map((row) => row.map(escape).join(",")).join("\r\n")], { type: "text/csv;charset=utf-8" });
     const url = URL.createObjectURL(blob); const anchor = document.createElement("a"); anchor.href = url; anchor.download = `shopwisefinder-kpi-${days}days.csv`; anchor.click(); URL.revokeObjectURL(url);
   }
@@ -79,8 +85,8 @@ export default function AdminKpiReport() {
         <Stat label="Compare selections" value={metrics.compareSelections} detail="Products added to compare" icon={<Activity size={18}/>} />
         <Stat label="Events recorded" value={events.length} detail="All tracked event types" icon={<Activity size={18}/>} />
       </div>
-      <div className="mt-5 grid gap-4 xl:grid-cols-3">
-        {[{title:"Most visited pages", rows:metrics.topPages, hint:"Page path"},{title:"Most clicked affiliate links", rows:metrics.topLinks, hint:"Product slug or link"},{title:"Most opened Read Reviews", rows:metrics.topReviews, hint:"Product slug"}].map((table) => <div key={table.title} className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-white/10 dark:bg-slate-950"><h3 className="font-black">{table.title}</h3><p className="mt-1 text-xs text-slate-500">{table.hint} · clicks/views</p><div className="mt-3 divide-y divide-slate-100 dark:divide-white/10">{table.rows.length ? table.rows.map(([label, count]) => <div key={label} className="flex items-start justify-between gap-3 py-2.5 text-sm"><span className="min-w-0 break-all font-medium">{label}</span><strong className="shrink-0 tabular-nums">{count.toLocaleString("en-IN")}</strong></div>) : <p className="py-4 text-xs text-slate-500">No events yet.</p>}</div></div>)}
+      <div className="mt-5 grid gap-4 xl:grid-cols-4">
+        {[{title:"Most visited pages", rows:metrics.topPages, hint:"Page path"},{title:"Most clicked affiliate links", rows:metrics.topLinks, hint:"Product slug or link"},{title:"Clicks by marketplace", rows:metrics.topProviders, hint:"Provider / retailer"},{title:"Most opened Read Reviews", rows:metrics.topReviews, hint:"Product slug"}].map((table) => <div key={table.title} className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-white/10 dark:bg-slate-950"><h3 className="font-black">{table.title}</h3><p className="mt-1 text-xs text-slate-500">{table.hint} · clicks/views</p><div className="mt-3 divide-y divide-slate-100 dark:divide-white/10">{table.rows.length ? table.rows.map(([label, count]) => <div key={label} className="flex items-start justify-between gap-3 py-2.5 text-sm"><span className="min-w-0 break-all font-medium">{label}</span><strong className="shrink-0 tabular-nums">{count.toLocaleString("en-IN")}</strong></div>) : <p className="py-4 text-xs text-slate-500">No events yet.</p>}</div></div>)}
       </div>
       <div className="mt-5 overflow-hidden rounded-2xl border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950"><div className="flex items-center justify-between gap-3 border-b border-slate-200 px-4 py-3 dark:border-white/10"><h3 className="font-black">Recent activity</h3><span className="text-xs text-slate-500">Latest {metrics.recent.length} events</span></div><div className="overflow-x-auto"><table className="w-full min-w-[650px] text-left text-xs"><thead className="bg-slate-50 dark:bg-white/[.04]"><tr>{["Time", "Event", "Page", "Product / link"].map((label) => <th key={label} className="px-4 py-3 font-black uppercase tracking-wide text-slate-500">{label}</th>)}</tr></thead><tbody>{metrics.recent.map((event) => <tr key={event.id} className="border-t border-slate-100 dark:border-white/10"><td className="whitespace-nowrap px-4 py-3 text-slate-500">{dateTime(event.created_at)}</td><td className="px-4 py-3 font-bold">{eventLabels[event.event_type] || event.event_type}</td><td className="max-w-52 break-all px-4 py-3">{event.page_path}</td><td className="max-w-60 break-all px-4 py-3">{event.product_slug || event.link_url || String(event.metadata?.bannerId || event.metadata?.linkText || "—")}</td></tr>)}</tbody></table></div></div>
       <p className="mt-3 text-xs leading-5 text-slate-500">Privacy note: this report stores random session IDs and event details, not IP addresses or names. Browser privacy settings/ad blockers and failed requests can mean some visits/clicks are not recorded.</p>

@@ -1,5 +1,6 @@
 import type { Product } from "@/types/product";
 import { extractAsin, normalizeSlug } from "@/lib/product-catalog";
+import { getProviderLabel, inferProviderFromUrl, isAllowedAffiliateUrl, isProviderProductUrl, normalizeProvider } from "@/lib/marketplaces";
 
 export type ProductSaveStatus = "draft" | "published";
 export type ValidatedProductInput = { product: Product; status: ProductSaveStatus };
@@ -20,10 +21,6 @@ function parseHttpsUrl(value: unknown, label: string): string {
   return url.toString();
 }
 
-function isAllowedAmazonHost(host: string): boolean {
-  const h = host.toLowerCase().replace(/\.$/, "");
-  return h === "amazon.in" || h.endsWith(".amazon.in") || h === "amzn.to" || h === "amzn.in" || h === "a.co" || h === "link.amazon" || h.endsWith(".link.amazon");
-}
 
 function asStringArray(value: unknown, label: string): string[] {
   if (Array.isArray(value)) return value.filter((item): item is string => typeof item === "string").map((item) => item.trim()).filter(Boolean).slice(0, 30);
@@ -67,34 +64,59 @@ export function validateProductInput(raw: Record<string, unknown>, defaultStatus
   const brand = stringValue(raw.brand, "Brand", 100);
   const category = stringValue(raw.category, "Category", 80);
   const description = stringValue(raw.description, "Description", 3000);
-  const amazonUrl = parseHttpsUrl(raw.amazonUrl, "Amazon affiliate link");
-  const parsedAmazonUrl = new URL(amazonUrl);
-  const amazonHost = parsedAmazonUrl.hostname;
-  if (!isAllowedAmazonHost(amazonHost)) throw new Error("Use an Amazon.in product link or an Amazon short-link domain such as amzn.in, amzn.to, a.co, or link.amazon.");
-  const normalizedHost = amazonHost.toLowerCase().replace(/^www\./, "");
-  if ((normalizedHost === "amazon.in" || normalizedHost.endsWith(".amazon.in")) && !/\/(?:dp|gp\/product|product)\/[A-Z0-9]{10}(?:[/?#]|$)/i.test(parsedAmazonUrl.pathname)) {
-    throw new Error("Use the specific Amazon.in product detail link (usually /dp/ASIN), not a search or category page.");
+  const existing = previous;
+  const statusValue = raw.status === "published" ? "published" : raw.status === "draft" ? "draft" : defaultStatus;
+  const candidateProviderUrl = [raw.providerUrl, raw.productUrl, raw.amazonUrl, existing?.providerUrl, existing?.amazonUrl, raw.affiliateUrl, existing?.affiliateUrl].find((value) => typeof value === "string" && value.trim()) as string | undefined;
+  const provider = normalizeProvider(raw.provider) || normalizeProvider(existing?.provider) || (candidateProviderUrl ? inferProviderFromUrl(candidateProviderUrl) : "amazon");
+  const providerUrl = parseHttpsUrl(
+    (typeof raw.providerUrl === "string" && raw.providerUrl.trim()) ||
+      (typeof raw.productUrl === "string" && raw.productUrl.trim()) ||
+      (typeof raw.amazonUrl === "string" && raw.amazonUrl.trim()) ||
+      existing?.providerUrl || existing?.amazonUrl || existing?.affiliateUrl || "",
+    `${getProviderLabel(provider)} product URL`,
+  );
+  if (!isProviderProductUrl(provider, providerUrl)) {
+    throw new Error(`The product URL does not match the selected provider (${getProviderLabel(provider)}). Check the URL or change the provider.`);
   }
+  const parsedProviderUrl = new URL(providerUrl);
+  const normalizedHost = parsedProviderUrl.hostname.toLowerCase().replace(/^www\./, "");
+  if (provider === "amazon" && (normalizedHost === "amazon.in" || normalizedHost.endsWith(".amazon.in")) && !/(?:^|\/)(?:dp|gp\/product|product)\/([A-Z0-9]{10})(?:[/?#]|$)/i.test(parsedProviderUrl.pathname)) {
+    throw new Error("Use the specific Amazon.in product detail URL (usually /dp/ASIN), not a search or category page.");
+  }
+  const affiliateInput = typeof raw.affiliateUrl === "string"
+    ? raw.affiliateUrl.trim()
+    : provider === "amazon"
+      ? (typeof raw.amazonUrl === "string" && raw.amazonUrl.trim() ? raw.amazonUrl.trim() : existing?.affiliateUrl || existing?.amazonUrl || "")
+      : (existing?.affiliateUrl || "");
+  const affiliateUrl = affiliateInput ? parseHttpsUrl(affiliateInput, "Affiliate tracking URL") : undefined;
+  if (affiliateUrl && !isAllowedAffiliateUrl(affiliateUrl, provider)) {
+    throw new Error("Affiliate link must be HTTPS and use the selected marketplace or a recognized Cuelinks tracking domain.");
+  }
+  if (statusValue === "published" && !affiliateUrl) {
+    throw new Error("Add or generate a tracked affiliate URL before publishing. You can save the product as Draft first.");
+  }
+  const amazonUrl = provider === "amazon" ? affiliateUrl : undefined;
   const maybeSlug = typeof raw.slug === "string" && raw.slug.trim() ? raw.slug : title;
   const slug = normalizeSlug(maybeSlug);
   if (!slug || slug.length < 2) throw new Error("Could not create a valid product slug from the name.");
 
-  const imagesRaw = Array.isArray(raw.images) ? raw.images : [raw.image1, raw.image2, raw.image3];
+  const imagesRaw = Array.isArray(raw.images)
+    ? raw.images.filter((value) => typeof value === "string" && value.trim())
+    : [raw.image1, raw.image2, raw.image3].filter((value) => typeof value === "string" && value.trim());
   const images = imagesRaw.map((url, index) => parseHttpsUrl(url, `Image URL ${index + 1}`));
-  if (images.length !== 3 || new Set(images).size !== 3) throw new Error("Exactly 3 different image URLs are required for each product.");
+  if (images.length < 1 || images.length > 3) throw new Error("Add between one and three product image URLs.");
+  if (new Set(images).size !== images.length) throw new Error("Product image URLs must be different from each other.");
   const price = Number(raw.price);
   const originalPrice = raw.originalPrice == null || raw.originalPrice === "" ? price : Number(raw.originalPrice);
   if (!Number.isFinite(price) || price <= 0 || price > 100_000_000) throw new Error("Price must be a positive number.");
   if (!Number.isFinite(originalPrice) || originalPrice < price || originalPrice > 100_000_000) throw new Error("Original/list price must be greater than or equal to the current price.");
   const currency = typeof raw.currency === "string" && /^[A-Z]{3}$/.test(raw.currency.trim().toUpperCase()) ? raw.currency.trim().toUpperCase() : "INR";
-  if (currency !== "INR") throw new Error("This catalogue is configured for Amazon.in. Use INR prices only in this store.");
-  const statusValue = raw.status === "published" ? "published" : raw.status === "draft" ? "draft" : defaultStatus;
-  const asin = (typeof raw.asin === "string" && raw.asin.trim() ? raw.asin.trim().toUpperCase() : extractAsin(amazonUrl)) || undefined;
+  if (currency !== "INR") throw new Error("This catalogue is configured for Indian marketplaces. Use INR prices only in this store.");
+  const asin = (typeof raw.asin === "string" && raw.asin.trim() ? raw.asin.trim().toUpperCase() : provider === "amazon" ? extractAsin(providerUrl) : null) || undefined;
   if (asin && !/^[A-Z0-9]{10}$/.test(asin)) throw new Error("ASIN must contain 10 letters/numbers.");
 
   const sourceChecked = raw.priceVerified === true || raw.priceVerified === "true";
   const checkedAt = sourceChecked ? new Date().toISOString() : null;
-  const existing = previous;
   const ratingNumber = raw.rating == null || raw.rating === "" ? Number(existing?.rating || 0) : Number(raw.rating);
   const reviewCountNumber = raw.reviewCount == null || raw.reviewCount === "" ? Number(existing?.reviewCount || 0) : Number(raw.reviewCount);
   if (!Number.isFinite(ratingNumber) || ratingNumber < 0 || ratingNumber > 5) throw new Error("Rating must be between 0 and 5.");
@@ -129,6 +151,9 @@ export function validateProductInput(raw: Record<string, unknown>, defaultStatus
     description,
     image: images[0],
     images,
+    provider,
+    providerUrl,
+    affiliateUrl,
     amazonUrl,
     asin,
     originalPrice,
@@ -196,7 +221,7 @@ export function csvRowToProduct(headers: string[], values: string[], defaultStat
   };
   const raw: Record<string, unknown> = {
     slug: get("slug"), title: get("title", "productname", "name"), brand: get("brand"), category: get("category"),
-    description: get("description"), amazonUrl: get("amazonUrl", "affiliateUrl", "amazonLink", "productLink"), asin: get("asin"),
+    description: get("description"), provider: get("provider", "marketplace", "merchant"), providerUrl: get("providerUrl", "productUrl", "destinationUrl"), affiliateUrl: get("affiliateUrl", "trackingUrl", "cuelinksUrl") || get("amazonUrl", "amazonLink"), amazonUrl: get("amazonUrl", "amazonLink"), asin: get("asin"),
     price: get("price", "currentPrice"), originalPrice: get("originalPrice", "listPrice") || get("price", "currentPrice"),
     currency: get("currency") || "INR", image1: get("image1", "imageUrl1", "imageUrl", "image"), image2: get("image2", "imageUrl2"), image3: get("image3", "imageUrl3"),
     pros: get("pros").split("|"), cons: get("cons").split("|"), specs: get("specsJson", "specs") || "{}", status: get("status") || defaultStatus,

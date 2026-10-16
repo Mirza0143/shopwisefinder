@@ -4,8 +4,8 @@ import SiteChrome from "@/components/SiteChrome";
 
 export const metadata: Metadata = {
   title: {
-    default: "PickWise – Useful Finds, Smart Comparisons",
-    template: "%s | PickWise",
+    default: "ShopWiseFinder – Useful Finds, Smart Comparisons",
+    template: "%s | ShopWiseFinder",
   },
   description: "Discover practical product picks, mobile gaming accessories, everyday essentials, style kits and side-by-side comparisons.",
   keywords: [

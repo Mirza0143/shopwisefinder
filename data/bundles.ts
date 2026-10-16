@@ -1,3 +1,5 @@
+import type { ProductProvider } from "@/types/product";
+
 export type BundleItem = {
   id: string;
   name: string;
@@ -7,8 +9,12 @@ export type BundleItem = {
   estimated_price: number;
   current_price: number | null;
   currency: string;
+  provider?: ProductProvider;
+  providerUrl?: string;
+  affiliateUrl?: string;
+  /** Legacy Amazon field retained for built-in bundles and older records. */
   amazonUrl?: string;
-  /** Matching PickWise review when the catalog contains a suitable item. */
+  /** Matching ShopWiseFinder review when the catalog contains a suitable item. */
   reviewSlug?: string;
 };
 
@@ -179,7 +185,14 @@ export function amazonSearchUrl(query: string) {
   return `https://${domain}/s?${params.toString()}`;
 }
 export function getBundleItemUrl(product: BundleItem) {
-  return product.amazonUrl || amazonSearchUrl(product.searchQuery);
+  for (const value of [product.affiliateUrl, product.amazonUrl]) {
+    if (!value) continue;
+    try { const url = new URL(value); if (url.protocol === "https:") return url.toString(); } catch { /* try the next safe fallback */ }
+  }
+  if (product.providerUrl) {
+    try { const url = new URL(product.providerUrl); if (url.protocol === "https:") return url.toString(); } catch { /* fallback below */ }
+  }
+  return amazonSearchUrl(product.searchQuery);
 }
 export function getBundleUrl(bundle: CuratedBundle) {
   if (bundle.bundleUrl) return bundle.bundleUrl;

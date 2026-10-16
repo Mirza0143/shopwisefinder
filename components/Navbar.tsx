@@ -23,7 +23,7 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/85 shadow-sm shadow-slate-900/[.025] backdrop-blur-sm transition-colors duration-300 dark:border-white/10 dark:bg-slate-950/85">
       <div className="mx-auto flex h-[68px] max-w-7xl items-center justify-between gap-4 px-4 sm:px-5 lg:px-8">
-        <Link href="/" aria-label="PickWise home" className="shrink-0 rounded-lg text-xl font-black tracking-tight text-slate-950 transition duration-200 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:text-white" onClick={() => setMobileOpen(false)}>
+        <Link href="/" aria-label="ShopWiseFinder home" className="shrink-0 rounded-lg text-xl font-black tracking-tight text-slate-950 transition duration-200 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:text-white" onClick={() => setMobileOpen(false)}>
           Pick<span className="text-indigo-600">Wise</span>
         </Link>
 

@@ -7,11 +7,12 @@ import productsData from "@/data/products.json";
 import ProductCard from "@/components/ProductCard";
 import type { Product } from "@/types/product";
 import { formatINR } from "@/lib/products";
+import { getProductProvider, getProviderLabel, MARKETPLACES } from "@/lib/marketplaces";
 import { matchesSearchQuery, normalizeSearchText } from "@/lib/search";
 
 type SortMode = "featured" | "price-low" | "price-high" | "rating";
 
-const initialItems = productsData as unknown as Product[];
+const initialItems = (productsData as unknown as Product[]).filter((product) => !product.isDemoData);
 const spotlightCategories = [
   "Mobile Accessories",
   "Fashion & Footwear",
@@ -29,6 +30,7 @@ export default function ProductsPage() {
   const [query, setQuery] = useState("");
   const deferredQuery = useDeferredValue(query);
   const [category, setCategory] = useState("All");
+  const [provider, setProvider] = useState("All");
   const [maxPrice, setMaxPrice] = useState(200000);
   const [sortMode, setSortMode] = useState<SortMode>("featured");
   const [items, setItems] = useState<Product[]>(initialItems);
@@ -70,8 +72,9 @@ export default function ProductsPage() {
       .filter(({ product, searchIndex }) => {
         const matchesQuery = matchesSearchQuery(searchIndex, deferredQuery);
         const matchesCategory = category === "All" || product.category === category;
+        const matchesProvider = provider === "All" || getProductProvider(product) === provider;
         const matchesPrice = product.price <= maxPrice;
-        return matchesQuery && matchesCategory && matchesPrice;
+        return matchesQuery && matchesCategory && matchesProvider && matchesPrice;
       })
       .map(({ product }) => product);
 
@@ -83,11 +86,12 @@ export default function ProductsPage() {
       const bOrder = Number(b.displayOrder) > 0 ? Number(b.displayOrder) : Number.MAX_SAFE_INTEGER;
       return aOrder - bOrder || Number(Boolean(b.featured || b.editorChoice || b.trending)) - Number(Boolean(a.featured || a.editorChoice || a.trending));
     });
-  }, [searchableItems, deferredQuery, category, maxPrice, sortMode]);
+  }, [searchableItems, deferredQuery, category, provider, maxPrice, sortMode]);
 
   const resetFilters = () => {
     setQuery("");
     setCategory("All");
+    setProvider("All");
     setMaxPrice(200000);
     setSortMode("featured");
     if (typeof window !== "undefined") window.history.replaceState(null, "", "/products");
@@ -97,7 +101,7 @@ export default function ProductsPage() {
     <main className="pw-page-enter mx-auto min-h-screen max-w-7xl px-5 py-10 lg:px-8 lg:py-14">
       <header className="pw-enter mb-8 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
         <div>
-          <p className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[.2em] text-indigo-600 dark:text-indigo-300"><Sparkles size={14} /> The PickWise product library</p>
+          <p className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[.2em] text-indigo-600 dark:text-indigo-300"><Sparkles size={14} /> The ShopWiseFinder product library</p>
           <h1 className="mt-3 text-4xl font-black tracking-[-.035em] text-slate-950 dark:text-white sm:text-5xl">Useful picks. Smarter buys.</h1>
           <p className="mt-3 max-w-2xl leading-7 text-slate-600 dark:text-slate-300">From mobile-gaming accessories and wardrobe basics to cables, audio gear and everyday essentials.</p>
         </div>
@@ -107,7 +111,7 @@ export default function ProductsPage() {
       </header>
 
       <section className="pw-enter sticky top-[76px] z-30 mb-6 rounded-[1.5rem] border border-slate-200/80 bg-white p-3 shadow-lg shadow-slate-900/[.04] dark:border-white/10 dark:bg-slate-950 sm:p-4" aria-label="Product filters">
-        <div className="grid gap-3 md:grid-cols-[minmax(0,1fr)_auto_auto]">
+        <div className="grid gap-3 md:grid-cols-[minmax(0,1fr)_auto_auto_auto]">
           <label className="relative block">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
             <span className="sr-only">Search products, features and use cases</span>
@@ -121,6 +125,13 @@ export default function ProductsPage() {
               <option value="price-low">Price: low to high</option>
               <option value="price-high">Price: high to low</option>
               <option value="rating">Top ratings</option>
+            </select>
+          </label>
+          <label className="flex min-h-12 items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 dark:border-white/10 dark:bg-slate-900">
+            <span className="whitespace-nowrap text-xs font-semibold text-slate-500">Provider</span>
+            <select aria-label="Filter products by provider" value={provider} onChange={(e) => setProvider(e.target.value)} className="w-full min-w-28 bg-transparent text-sm font-semibold outline-none">
+              <option value="All">All marketplaces</option>
+              {MARKETPLACES.filter((marketplace) => items.some((item) => getProductProvider(item) === marketplace.value)).map((marketplace) => <option key={marketplace.value} value={marketplace.value}>{marketplace.label}</option>)}
             </select>
           </label>
           <label className="flex min-h-12 items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 dark:border-white/10 dark:bg-slate-900">
@@ -139,12 +150,12 @@ export default function ProductsPage() {
 
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <p className="text-sm font-semibold text-slate-500"><span className="font-black text-slate-950 dark:text-white">{filtered.length}</span> product{filtered.length !== 1 ? "s" : ""} found <span className="font-normal">· catalogue entries</span></p>
-        {(query || category !== "All" || maxPrice !== 200000 || sortMode !== "featured") && (
+        {(query || category !== "All" || provider !== "All" || maxPrice !== 200000 || sortMode !== "featured") && (
           <button type="button" onClick={resetFilters} className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-bold text-indigo-700 transition hover:bg-indigo-50 dark:text-indigo-300 dark:hover:bg-indigo-500/10"><RotateCcw size={13} /> Reset filters</button>
         )}
       </div>
 
-      <p className="mb-6 rounded-xl border border-amber-200/90 bg-amber-50 px-4 py-3 text-xs leading-5 text-amber-900 dark:border-amber-400/20 dark:bg-amber-500/10 dark:text-amber-200">Some entries are demo records. The iPhone prices are estimates converted from supplied AED listings, not verified Indian retail prices. Confirm the exact model, seller, live price, condition and warranty before buying.</p>
+      <p className="mb-6 rounded-xl border border-amber-200/90 bg-amber-50 px-4 py-3 text-xs leading-5 text-amber-900 dark:border-amber-400/20 dark:bg-amber-500/10 dark:text-amber-200">Some displayed prices may be estimates rather than verified Indian retail prices. Confirm the exact model, current price, seller, stock, condition, warranty and return terms on the retailer’s website before buying.</p>
 
       {filtered.length > 0 ? (
         <div className="grid items-start gap-5 sm:grid-cols-2 lg:grid-cols-3">

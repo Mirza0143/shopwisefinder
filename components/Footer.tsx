@@ -12,7 +12,7 @@ export default function Footer() {
     <footer className="border-t border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 md:grid-cols-5 lg:px-8">
         <div className="md:col-span-2">
-          <div className="text-xl font-black">Pick<span className="text-indigo-600">Wise</span></div>
+          <div className="text-xl font-black">Shop<span className="text-indigo-600">WiseFinder</span></div>
           <p className="mt-3 max-w-md text-sm leading-6 text-slate-500">
             Independent product recommendations, comparisons and buying guides.
           </p>
@@ -46,8 +46,10 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="border-t border-slate-200 px-5 py-6 text-center text-xs text-slate-500 dark:border-white/10">
-        As an Amazon Associate, I earn from qualifying purchases.
+      <div className="border-t border-slate-200 px-5 py-6 text-center text-xs leading-5 text-slate-500 dark:border-white/10">
+        <p>ShopWiseFinder may earn a commission when you purchase through eligible affiliate links. Product prices and availability may change on the retailer’s website.</p>
+        <p className="mt-2 font-semibold">As an Amazon Associate I earn from qualifying purchases.</p>
+        <p className="mt-2"><Link href="/affiliate-disclosure" className="font-semibold text-indigo-600 underline underline-offset-2 hover:text-indigo-700 dark:text-indigo-300 dark:hover:text-indigo-200">Read our full Affiliate Disclosure</Link>.</p>
       </div>
     </footer>
   );

@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { AlertTriangle, ArrowUpRight, Check, ClipboardCheck, Star, X } from "lucide-react";
-import { formatINR, getProductAffiliateUrl, getProductBadges } from "@/lib/products";
+import { formatINR, getProductBadges } from "@/lib/products";
+import { getProductProvider, getProviderLabel } from "@/lib/marketplaces";
+import MarketplaceBadge from "@/components/MarketplaceBadge";
 import { getPublishedCatalog } from "@/lib/product-catalog";
 import PriceHistoryPanel from "@/components/PriceHistoryPanel";
 import AIReviewButton from "@/components/AIReviewButton";
@@ -90,11 +92,11 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
           <div className="flex flex-wrap gap-2">
             {productBadges.map((badge) => <span key={badge} className="rounded-full bg-indigo-50 px-3 py-1 text-xs font-bold text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-300">{badge}</span>)}
           </div>
-          <p className="mt-6 text-sm font-bold uppercase tracking-[.18em] text-slate-500">{product.brand} · {product.category}</p>
+          <div className="mt-6 flex flex-wrap items-center gap-2"><p className="text-sm font-bold uppercase tracking-[.18em] text-slate-500">{product.brand} · {product.category}</p><MarketplaceBadge provider={getProductProvider(product)} /></div>
           <h1 className="mt-2 text-4xl font-black tracking-tight sm:text-5xl">{product.title}</h1>
-          <div className="mt-4 flex flex-wrap items-center gap-2">{(!product.isDemoData && product.reviewCount > 0 && product.rating > 0 && (product.ratingSource === "manual_checked" || product.ratingSource === "amazon_creators_api")) ? <><Star size={18} fill="currentColor"/> <strong>{product.rating.toFixed(1)}</strong><span className="text-slate-500">({product.reviewCount.toLocaleString()} Amazon ratings)</span></> : <span className="text-sm font-semibold text-amber-700 dark:text-amber-300">{product.isDemoData ? "Demo listing — rating not verified" : "Rating not verified — not shown"}</span>}</div>
-          {!product.isDemoData && product.ratingSource === "manual_checked" && product.ratingCheckedAt && <p className="mt-1 text-xs text-slate-500">Amazon listing rating manually checked {new Date(product.ratingCheckedAt).toLocaleDateString("en-IN")}; Amazon may update it.</p>}
-          {!product.isDemoData && product.ratingSource === "amazon_creators_api" && product.ratingCheckedAt && <p className="mt-1 text-xs text-slate-500">Amazon listing data retrieved {new Date(product.ratingCheckedAt).toLocaleDateString("en-IN")} via approved API.</p>}
+          <div className="mt-4 flex flex-wrap items-center gap-2">{(!product.isDemoData && product.reviewCount > 0 && product.rating > 0 && (product.ratingSource === "manual_checked" || product.ratingSource === "amazon_creators_api")) ? <><Star size={18} fill="currentColor"/> <strong>{product.rating.toFixed(1)}</strong><span className="text-slate-500">({product.reviewCount.toLocaleString()} {getProviderLabel(getProductProvider(product))} ratings)</span></> : <span className="text-sm font-semibold text-amber-700 dark:text-amber-300">{product.isDemoData ? "Demo listing — rating not verified" : "Rating not verified — not shown"}</span>}</div>
+          {!product.isDemoData && product.ratingSource === "manual_checked" && product.ratingCheckedAt && <p className="mt-1 text-xs text-slate-500">Marketplace rating manually checked {new Date(product.ratingCheckedAt).toLocaleDateString("en-IN")}; the provider may update it.</p>}
+          {!product.isDemoData && product.ratingSource === "amazon_creators_api" && product.ratingCheckedAt && <p className="mt-1 text-xs text-slate-500">Marketplace listing data retrieved {new Date(product.ratingCheckedAt).toLocaleDateString("en-IN")} via approved API.</p>}
           <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-300">{product.description}</p>
           {product.isDemoData && <p className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm font-semibold text-amber-900 dark:border-amber-400/20 dark:bg-amber-500/10 dark:text-amber-200">Demo catalog entry: price, specifications, and images are illustrative. Verify all product details before publishing.</p>}
 
@@ -103,14 +105,15 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
               <span className="text-4xl font-black">{formatINR(product.price)}</span>
               <span className="pb-1 text-slate-400 line-through">{formatINR(product.originalPrice)}</span>
             </div>
-            <p className="mt-1 text-sm text-emerald-600">{product.isDemoData ? "Illustrative sample price—not a live Amazon price." : product.priceSource === "amazon_creators_api" ? `Amazon price received from an approved API${product.priceCheckedAt ? ` · checked ${new Date(product.priceCheckedAt).toLocaleDateString("en-IN")}` : ""}. Check the final price at checkout.` : product.priceSource === "manual_verified" && product.priceCheckedAt ? `Manually verified on ${new Date(product.priceCheckedAt).toLocaleDateString("en-IN")}; Amazon’s price may change.` : "Manually entered or unverified price; check the current seller price and final checkout amount on Amazon."}</p>
+            <p className="mt-1 text-sm text-emerald-600">{product.isDemoData ? "Illustrative sample price—not a live retailer price." : product.priceSource === "amazon_creators_api" ? `Price received from an approved API${product.priceCheckedAt ? ` · checked ${new Date(product.priceCheckedAt).toLocaleDateString("en-IN")}` : ""}. Check the final price at checkout.` : product.priceSource === "manual_verified" && product.priceCheckedAt ? `Manually verified on ${new Date(product.priceCheckedAt).toLocaleDateString("en-IN")}; ${getProviderLabel(getProductProvider(product))} may change the price.` : "Manually entered or unverified price; check the current seller price and final checkout amount at the provider."}</p>
             <Link
-              href={getProductAffiliateUrl(product)}
+              href={`/go/${product.slug}`}
               target="_blank"
               rel="sponsored nofollow noopener"
+              data-provider={getProductProvider(product)}
               className="mt-5 flex items-center justify-center gap-2 rounded-2xl bg-orange-500 px-6 py-4 text-base font-black text-white shadow-lg shadow-orange-500/20 transition hover:-translate-y-0.5 hover:bg-orange-600"
             >
-              Check price on Amazon <ArrowUpRight size={19}/>
+              Shop at {getProviderLabel(getProductProvider(product))} <ArrowUpRight size={19}/>
             </Link>
             <p className="mt-3 text-center text-xs text-slate-500">Affiliate link · Opens in a new tab</p>
           </div>
@@ -122,7 +125,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
       <section className="mt-14 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-8">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
-            <p className="text-xs font-black uppercase tracking-[.18em] text-indigo-600 dark:text-indigo-300">PickWise buying guide</p>
+            <p className="text-xs font-black uppercase tracking-[.18em] text-indigo-600 dark:text-indigo-300">ShopWiseFinder buying guide</p>
             <h2 className="mt-2 text-3xl font-black tracking-tight">Detailed review: strengths & trade-offs</h2>
             <p className="mt-2 max-w-3xl leading-7 text-slate-600 dark:text-slate-300">{product.review?.summary ?? product.description}</p>
           </div>
@@ -173,7 +176,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
       <section className="mt-8 rounded-3xl border border-indigo-200 bg-indigo-50/60 p-6 dark:border-indigo-400/20 dark:bg-indigo-500/[.07] sm:p-8">
         <p className="text-xs font-black uppercase tracking-[.16em] text-indigo-600 dark:text-indigo-300">Free smart buying assistant</p>
         <h2 className="mt-2 text-2xl font-black">Want a quick product analysis?</h2>
-        <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600 dark:text-slate-300">Generate an instant, free analysis from the product specifications already in PickWise. The rules highlight strengths, limitations and details to verify without a paid API or an invented test result.</p>
+        <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600 dark:text-slate-300">Generate an instant, free analysis from the product specifications already in ShopWiseFinder. The rules highlight strengths, limitations and details to verify without a paid API or an invented test result.</p>
         <AIReviewButton product={product} />
         <p className="mt-3 text-xs text-slate-500">Runs locally in your browser using catalogue data. No API key, account credits or per-review charges are required.</p>
       </section>
