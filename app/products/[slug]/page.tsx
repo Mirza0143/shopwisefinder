@@ -6,6 +6,7 @@ import { getProductProvider, getProviderLabel } from "@/lib/marketplaces";
 import MarketplaceBadge from "@/components/MarketplaceBadge";
 import { getPublishedCatalog } from "@/lib/product-catalog";
 import PriceHistoryPanel from "@/components/PriceHistoryPanel";
+import AmazonProductInsights from "@/components/AmazonProductInsights";
 import AIReviewButton from "@/components/AIReviewButton";
 import ProductImageGallery from "@/components/ProductImageGallery";
 import type { Product } from "@/types/product";
@@ -101,11 +102,20 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
           {product.isDemoData && <p className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm font-semibold text-amber-900 dark:border-amber-400/20 dark:bg-amber-500/10 dark:text-amber-200">Demo catalog entry: price, specifications, and images are illustrative. Verify all product details before publishing.</p>}
 
           <div className="mt-7 rounded-2xl border border-slate-200 bg-white p-5 dark:border-white/10 dark:bg-white/5">
-            <div className="flex items-end gap-3">
-              <span className="text-4xl font-black">{formatINR(product.price)}</span>
-              <span className="pb-1 text-slate-400 line-through">{formatINR(product.originalPrice)}</span>
-            </div>
-            <p className="mt-1 text-sm text-emerald-600">{product.isDemoData ? "Illustrative sample price—not a live retailer price." : product.priceSource === "amazon_creators_api" ? `Price received from an approved API${product.priceCheckedAt ? ` · checked ${new Date(product.priceCheckedAt).toLocaleDateString("en-IN")}` : ""}. Check the final price at checkout.` : product.priceSource === "manual_verified" && product.priceCheckedAt ? `Manually verified on ${new Date(product.priceCheckedAt).toLocaleDateString("en-IN")}; ${getProviderLabel(getProductProvider(product))} may change the price.` : "Manually entered or unverified price; check the current seller price and final checkout amount at the provider."}</p>
+            {getProductProvider(product) === "amazon" ? (
+              <>
+                <p className="text-sm font-bold uppercase tracking-[.12em] text-slate-500">Amazon listing</p>
+                <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">Prices, seller offers, and availability can change. Check the current details directly on Amazon rather than relying on a stored price.</p>
+              </>
+            ) : (
+              <>
+                <div className="flex items-end gap-3">
+                  <span className="text-4xl font-black">{formatINR(product.price)}</span>
+                  <span className="pb-1 text-slate-400 line-through">{formatINR(product.originalPrice)}</span>
+                </div>
+                <p className="mt-1 text-sm text-emerald-600">{product.isDemoData ? "Illustrative sample price—not a live retailer price." : product.priceSource === "amazon_creators_api" ? `Price received from an approved API${product.priceCheckedAt ? ` · checked ${new Date(product.priceCheckedAt).toLocaleDateString("en-IN")}` : ""}. Check the final price at checkout.` : product.priceSource === "manual_verified" && product.priceCheckedAt ? `Manually verified on ${new Date(product.priceCheckedAt).toLocaleDateString("en-IN")}; ${getProviderLabel(getProductProvider(product))} may change the price.` : "Manually entered or unverified price; check the current seller price and final checkout amount at the provider."}</p>
+              </>
+            )}
             <Link
               href={`/go/${product.slug}`}
               target="_blank"
@@ -113,14 +123,19 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
               data-provider={getProductProvider(product)}
               className="mt-5 flex items-center justify-center gap-2 rounded-2xl bg-orange-500 px-6 py-4 text-base font-black text-white shadow-lg shadow-orange-500/20 transition hover:-translate-y-0.5 hover:bg-orange-600"
             >
-              Shop at {getProviderLabel(getProductProvider(product))} <ArrowUpRight size={19}/>
+              {getProductProvider(product) === "amazon" ? "Check current price on Amazon" : <>Shop at {getProviderLabel(getProductProvider(product))} <ArrowUpRight size={19}/></>}
+              {getProductProvider(product) === "amazon" && <ArrowUpRight size={19}/>}
             </Link>
             <p className="mt-3 text-center text-xs text-slate-500">Affiliate link · Opens in a new tab</p>
           </div>
         </div>
       </div>
 
-      <PriceHistoryPanel product={product} />
+      {getProductProvider(product) === "amazon" ? (
+        <AmazonProductInsights product={product} />
+      ) : (
+        <PriceHistoryPanel product={product} />
+      )}
 
       <section className="mt-14 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-8">
         <div className="flex flex-wrap items-start justify-between gap-4">
