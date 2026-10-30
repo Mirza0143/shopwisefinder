@@ -69,7 +69,10 @@
         "Confirm final checkout price, return policy and region/network compatibility.",
         "Do not treat water resistance as permanent or as a guarantee against liquid damage."
       ]
-    }
+    },
+    "priceSource": "unknown",
+    "priceCheckedAt": null,
+    "priceCheckNote": "The supplied price was an AED-to-INR estimate, not a verified India retail listing. Check the linked retailer for current availability and price."
   },
   {
     "id": "phone-002",
@@ -139,6 +142,9 @@
         "Check final price and compatibility for your country/carrier.",
         "Water resistance can decline with wear and liquid damage may not be covered."
       ]
-    }
+    },
+    "priceSource": "unknown",
+    "priceCheckedAt": null,
+    "priceCheckNote": "The supplied price was an AED-to-INR estimate, not a verified India retail listing. Check the linked retailer for current availability and price."
   }
 ]
