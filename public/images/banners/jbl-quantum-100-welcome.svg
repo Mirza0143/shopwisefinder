@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="900" viewBox="0 0 1000 900" role="img" aria-labelledby="title desc">
+<title id="title">JBL Quantum 100 gaming headset banner artwork</title>
+<desc id="desc">A premium navy, electric blue and violet gaming-themed illustration with a white over-ear wired gaming headset.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#07132f"/><stop offset=".55" stop-color="#101b55"/><stop offset="1" stop-color="#32106a"/></linearGradient>
+  <radialGradient id="glow"><stop offset="0" stop-color="#2563eb" stop-opacity=".9"/><stop offset="1" stop-color="#2563eb" stop-opacity="0"/></radialGradient>
+  <linearGradient id="cup" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".48" stop-color="#dbe5f5"/><stop offset="1" stop-color="#8997b5"/></linearGradient>
+  <linearGradient id="pad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6a7895"/><stop offset="1" stop-color="#1c2942"/></linearGradient>
+  <linearGradient id="band" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".5" stop-color="#b9c6de"/><stop offset="1" stop-color="#eef4ff"/></linearGradient>
+  <filter id="shadow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="22"/></filter>
+  <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6"/></filter>
+</defs>
+<rect width="1000" height="900" rx="36" fill="url(#bg)"/>
+<circle cx="780" cy="420" r="410" fill="url(#glow)" opacity=".8"/>
+<circle cx="190" cy="780" r="240" fill="#7c3aed" opacity=".12"/>
+<g stroke="#76baff" stroke-opacity=".12" stroke-width="2">
+  <path d="M0 160H1000M0 300H1000M0 440H1000M0 580H1000M0 720H1000"/>
+  <path d="M140 0V900M300 0V900M460 0V900M620 0V900M780 0V900M940 0V900"/>
+</g>
+<g opacity=".35" filter="url(#soft)"><path d="M530 720H970" stroke="#06b6d4" stroke-width="18"/><path d="M585 760H1000" stroke="#a855f7" stroke-width="14"/></g>
+<g transform="translate(58 62)">
+  <rect width="112" height="74" rx="12" fill="#f4511e"/>
+  <text x="56" y="51" fill="#fff" font-size="43" font-family="Arial, sans-serif" font-weight="900" text-anchor="middle">JBL</text>
+  <text x="134" y="31" fill="#67e8f9" font-size="22" font-family="Arial, sans-serif" font-weight="800" letter-spacing="4">QUANTUM SERIES</text>
+  <text x="134" y="61" fill="#b8c9ee" font-size="16" font-family="Arial, sans-serif" letter-spacing="2">WIRED GAMING HEADSET</text>
+</g>
+<g transform="translate(0 10)">
+  <ellipse cx="680" cy="710" rx="240" ry="46" fill="#030817" opacity=".65" filter="url(#shadow)"/>
+  <path d="M480 500 C430 145 865 100 905 490" fill="none" stroke="#091225" stroke-width="104" stroke-linecap="round" opacity=".65" filter="url(#soft)"/>
+  <path d="M480 490 C438 150 860 110 900 480" fill="none" stroke="url(#band)" stroke-width="70" stroke-linecap="round"/>
+  <path d="M505 480 C485 210 815 180 875 480" fill="none" stroke="#f8fbff" stroke-opacity=".7" stroke-width="16" stroke-linecap="round"/>
+  <path d="M475 435 C425 470 420 590 448 660" fill="none" stroke="#dbe5f5" stroke-width="18" stroke-linecap="round"/>
+  <path d="M901 430 C955 472 955 590 922 660" fill="none" stroke="#c5d2e8" stroke-width="18" stroke-linecap="round"/>
+  <g transform="translate(365 435) rotate(-7)">
+    <rect x="0" y="0" width="180" height="250" rx="72" fill="#08152b" opacity=".7" transform="translate(8 12)"/>
+    <rect x="0" y="0" width="180" height="250" rx="72" fill="url(#cup)" stroke="#f8fbff" stroke-width="8"/>
+    <rect x="24" y="22" width="132" height="206" rx="58" fill="url(#pad)" stroke="#d2def1" stroke-width="10"/>
+    <rect x="43" y="41" width="94" height="168" rx="44" fill="#19243b" opacity=".9"/>
+    <circle cx="90" cy="126" r="31" fill="#93a4c1" opacity=".25"/>
+  </g>
+  <g transform="translate(808 430) rotate(7)">
+    <rect x="0" y="0" width="180" height="250" rx="72" fill="#08152b" opacity=".7" transform="translate(8 12)"/>
+    <rect x="0" y="0" width="180" height="250" rx="72" fill="url(#cup)" stroke="#f8fbff" stroke-width="8"/>
+    <rect x="24" y="22" width="132" height="206" rx="58" fill="url(#pad)" stroke="#d2def1" stroke-width="10"/>
+    <rect x="43" y="41" width="94" height="168" rx="44" fill="#19243b" opacity=".9"/>
+    <circle cx="90" cy="126" r="31" fill="#93a4c1" opacity=".25"/>
+    <text x="90" y="137" fill="#a9b7d0" font-size="23" font-family="Arial, sans-serif" font-weight="900" text-anchor="middle">JBL</text>
+  </g>
+  <path d="M851 650 C840 730 785 765 700 760 L625 758" fill="none" stroke="#e7efff" stroke-width="15" stroke-linecap="round"/>
+  <path d="M625 758 L580 758" stroke="#aebbd1" stroke-width="20" stroke-linecap="round"/>
+  <rect x="558" y="744" width="34" height="29" rx="13" fill="#e5edf9"/>
+  <path d="M851 675 L868 860" stroke="#dce6f8" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g transform="translate(58 710)">
+  <text x="0" y="0" fill="#fff" font-size="42" font-family="Arial, sans-serif" font-weight="900">JBL QUANTUM 100</text>
+  <text x="2" y="43" fill="#a5f3fc" font-size="24" font-family="Arial, sans-serif" font-weight="700">LEVEL UP YOUR GAME</text>
+  <text x="2" y="87" fill="#d6e4ff" font-size="17" font-family="Arial, sans-serif">40 mm drivers  •  Detachable mic  •  Memory-foam comfort</text>
+</g>
+<rect x="58" y="822" width="280" height="52" rx="26" fill="#06b6d4"/>
+<text x="198" y="857" fill="#041329" font-size="28" font-family="Arial, sans-serif" font-weight="900" text-anchor="middle">₹1,999</text>
+<text x="958" y="865" fill="#a5b4fc" font-size="14" font-family="Arial, sans-serif" text-anchor="end">SHOPWISEFINDER</text>
+</svg>
