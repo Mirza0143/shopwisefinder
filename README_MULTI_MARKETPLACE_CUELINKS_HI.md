@@ -3,8 +3,8 @@
 ## Kya automatic hoga aur kya manual rahega?
 
 - **Product catalogue data:** product ka naam, brand, category, original product page URL, current/list price, images, specs aur rating abhi Admin Panel se manually add/edit hote hain ya CSV import kiye ja sakte hain. Cuelinks Monetization API ko automatic universal retailer-product-feed API na samjhein; API campaign discovery, URL-to-affiliate-link conversion aur reporting ke liye hai.
-- **Affiliate link:** approved/eligible campaign ke original product URL ko Cuelinks dashboard se convert karke paste kar sakte hain. Ya Admin Panel ka **Generate Cuelinks link** button use kar sakte hain, agar aapke paas API key mein `write:links` scope hai.
-- **Approval gate:** link-conversion response `affiliated: true` ho tabhi tracked link commission ke liye eligible batata hai. `false` aaye toh product publish na karein; pehle Cuelinks campaign access/approval check karein.
+- **Affiliate link (optional):** approved/eligible campaign ka original product URL Cuelinks dashboard se convert karke paste kar sakte hain. Ya Admin Panel ka **Generate Cuelinks link** button use karein, agar API key mein `write:links` scope hai. Approval/API access na ho toh field blank chhod sakte hain; product original marketplace URL se publish ho sakta hai.
+- **Approval gate:** conversion response `affiliated: true` ho tabhi Cuelinks tracking link ko eligible batata hai. `false` aaye toh us tracked link ko use na karein. Aap phir bhi affiliate link ke bina original marketplace URL par product publish kar sakte hain; us direct click par commission nahi milega.
 - **Marketplace support:** Amazon India, Flipkart, Myntra, Meesho, Shopsy, AJIO, aur manual “Other provider”. Meesho ya kisi bhi merchant ko publish karne se pehle Cuelinks mein actual campaign availability/access verify karein.
 
 ## Admin se ek product add karna
@@ -13,8 +13,8 @@
 2. Marketplace/provider select karein.
 3. Product ka **original product-detail URL** paste karein (search page nahi).
 4. Product name, brand, category, description, INR price/list price, ek main image (extra 2 images optional), aur available verified details bharein.
-5. Cuelinks link generate karein ya Cuelinks dashboard se banaya tracked URL `Affiliate / tracked URL` mein paste karein.
-6. Pehle Draft save karke verify karein. Tracked affiliate URL ke bina product publish nahi hoga.
+5. Agar approved Cuelinks tracking link available hai toh generate/paste karein. Nahi hai toh `Affiliate / tracked URL` blank chhod dein.
+6. Product ko pehle Draft mein verify kar sakte hain, ya original product URL sahi ho toh Published select kar sakte hain. Affiliate URL optional hai; blank hone par Shop button original marketplace URL kholega.
 
 ## CSV import
 
@@ -43,7 +43,7 @@ Products page, product details, compare cards, Admin Catalogue aur bundle produc
 ## Demo products ko public se hide karna
 
 - Built-in catalogue mein `isDemoData: true` mark kiye gaye sample products public Products, Compare, homepage and product-detail routes se hidden rehte hain. Admin Catalogue mein ye `Draft` ke roop mein dikhte hain.
-- Sample record ko real product banane se pehle exact retailer listing se title, brand, image, current INR price, product URL aur required details verify karein; `isDemoData` flag uncheck karein, valid tracked affiliate URL add karein, phir hi publish karein.
+- Sample record ko real product banane se pehle exact retailer listing se title, brand, image, current INR price, product URL aur details verify karein; `isDemoData` flag uncheck karein. Affiliate URL optional hai; bina tracking ke publish karne par commission nahi milega.
 - Static demo records ko public par restore karne ke liye unhe sirf `Published` select karna kaafi nahi: illustrative/demo flag ko bhi uncheck karna hoga.
 
 ## Price, stock aur affiliate transparency
