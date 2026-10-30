@@ -92,9 +92,8 @@ export function validateProductInput(raw: Record<string, unknown>, defaultStatus
   if (affiliateUrl && !isAllowedAffiliateUrl(affiliateUrl, provider)) {
     throw new Error("Affiliate link must be HTTPS and use the selected marketplace or a recognized Cuelinks tracking domain.");
   }
-  if (statusValue === "published" && !affiliateUrl) {
-    throw new Error("Add or generate a tracked affiliate URL before publishing. You can save the product as Draft first.");
-  }
+  // Affiliate tracking is optional. The original providerUrl is always required
+  // and is used as the public destination when no affiliateUrl is available.
   const amazonUrl = provider === "amazon" ? affiliateUrl : undefined;
   const maybeSlug = typeof raw.slug === "string" && raw.slug.trim() ? raw.slug : title;
   const slug = normalizeSlug(maybeSlug);
