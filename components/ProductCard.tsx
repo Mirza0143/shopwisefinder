@@ -10,7 +10,8 @@ import { getProductProvider, getProviderLabel } from "@/lib/marketplaces";
 import MarketplaceBadge from "@/components/MarketplaceBadge";
 
 export default function ProductCard({ product }: { product: Product }) {
-  const discount = product.originalPrice > product.price && product.originalPrice > 0
+  const priceVerified = product.isDemoData || Boolean(product.priceSource && product.priceSource !== "unknown" && product.priceCheckedAt);
+  const discount = priceVerified && product.originalPrice > product.price && product.originalPrice > 0
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
     : 0;
   const router = useRouter();
@@ -67,9 +68,9 @@ export default function ProductCard({ product }: { product: Product }) {
         <div className="mt-auto pt-5">
           <div className="flex items-end justify-between gap-3">
             <div className="min-w-0">
-              <span className="block text-[10px] font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">{product.isDemoData ? "Illustrative price" : "Listed price"}</span>
-              <span className="mt-0.5 block text-2xl font-black tracking-tight text-slate-950 dark:text-white">{formatINR(product.price)}</span>
-              {product.originalPrice > product.price && (
+              <span className="block text-[10px] font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">{product.isDemoData ? "Illustrative price" : priceVerified ? "Listed price" : "Current price not verified"}</span>
+              <span className="mt-0.5 block text-2xl font-black tracking-tight text-slate-950 dark:text-white">{priceVerified ? formatINR(product.price) : "Check live price"}</span>
+              {priceVerified && product.originalPrice > product.price && (
                 <div className="mt-1 flex flex-wrap items-center gap-1.5">
                   <span className="text-xs text-slate-400 line-through">{formatINR(product.originalPrice)}</span>
                   <span className="rounded-md bg-emerald-50 px-1.5 py-0.5 text-[10px] font-extrabold text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-300">{discount}% below sample list</span>
