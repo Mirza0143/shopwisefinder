@@ -119,14 +119,14 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
             <Link
               href={`/go/${product.slug}`}
               target="_blank"
-              rel="sponsored nofollow noopener"
+              rel={product.affiliateUrl || product.amazonUrl ? "sponsored nofollow noopener" : "nofollow noopener"}
               data-provider={getProductProvider(product)}
               className="mt-5 flex items-center justify-center gap-2 rounded-2xl bg-orange-500 px-6 py-4 text-base font-black text-white shadow-lg shadow-orange-500/20 transition hover:-translate-y-0.5 hover:bg-orange-600"
             >
               {getProductProvider(product) === "amazon" ? "Check current price on Amazon" : <>Shop at {getProviderLabel(getProductProvider(product))} <ArrowUpRight size={19}/></>}
               {getProductProvider(product) === "amazon" && <ArrowUpRight size={19}/>}
             </Link>
-            <p className="mt-3 text-center text-xs text-slate-500">Affiliate link · Opens in a new tab</p>
+            <p className="mt-3 text-center text-xs text-slate-500">{product.affiliateUrl || product.amazonUrl ? "Affiliate link · Opens in a new tab" : "Opens the original marketplace product page in a new tab"}</p>
           </div>
         </div>
       </div>
