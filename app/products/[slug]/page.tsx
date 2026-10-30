@@ -77,6 +77,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
   const product = catalog.find((item) => item.slug === slug);
   if (!product) notFound();
   const productBadges = getProductBadges(product, catalog);
+  const priceVerified = Boolean(product.isDemoData || (product.priceSource && product.priceSource !== "unknown" && product.priceCheckedAt));
 
   return (
     <main className="pw-page-enter mx-auto max-w-7xl px-5 py-10 lg:px-8 lg:py-14">
@@ -107,13 +108,18 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                 <p className="text-sm font-bold uppercase tracking-[.12em] text-slate-500">Amazon listing</p>
                 <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">Prices, seller offers, and availability can change. Check the current details directly on Amazon rather than relying on a stored price.</p>
               </>
-            ) : (
+            ) : priceVerified ? (
               <>
                 <div className="flex items-end gap-3">
                   <span className="text-4xl font-black">{formatINR(product.price)}</span>
                   <span className="pb-1 text-slate-400 line-through">{formatINR(product.originalPrice)}</span>
                 </div>
-                <p className="mt-1 text-sm text-emerald-600">{product.isDemoData ? "Illustrative sample price—not a live retailer price." : product.priceSource === "amazon_creators_api" ? `Price received from an approved API${product.priceCheckedAt ? ` · checked ${new Date(product.priceCheckedAt).toLocaleDateString("en-IN")}` : ""}. Check the final price at checkout.` : product.priceSource === "manual_verified" && product.priceCheckedAt ? `Manually verified on ${new Date(product.priceCheckedAt).toLocaleDateString("en-IN")}; ${getProviderLabel(getProductProvider(product))} may change the price.` : "Manually entered or unverified price; check the current seller price and final checkout amount at the provider."}</p>
+                <p className="mt-1 text-sm text-emerald-600">{product.isDemoData ? "Illustrative sample price—not a live retailer price." : product.priceSource === "amazon_creators_api" ? `Price received from an approved API${product.priceCheckedAt ? ` · checked ${new Date(product.priceCheckedAt).toLocaleDateString("en-IN")}` : ""}. Check the final price at checkout.` : `Price last checked ${new Date(product.priceCheckedAt as string).toLocaleDateString("en-IN")}; retailer prices and size offers may change.`}</p>
+              </>
+            ) : (
+              <>
+                <p className="text-sm font-bold uppercase tracking-[.12em] text-slate-500">Current price not verified</p>
+                <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">We could not confirm a current price for this exact listing. Use the retailer link below to check today's price, selected size and availability before buying.</p>
               </>
             )}
             <Link
