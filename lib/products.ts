@@ -55,18 +55,13 @@ export function getAmazonSearchUrl(query: string) {
   return `https://${domain}/s?${params.toString()}`;
 }
 export function getProductAffiliateUrl(product: Product) {
-  // New multi-marketplace records use affiliateUrl; amazonUrl remains a legacy fallback.
-  for (const candidate of [product.affiliateUrl, product.amazonUrl]) {
+  // Prefer an available tracked URL; otherwise send shoppers to the exact original product page.
+  for (const candidate of [product.affiliateUrl, product.amazonUrl, product.providerUrl]) {
     if (!candidate) continue;
     try { const parsed = new URL(candidate); if (parsed.protocol === "https:" && parsed.hostname) return parsed.toString(); }
-    catch { /* invalid legacy URL falls through to the safe marketplace fallback */ }
+    catch { /* invalid URL falls through to the next safe destination */ }
   }
   const provider = getProductProvider(product);
   if (provider === "amazon") return getAmazonSearchUrl(`${product.brand} ${product.title}`.trim());
-  // Published non-Amazon products should have a tracked URL; this is a defensive fallback for older draft data.
-  if (product.providerUrl) {
-    try { const parsed = new URL(product.providerUrl); if (parsed.protocol === "https:") return parsed.toString(); }
-    catch { /* continue to marketplace fallback */ }
-  }
   return `https://${({ flipkart: "www.flipkart.com", myntra: "www.myntra.com", meesho: "www.meesho.com", shopsy: "www.shopsy.in", ajio: "www.ajio.com", other: "www.amazon.in", amazon: "www.amazon.in" } as const)[provider]}/`;
 }
